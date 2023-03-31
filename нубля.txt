@@ -1,0 +1,80 @@
+вот запускаю его, скармливаю элементарный блок с элементами, а он давится ругает
+s>  aacddz-aaddz-addz-adddzddddzdz
+20.html:191 Uncaught TypeError: Cannot read properties of null (reading '0')
+    at main (20.html:191:11)
+    at HTMLButtonElement.onclick (20.html:44:40)
+почему?
+вот корм
+<div class="wrap">
+   	<header>
+   		<label for="slide-1">Первый слайд</label>
+   		<label for="slide-2">Второй слайд</label>
+   		<label for="slide-3">Третий слайд</label>
+   		<label for="slide-4">Четвертый слайд</label>
+   	</header>
+    <input id="slide-1" type="radio" name="slides" checked>
+    <section class="slide slide-one">
+    	<h1>Заголовок Один</h1>
+    </section>
+    <input id="slide-2" type="radio" name="slides">
+    <section class="slide slide-two">
+    	<h1>Заголовок Два</h1>
+    </section>
+    <input id="slide-3" type="radio" name="slides">
+    <section class="slide slide-three">
+    	<h1>Заголовок Три</h1>
+    </section>
+    <input id="slide-4" type="radio" name="slides">
+    <section class="slide slide-four">
+    	<h1>Заголовок Четыре</h1>
+    </section>
+</div>	
+условноые обозначения
+a вверх
+0123
+-()
+c
+d
+z-вниз
+aacddz-aaddz-addz-adddzddddzdz
+u={'a':{x:0,y:dy,},'z':{x:0,y:-dy,},'0':{x:dx,y:0,},'1':{x:dx/2|0,y:dy,},'2':{x:0,y:dy,},'3':{x:dx,y:0,},'-':{x:dx,y:0,},'(':{x:0,y:0,},')':{x:0,y:0,},};
+что то сломалось в замке... на одном из зтапрв 
+-чисто теги (убивается текст, остается только голый тег)
+-строит строку из букв (схема эс)
+-сокращение (обьединяет повтооряющие части, выносит за скобки)
+
+причина header?section?нет!
+<div><header><label></label><label></label><label></label><label></label></header><input><section><h1></h1></section><input><section><h1></h1></section><input><section><h1></h1></section><input><section><h1></h1></section></div>
+
+<div class="wrap">
+   	<header>
+   		<label for="slide-1">Первый слайд</label>
+   		<label for="slide-2">Второй слайд</label>
+   		<label for="slide-3">Третий слайд</label>
+   		<label for="slide-4">Четвертый слайд</label>
+   	</header>
+	<div>
+    <input id="slide-1" type="radio" name="slides" checked>
+    <section class="slide slide-one">
+    	<h1>Заголовок Один</h1>
+    </section>
+	</div><div>
+    <input id="slide-2" type="radio" name="slides">
+    <section class="slide slide-two">
+    	<h1>Заголовок Два</h1>
+    </section>
+	</div><div>
+    <input id="slide-3" type="radio" name="slides">
+    <section class="slide slide-three">
+    	<h1>Заголовок Три</h1>
+    </section>
+	</div><div>
+    <input id="slide-4" type="radio" name="slides">
+    <section class="slide slide-four">
+    	<h1>Заголовок Четыре</h1>
+    </section>
+	</div>
+</div>	
+aa(c)z-(adaezz)z
+
+
