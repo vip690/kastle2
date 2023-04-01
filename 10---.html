@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="
+data:image/gif;base64,R0lGODlhEAAQAPcAAP///5y7QLXRK3OOZ5fJOf//ANH3DzY8tzlNri9AuThMrl5jjmR+fElumGZjhKcMerelTtv/A/+8AP/jANOWN//kAP7ABkxhnIE7hMkgWvArNu4QPsTBPtH/Cv+wBf/NAKZ3Xv/OAFlOmZgmfekoP+0uOOYyPN02QN0XR7vBRc/+DP+wBP/PAKZ6Xv/RAF1fkZUThv8iK/8sK+42NNk3Q9Y1R9g0Rt8VR73ARNH+C01ZoIYvh9skTO8tN+gxO+A2Pt4YRrvCRdD/C6Z5Xk1slnNCi7Ydau0lPO4KQMK5Qdf/BP+0AP/VAKp+Wv/SAGiJdLhPYLevTdz/A9GPOuGyIpV2bP/ZAIq8RLv6GzU3uoIei4g4hP/XAGCYcKmkPatAV+YdRPkqL6NMav/fAFNWm4QqidccU+wkP+AlReEyQeMtPpRKdv/dAGokofgbOf8qKfM0Md45PtY3Rtg2ReIrQJdKdG47ksIiX/ArOOsvOeM0PeMrP5VLdV5TlJ4wc+ksPvYnMqRJav/bAFpRmns5i5tWbwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFewAAACwAAAAAEAAQAAAIyQABCBT4YqDBgwNhIFwIQEQMHQwPjpCxI+LACyRm8CBikQGGEjR6FDHY5mCDDCZq+DAykIwbgwQcaDhh48eRJ1cAlHljR2CAAg82oLgBBAmUAl3MwLkjUEABCBxS4AiSJEoBL2fi4OkDYICBCB1U5BCiRAqWL2jk5PEj8IAEDytWeFgyJQuYNHP0/BkEAMGEDyxYhGBCRUsYNXT2ACIEIAEFEC1aDGlSZYuYNXX4BCoEQEGFEC5CO7HCZQyb04IsAFhgobXr168DAgA7">
+  
+  <title>Kastle</title>
+  <style>
+  /* прога урожденная k/!frontend/zamok22/20/9.html */
+  .palet {display:flex;}
+  .palet .color {width:24px; height:24px;background: white;border:1px solid blue;}
+.opo{
+	background: #FFFFFF;
+	padding: 13px;
+	margin: auto;
+}
+.kod {
+display: flex;
+justify-content: flex-start;
+align-items: flex-end;
+}
+.mara {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAATCAIAAAAS8MqlAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEsSURBVDhPnZC9TsMwFIV5RXZ4BF6BjpHYwgQrCxLpEDEQJ6FlohJMaQOoQvyUhZaGspHE8U+55lbErU0j9egosm/O5yN76zsvNrDCTg09Pb/oIdMLbK4Jtp3O5XrSjsE3iqI1ZI2lb5+9x2wuZRzHwIRhSAjRo7qX2iRAUsKiZegiCOxYOoK2KelP2rdjyP2esxCS3e6VBZNSSCG44CDEVLWaCdy6rvtH1thglPWGU5JMvJt3zB2cP+x7d1wIx3GAQa1icCpWMc4Qg4kacg7r2dcMbMEGr9n18CNIxmfLbXsn6e5xf/swgYkF04UYY7xiVVVRCqYlTFYxXb7v123te9V2ZGszDW8AIdVBS1oWpXLejMFvbGt5qm3HejfTiJlqxv4TBuxYozfC8uIHUDp6oFBQcH0AAAAASUVORK5CYII=);
+	background-size: cover;
+	cursor: pointer;
+	width: 27px;
+	height: 30px;
+	margin-left:-27px;
+} 
+  </style>
+</head>
+<body>
+<div class="kod">
+	<svg id="svg" width="700" height="215" viewBox="0 0 700 215" fill="none">
+	<style type="text/css">
+	.rect1, .polygon1 {stroke: blue;}
+	.txt1 {font-family: Arial; font-size: 24px; line-height: 0; fill:white;}
+	</style>
+		<rect x="0" y="0" width="700" height="250" fill="silver" />
+	</svg>
+	<div class="mara" onclick="cpy(this.parentElement);" title="Copy"></div>
+</div>
+<br>
+<button type="button" onclick="main()">do</button>
+<button type="button" onclick="clr()">clear</button>
+<button type="button" onclick="dx=20;main()">меньше</button>
+<button type="button" onclick="dx=40;main()">40</button>
+<button type="button" onclick="dx=60;main()">60</button>
+<button type="button" onclick="dx=100;main()">больше</button>
+<br>
+<textarea id="ta1" rows="20" cols="90" style="color: white; background: red;">
+&lt;p&gt;
+&lt;a&gt;
+&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
+&lt;/a&gt;
+&lt;/p&gt;
+</textarea>
+
+<!--
+&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
+
+
+&lt;div class="wrap"&gt;
+   	&lt;header&gt;
+   		&lt;label for="slide-1"&gt;Первый слайд&lt;/label&gt;
+   		&lt;label for="slide-2"&gt;Второй слайд&lt;/label&gt;
+   		&lt;label for="slide-3"&gt;Третий слайд&lt;/label&gt;
+   		&lt;label for="slide-4"&gt;Четвертый слайд&lt;/label&gt;
+   	&lt;/header&gt;
+	
+   	&lt;div&gt;
+   		&lt;div&gt;
+		&lt;div&gt;
+		&lt;/div&gt;
+		&lt;img&gt;
+		&lt;label for="slide-1"&gt;Первый слайд&lt;/label&gt;
+		&lt;/div&gt;
+
+		
+		&lt;div&gt;
+   		&lt;div&gt;		
+		&lt;/div&gt;
+		&lt;img&gt;
+		&lt;label for="slide-1"&gt;Первый слайд&lt;/label&gt;
+		&lt;/div&gt;		
+		
+		
+   	&lt;/div&gt;	
+	
+	&lt;div&gt;
+    &lt;input id="slide-1" type="radio" name="slides" checked&gt;
+    &lt;section class="slide slide-one"&gt;
+    	&lt;h1&gt;Заголовок Один&lt;/h1&gt;
+    &lt;/section&gt;
+	&lt;/div&gt;&lt;div&gt;
+    &lt;input id="slide-2" type="radio" name="slides"&gt;
+    &lt;section class="slide slide-two"&gt;
+    	&lt;h1&gt;Заголовок Два&lt;/h1&gt;
+    &lt;/section&gt;
+	&lt;/div&gt;&lt;div&gt;
+    &lt;input id="slide-3" type="radio" name="slides"&gt;
+    &lt;section class="slide slide-three"&gt;
+    	&lt;h1&gt;Заголовок Три&lt;/h1&gt;
+    &lt;/section&gt;
+	&lt;/div&gt;&lt;div&gt;
+    &lt;input id="slide-4" type="radio" name="slides"&gt;
+    &lt;section class="slide slide-four"&gt;
+    	&lt;h1&gt;Заголовок Четыре&lt;/h1&gt;
+    &lt;/section&gt;
+	&lt;/div&gt;
+	
+&lt;img&gt;
+	
+&lt;/div&gt;
+</textarea>-->
+<textarea id="cop" rows="1" cols="90" style="position:absolute; left:-9999px; color: white; background: green;">
+</textarea>
+<br>
+<button type="button" onclick="x11x-=10;main()">x--</button>
+<button type="button" onclick="x11x+=10;main()">x++</button><br>
+<button type="button" onclick="y11y-=1;main()">y--</button>
+<button type="button" onclick="y11y+=1;main()">y++</button><br>
+<!--button type="button" onclick="s700-=5;main()">700--</button-->
+<button type="button" onclick="s700-=5;
+svg.setAttribute('width',s700);
+svg.setAttribute('viewBox',`0 0 ${s700} 215`);
+">700--</button>
+
+<button type="button" onclick="s700+=5;
+svg.setAttribute('width',s700);
+svg.setAttribute('viewBox',`0 0 ${s700} 215`);
+">700++</button><br>
+
+<article class="palet">
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>	
+	<div class="color"></div>	
+</article>
+
+<h2 id="la" style="font-family: sans-serif"></h2>
+  <script>
+let mainColor='red';
+const cc=['red','white','black','green','yellow','lime',
+'violet','purple','navy','aqua','blue','gold',
+'teal','olive','maroon','silver','springgreen','#6c757d','fuchsia'];
+document.querySelectorAll('.color').
+forEach((x,i)=>{x.style.background=cc[i]; 
+x.addEventListener('click',(e)=>{mainColor=cc[i]})
+}); 
+/************************************/
+let stek4=[]; // рюмашки
+const fy=-10;
+let city=0.9;// opacity
+let dx=40;//100;//20;//34;//  
+let x11x=dx,y11y=180;//+50  
+let s700=700;//
+
+const dy=-23; // 
+  
+const clr=()=>{ta1.value=""}
+
+function ff(x){
+const cre=x=>{
+	let r = /-/ig;
+	let t, a=[];
+	while (t =r.exec(x))a.push(t.index); 
+	return a  
+	}  
+
+let e,xe,xd,n,i,s3,s4;
+
+let a=cre(x);  //a: array of integer;
+for (let i=0; i<a.length; i++){//i
+	n=a[i];
+	e=''; d='';
+	xe=0; xd=0;
+	for (let j=1;j<=Math.min(a[i],x.length-a[i]); j++) {//j 
+		n--;
+		d=d+x[a[i]+j];
+		e=x[a[i]-j]+e;
+		switch(x[a[i]-j]){
+		case 'z': {xe++; break}
+		case 'a':
+		case '1':
+		case '2': {xe--; break}
+		   }   
+		switch(x[a[i]+j]){
+		case 'a':
+		case '1':
+		case '2': {xd++; break}
+		case 'z': {xd--; break}
+		}
+
+		if ((xe<0)||(xd<0)) break;	  
+		if ((xe===xd)&&(xd===0)&&(e===d)) {	  
+		
+		s3=x.substring(0,n); //  от индекса a до индекса b 
+		s4=x.substring(n); // от n до конца
+		//console.log(e);
+		let r=new RegExp("("+e+")(-\\1)+",'g');
+		//let s="aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzzz-a(agz)zhzz";
+		//s=s.replace(/(aadz-aaezfzz)(-\1)+/gi,'($1)');
+		s4=s4.replace(r,'($1)');
+		//s4=s4.replace(/([^-]+)(-\1)+/gi,'($1)')
+		return s3 + ff(s4);
+		}
+	}//j
+}//i
+return x;
+}//func ff	
+
+function main(){// отрисовка
+let alf="abcdefghijklmnopqrstuvwxyz";
+/*высушить*/
+s=ta1.value;
+s=s.replace(/\n/g,'_');//в одинарных тегах теперь эти палки делают их неузнаваемыми
+s=s.replace(/<!--.*-->?/g,'_');
+//s=s.replace('_','');
+let d='';
+let b=false;
+for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
+	switch (s[i]) {
+		case '<':{d=d+'<'; b=!b; break}
+		case '>':{d=d+'>'; b=false; break}
+		case ' ':{if (b) b=false; break}
+		case '_': break;
+		default: {if (b) d=d+s[i]}
+	}//switch
+}
+s=d;
+//console.log(s);
+['<br>','<hr>','<meta>','<!doctype>',
+//'<sc'+'ript>','</sc'+'ript>',
+'<style>','</style>',
+'<title>','</title>',
+'<head>','</head>',
+//'<header>','</header>',нет это теги уничтожаемые как мусор
+'<html>','</html>',
+'<i>','</i>','<b>','</b>',
+'<link>',
+'<strong>','</strong>',
+'<sub>','</sub>','<sup>','</sup>',
+'<tt>','</tt>',
+'<source>',//одинарные неизвестные теги глушат движок
+'<center>','</center>',
+].forEach(x=>{
+	let y=new RegExp(x,'g');
+	s=s.replace(y,'');
+	});
+
+//////////////////////////////////// заглушить
+  s=s.replace(/(<sc?ript>.*?<\/sc?ript>)/gi,'');//анти скрипт
+  s=s.replace(/(<style>.*?<\/style>)/gi,'');//анти style 
+  s=s.replace(/(<svg>.*?<\/svg>)/gi,'<svg>');//анти svg  
+  s=s.replace(/(<table>.*?<\/table>)/gi,'<table></table>');//анти table  
+  s=s.replace(/(<pre>.*?<\/pre>)/gi,'');//анти svg   
+  
+  const closeli=x=>{// закрывает незакрытые лишки
+	  x=x.replace(/<\/li>/gi,'');
+	  x=x.replace(/<li>/gi,'</li><li>');
+	  x=x.replace(/(<\/[uo]l>)/gi,'</li>$1'); // </ul> => </li></ul>
+	  x=x.replace(/(<[uo]l>)<\/li>/gi,'$1');// <ul></li> => <ul>    
+	  return x;
+  }  
+  s=closeli(s);// закрывает незакрытые лишки
+  //console.log(s);	
+//console.log(s);return 0;  
+/*заменить*/ 
+  let sp=['li'],sp2=['b'];
+  while ((/<([^>]+)><\/\1>|<img>|<input>|<svg>/i).test(s)){// крыши
+	let g=s.match(/<([^>]+)><\/\1>|<(img)>|<(input)>|<(svg)>/i);
+	g=g[1]||g[2]||g[3]||g[4];
+	if(!(sp.indexOf(g)+1)){sp.push(g); sp2.push(alf[sp.length])};
+	let w=' _'+sp2[sp.indexOf(g)]+'_ ';
+	switch (g){
+		case 'img':{s=s.replace(/<img>/i,w); break}
+		case 'svg':{s=s.replace(/<svg>/i,w); break}
+		case 'input':{s=s.replace(/<input>/i,w); break}
+		case 'h2':{s=s.replace(/<h2><\/h2>/i,w); break}
+		case 'li':{s=s.replace(/<li><\/li>/i,w); break}  // лишки крышки
+		case 'a':{s=s.replace(/<a><\/a>/i,w); break} 
+		default :{s=s.replace(/<([^>]+)><\/\1>/i,w); break}
+	}//switch
+  }//while	
+s=s.replace(/<ul>|<ol>/gi,'1'); 
+s=s.replace(/<li>/gi,'2');   
+s=s.replace(/(<[^\/]+?>)/gi,' a ');
+s=s.replace(/(<\/.+?>)/gi,' z ');  
+s=s.replace(/[<> _]/gi,'');  
+s=s.replace(/za/gi,'z-a');//отступы меж башнями
+s=s.replace(/z2/gi,'z-2');// 
+s=s.replace(/z1/gi,'z-1');//
+s=s.replace(/az/gi,'3');//
+s=s.replace(/b+/gi,'b');//c лишками крышками//
+s=s.replace(/([cdefghijklmnopqrstuvwxy])(\1)+/gi,'$1-$1');//32 audio сжать в один
+mc=s.match(/(2[^-\r\n]+)/gi);// разбираюсь с лишками
+//console.log('s>>',s);//aaac-czc-cz-aac-cz-ac-cz-ac-czc-czcz
+//console.log(s);return 0; //aac-czdaezdaezdaezdaezz
+if (!!mc) mc.forEach(x=>{let y=new RegExp(x+'-'+x,'g');s=s.replace(y,x)});
+s=ff(s);// сокращения 
+console.log(s);//return 0; //aa(c)zdaezdaezdaezdaezz
+let dom=[];
+let brk=s.split('').map(x=>0);
+let war=s.split('').forEach((x,i)=>{
+	if (x==='(')dom.push(i);
+	if(x===')'){brk[i]=dom.pop();brk[brk[i]]=i}});
+console.log(brk);
+console.log(s.indexOf('-('));
+let bz=s.split('');
+
+for (let i=0; i<bz.length; i++){if(bz[i]==='-'&&bz[i+1]==='(')
+	{bz[i+1]='['; bz[brk[i+1]]=']'}}
+for (let i=1; i<bz.length; i++){if(bz[i]==='-'&&bz[i-1]===')')
+	{bz[i-1]=']'; bz[brk[i-1]]='['}}	
+s=bz.join('');
+  console.log(s);
+
+  console.log('sp> ',sp);
+  console.log('sp2> ',sp2);  
+  s='3-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-aaczz';  
+  console.log('s> ',s);
+  la.innerHTML=s;
+  
+//////////////////////////////////////draw формирует свг
+
+const svg=document.querySelector('#svg');
+svg.setAttribute("width", s700);
+svg.setAttribute("viewBox", "0 0 "+s700+" 215");
+//svg.width=s700; 
+//svg.viewBox="0 0 "+s700+" 215";
+
+svg.innerHTML=sq6();// стиль
+
+ 
+const recta=(x1,y1,x2,y2,m,n)=>{
+switch (m){
+	case 'a': {svg.innerHTML+=sq7(x1,y1,x2,y2,m,n);break}//rect	
+	case '1': {svg.innerHTML+=sq8(x1,y1,x2,y2,m,n);break}//ul	
+	case '2': {svg.innerHTML+=sq9(x1,y1,x2,y2,m,n);break}//li	
+}//switch
+}
+
+
+//#dc3545
+const trg0=(x1,y1,t)=>{
+	svg.innerHTML+=sq5(x1,y1);// треуг
+	let name0=sp[sp2.indexOf(t)];
+	let y0=(name0.length===1)?55:35;
+	svg.innerHTML+=sq4(x1,y0,name0);// надпись
+}
+
+
+
+
+const trg3=(x1,y1)=>{
+	svg.innerHTML+=sq3(x1,y1);// полигон
+}
+const rng=(x1,y1,x2)=>{
+	svg.innerHTML+=sq2(x1,y1,x2);// эллипс
+}
+
+
+
+let ss=s;
+let stek1=[]; // квадраты и труги
+let stek2=[]; // кольца
+let stek3=[]; // порядок рисования
+
+
+const u={
+	'a':{x:0,y:dy,},
+	'z':{x:0,y:-dy,},
+	'0':{x:dx,y:0,},
+	'1':{x:dx/2|0,y:dy,},
+	'2':{x:0,y:dy,},
+	'3':{x:dx,y:0,},
+	'-':{x:dx/2|0,y:0,},
+	'(':{x:dx/2|0,y:fy,},//
+	')':{x:dx/2|0,y:-fy,},//
+	'[':{x:dx/2|0,y:dy,},
+	']':{x:dx/2|0,y:-dy,},
+	};
+let x1x=x11x,y1y=y11y;//+50
+
+//svg.innerHTML+=sq1;// стартовая точка контура
+let j=0;
+
+for (let i=0; i<ss.length; i++){// ханойская сортировка
+	let n=ss[i];
+	n=n.replace(/[bcdefghijklmnopqrstuvwxy]/gi,'0');
+
+	let ak='black';
+
+	let ell=u['('].x/2;//0;//
+	switch (n){
+		case '(':{stek2.push({x:x1x,y:y1y});break}//
+		case ')':{let v=stek2.pop();//+ell+ell
+			stek3.push({
+				x1:v.x,
+				y1:v.y,
+				x2:x1x+u[n].x,
+				m:'(',
+				s:y1y+1,});
+			break}
+		case '[':{stek2.push({x:x1x,y:y1y});break}//
+		case ']':{let v=stek2.pop();//
+			stek3.push({
+				x1:v.x,
+				y1:v.y,
+				x2:x1x+u[n].x,
+				m:'[',
+				s:y1y+1,
+				});
+			break}			
+		case 'a':{if(ss[i+1]!=='(')stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
+		case '1':{stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
+		case '2':{stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
+		case '0':{stek3.push({
+					x1:x1x,
+					y1:y1y,
+					m:n,
+					s:y1y,
+					t:ss[i]
+					}); 
+				break}
+		case '3':{trg3(x1x,y1y);
+				stek3.push({
+					x1:x1x,
+					y1:y1y,
+					m:n,
+					s:y1y,
+					});
+				break}
+		case '-':{break}
+		case 'z':{let t;if(ss[i-1]!==')')t=stek1.pop(); ak='red'; 
+			if (!t) break;// стек исчерпался
+			if(ss[i-1]!==')'){stek3.push({
+				x1:t.x,
+				y1:(t.y+dy),
+				x2:(x1x-u[n].x)-t.x,
+				y2:-dy,
+				m:t.m,
+				s:Math.max(t.y+dy,t.y),
+				});
+			j++;}
+			break} 
+	}//switch
+	x1x+=u[n].x;
+	y1y+=u[n].y;//
+	/*
+	svg.innerHTML+=
+`<circle 
+	r="3" 
+	cx="${x1x}" 
+	cy="${y1y}" 
+	fill="${ak}"/>`;// точки контура
+	*/
+};//i
+
+
+stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
+
+stek3.forEach(x=>{
+	switch (x.m){
+		case '(': {rng(x.x1,x.y1,x.x2,); break}
+		case '[': {rng(x.x1,x.y1+dy,x.x2,); break}		
+		
+		case '1':
+		case '2':
+		case 'a':{recta(x.x1,x.y1,x.x2,x.y2,x.m,1,);break}
+		case '0':{trg0(x.x1,x.y1,x.t);;break}// alert(x.t)
+		case '3':{trg3(x.x1,x.y1,); break}
+	}//switch
+});//forEach   
+
+stek4.forEach(x=>{svg.innerHTML+=sq0(x[0],x[1],x[2])});
+
+const ck=document.querySelectorAll('#svg *');
+ck.forEach(x=>{x.addEventListener('click',(e)=>{
+	e.target.setAttribute('fill',mainColor)})
+	});
+
+}//main
+//*****************************************************************//
+const cpy=x=>{ // копирование в буфер обмена
+	const cop=document.querySelector('#cop');
+	cop.value=`<svg width="${s700}" height="215" viewBox="0 0 ${s700} 215" fill="none">`;
+	cop.value+=svg.innerHTML;// пугает /rect да и хрен на него
+	cop.value+=`</svg>`;
+	cop.select();
+	document.execCommand('copy');
+} 
+
+const sq2=(x1,y,x2)=>{
+	//stek4.push([x1,y,x2]);
+	stek4.unshift([x1,y,x2]);	
+	return `<ellipse 
+     cx="${(x1+x2)/2}" 
+     cy="${y+fy}" 
+     rx="${(x2-x1)/2}" 
+     ry="10" 
+     stroke="blue" 
+     fill="violet" 
+	 opacity="${city}"
+     stroke-width="1"/>\r\n`;}
+const sq3=(x1,y1)=>
+`<polygon 
+	class="rect1" 
+	points="${x1} ${y1} ${x1+dx/2|0} ${y1+3*dy} ${x1+dx} ${y1}" 
+	opacity="${city}"
+	fill="#198754" />\r\n`;
+const sq4=(x1,y0,name0)=>
+`<text class="txt1" x="${x1}" y="${y0}">${name0}</text>\r\n`;
+const sq5=(x1,y1)=>
+`<polygon 
+	class="rect1" 
+	points="${x1} ${y1} ${x1+dx/2|0} ${y1+2*dy} ${x1+dx} ${y1}" 
+	opacity="${city}"
+	fill="blue" />\r\n`;
+const sq6=()=>`\r\n<style type="text/css">\r\n.rect1, .polygon1 {stroke: blue;}\r\n.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n</style>\r\n<rect x="0" y="0" width="${s700}" height="250" fill="white" />\r\n`;
+const sq7=(x1,y1,x2,y2,m,n)=>// квадрат
+`<rect 
+	class="rect1" 
+	x="${x1}" 
+	y="${y1}" 
+	width="${x2}" 
+	height="${y2}" 
+	opacity="${city}"
+	fill="#ffc107" />\r\n`;
+const sq8=(x1,y1,x2,y2,m,n)=>// список
+`<polygon 
+	class="rect1" 
+	points="${x1} ${y1-dy} ${x1+(dx*0.4)|0} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" 
+	opacity="${city}"
+	fill="#ffc107" />\r\n`;
+const sq9=(x1,y1,x2,y2,m,n)=>// список
+`<polygon  
+	class="rect1" 
+	points="${x1-(dx*0.1)|0} ${y1-dy} ${x1} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" 
+	opacity="${city}"
+	fill="#ffc107" />\r\n`;
+function sq0(x1,y1,x2){// рюмашка (рисуем с 4-ого стека)
+	console.log(x1);
+	y1=y1-10;
+	let y2=y1+50;
+	return `<path 
+	class="rect1" 
+	d="M${x1+20} ${y2} 
+	C${x1+20+5} ${y2-5} ${x1-5} ${y1+5}
+	${x1} ${y1} 
+	C${x1} ${y1+5} ${x1+(x2-x1)/2-5} ${y1+10}
+	${x1+(x2-x1)/2} ${y1+10} 
+	C${x1+(x2-x1)/2+5} ${y1+10} ${x2} ${y1+5}
+	${x2} ${y1} 
+	C${x2+5} ${y1+5} ${x2-20-5} ${y2-5}
+	${x2-20} ${y2}z"  
+	opacity="${city}"
+	fill="springgreen" />\r\n`; 
+ }
+ main();
+</script>
+</body>
+</html>
