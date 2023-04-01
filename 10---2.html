@@ -30,11 +30,18 @@ align-items: flex-end;
 	height: 30px;
 	margin-left:-27px;
 } 
+#svg{border: 2px solid purple;}
+.btn0{border:2px solid purple;
+padding:6px;border-radius:40%;}
+button{cursor: pointer;
+border:1px solid purple;
+padding:3px;border-radius:6px;
+}
   </style>
 </head>
 <body>
 <div class="kod">
-	<svg id="svg" width="700" height="215" viewBox="0 0 700 215" fill="none">
+	<svg id="svg" width="700" height="415" viewBox="0 0 700 415" fill="none">
 	<style type="text/css">
 	.rect1, .polygon1 {stroke: blue;}
 	.txt1 {font-family: Arial; font-size: 24px; line-height: 0; fill:white;}
@@ -44,32 +51,16 @@ align-items: flex-end;
 	<div class="mara" onclick="cpy(this.parentElement);" title="Copy"></div>
 </div>
 <br>
-<button type="button" onclick="main()">do</button>
+<button class="btn0" type="button" onclick="main()">do</button>
 <button type="button" onclick="clr()">clear</button>
 <button type="button" onclick="dx=20;main()">меньше</button>
 <button type="button" onclick="dx=40;main()">40</button>
 <button type="button" onclick="dx=60;main()">60</button>
 <button type="button" onclick="dx=100;main()">больше</button>
 <br>
-<textarea id="ta1" rows="20" cols="90" style="color: white; background: red;">
+<textarea id="ta1" rows="20" cols="90" style="color: white; background: #1e154f;">
 &lt;p&gt;
 &lt;a&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;/a&gt;
-&lt;a&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;/a&gt;
-&lt;a&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;/a&gt;
-&lt;a&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
 &lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
 &lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
 &lt;/a&gt;
@@ -77,6 +68,9 @@ align-items: flex-end;
 </textarea>
 
 <!--
+&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
+
+
 &lt;div class="wrap"&gt;
    	&lt;header&gt;
    		&lt;label for="slide-1"&gt;Первый слайд&lt;/label&gt;
@@ -130,7 +124,7 @@ align-items: flex-end;
 	
 &lt;/div&gt;
 </textarea>-->
-<textarea id="tacopy" rows="1" cols="90" style="position:absolute; left:-9999px; color: white; background: green;">
+<textarea id="cop" rows="1" cols="90" style="position:absolute; left:-9999px; color: white; background: green;">
 </textarea>
 <br>
 <button type="button" onclick="x11x-=10;main()">x--</button>
@@ -147,40 +141,48 @@ svg.setAttribute('viewBox',`0 0 ${s700} 215`);
 svg.setAttribute('width',s700);
 svg.setAttribute('viewBox',`0 0 ${s700} 215`);
 ">700++</button><br>
-
-<div class="palet">
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-</div>
+<button type="button" onclick="z--;main();this.innerText=z">z--</button>
+<button type="button" onclick="z++;main();this.innerText=z">z++</button>
+<article class="palet">
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>
+	<div class="color"></div>	
+	<div class="color"></div>	
+</article>
 
 <h2 id="la" style="font-family: sans-serif"></h2>
   <script>
+  let z=-17;
+  let hey=415;// высота svg
 let mainColor='red';
-const cc=['red','black','green','yellow','lime',
-'violet','purple','navy','aqua','blue',
+const cc=['red','white','black','green','yellow','lime',
+'violet','purple','navy','aqua','blue','gold',
 'teal','olive','maroon','silver','springgreen','#6c757d','fuchsia'];
 document.querySelectorAll('.color').
 forEach((x,i)=>{x.style.background=cc[i]; 
 x.addEventListener('click',(e)=>{mainColor=cc[i]})
 }); 
 /************************************/
+let stek4=[]; // рюмашки
+const fy=-10;
+let city=0.9;// opacity
 let dx=40;//100;//20;//34;//  
-let x11x=dx,y11y=180;//+50  
+let x11x=dx,y11y=hey-10//180;//+50  
 let s700=700;//
 
 const dy=-23; // 
@@ -237,7 +239,7 @@ for (let i=0; i<a.length; i++){//i
 return x;
 }//func ff	
 
-function main(){
+function main(){// отрисовка
 let alf="abcdefghijklmnopqrstuvwxyz";
 /*высушить*/
 s=ta1.value;
@@ -345,43 +347,51 @@ s=bz.join('');
 
   console.log('sp> ',sp);
   console.log('sp2> ',sp2);  
+//***************************************** отладка 
+  s='3-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-aaczz';
+s='aa(c)zc-aa(c)zcz-b-bz';//-0-aa(c)z-0z-30
+//*******************************************  
   console.log('s> ',s);
   la.innerHTML=s;
+  
 //////////////////////////////////////draw формирует свг
+
 const svg=document.querySelector('#svg');
 svg.setAttribute("width", s700);
-svg.setAttribute("viewBox", "0 0 "+s700+" 215");
+svg.setAttribute("viewBox", "0 0 "+s700+" "+hey);
 //svg.width=s700; 
 //svg.viewBox="0 0 "+s700+" 215";
 
-svg.innerHTML=sq6();
+svg.innerHTML=sq6();// стиль
+
+const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');
 
  
 const recta=(x1,y1,x2,y2,m,n)=>{
 switch (m){
-	case 'a': {svg.innerHTML+=sq7(x1,y1,x2,y2,m,n);break}	
-	case '1': {svg.innerHTML+=sq8(x1,y1,x2,y2,m,n);break}	
-	case '2': {svg.innerHTML+=sq9(x1,y1,x2,y2,m,n);break}	
+	case 'a': {svg.innerHTML+=sq7(x1,y1,x2,y2,m,n);break}//rect	
+	case '1': {svg.innerHTML+=sq8(x1,y1,x2,y2,m,n);break}//ul	
+	case '2': {svg.innerHTML+=sq9(x1,y1,x2,y2,m,n);break}//li	
 }//switch
 }
 
 
 //#dc3545
 const trg0=(x1,y1,t)=>{
-	svg.innerHTML+=sq5(x1,y1);
+	svg.innerHTML+=sq5(x1,y1);// треуг
 	let name0=sp[sp2.indexOf(t)];
 	let y0=(name0.length===1)?55:35;
-	svg.innerHTML+=sq4(x1,y0,name0);
+	svg.innerHTML+=sq4(x1,y0,name0);// надпись
 }
 
 
 
 
 const trg3=(x1,y1)=>{
-	svg.innerHTML+=sq3(x1,y1);
+	svg.innerHTML+=sq3(x1,y1);// полигон
 }
 const rng=(x1,y1,x2)=>{
-	svg.innerHTML+=sq2(x1,y1,x2);
+	svg.innerHTML+=sq2(x1,y1,x2);// эллипс
 }
 
 
@@ -391,24 +401,26 @@ let stek1=[]; // квадраты и труги
 let stek2=[]; // кольца
 let stek3=[]; // порядок рисования
 
+
 const u={
-'a':{x:0,y:dy,},
-'z':{x:0,y:-dy,},
-'0':{x:dx,y:0,},
-'1':{x:dx/2|0,y:dy,},
-'2':{x:0,y:dy,},
-'3':{x:dx,y:0,},
-'-':{x:dx/2|0,y:0,},
-'(':{x:dx/2|0,y:0,},
-')':{x:dx/2|0,y:0,},
-'[':{x:dx/2|0,y:dy,},
-']':{x:dx/2|0,y:-dy,},
-};
+	'a':{x:0,y:dy,},
+	'z':{x:0,y:-dy,},
+	'0':{x:dx,y:0,},
+	'1':{x:dx/2|0,y:dy,},
+	'2':{x:0,y:dy,},
+	'3':{x:dx,y:0,},
+	'-':{x:dx/2|0,y:0,},
+	'(':{x:dx/2|0,y:fy,},//
+	')':{x:dx/2|0,y:-fy,},//
+	'[':{x:dx/2|0,y:dy,},
+	']':{x:dx/2|0,y:-dy,},
+	};
 let x1x=x11x,y1y=y11y;//+50
 
 //svg.innerHTML+=sq1;// стартовая точка контура
 let j=0;
-for (let i=0; i<ss.length; i++){
+
+for (let i=0; i<ss.length; i++){// ханойская сортировка
 	let n=ss[i];
 	n=n.replace(/[bcdefghijklmnopqrstuvwxy]/gi,'0');
 
@@ -418,34 +430,76 @@ for (let i=0; i<ss.length; i++){
 	switch (n){
 		case '(':{stek2.push({x:x1x,y:y1y});break}//
 		case ')':{let v=stek2.pop();//+ell+ell
-			stek3.push({x1:v.x,y1:v.y,x2:x1x+u[n].x,m:'(',s:y1y+1,});
+			stek3.push({
+				x1:v.x,
+				y1:v.y,
+				x2:x1x+u[n].x,
+				m:'(',
+				s:y1y+1,});
 			break}
 		case '[':{stek2.push({x:x1x,y:y1y});break}//
 		case ']':{let v=stek2.pop();//
-			stek3.push({x1:v.x,y1:v.y,x2:x1x+u[n].x,m:'[',s:y1y+1,});
+			stek3.push({
+				x1:v.x,
+				y1:v.y,
+				x2:x1x+u[n].x,
+				m:'[',
+				s:y1y+1,
+				});
 			break}			
-		case 'a':{stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
+		case 'a':{if(ss[i+1]!=='(')stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
 		case '1':{stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
 		case '2':{stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
-		case '0':{stek3.push({x1:x1x,y1:y1y,m:n,s:y1y,t:ss[i]}); break}
-		case '3':{trg3(x1x,y1y);stek3.push({x1:x1x,y1:y1y,m:n,s:y1y,}); break}
+		case '0':{
+				
+				stek3.push({
+					x1:x1x,
+					y1:y1y,
+					m:(bab(i))?'3':n,// заключено в скобки
+					s:y1y,
+					t:ss[i]//
+					}); 
+				break}
+		case '3':{//trg3(x1x,y1y);
+				stek3.push({
+					x1:x1x,
+					y1:y1y,
+					m:n,
+					s:y1y,
+					});
+				break}
 		case '-':{break}
-		case 'z':{let t=stek1.pop(); ak='red'; 
+		case 'z':{let t;if(ss[i-1]!==')')t=stek1.pop(); ak='red'; 
 			if (!t) break;// стек исчерпался
-			stek3.push({x1:t.x,y1:(t.y+dy),x2:(x1x-u[n].x)-t.x,
-			y2:-dy,m:t.m,s:Math.max(t.y+dy,t.y),});
-			j++;
+			if(ss[i-1]!==')'){stek3.push({
+				x1:t.x,
+				y1:(t.y+dy),
+				x2:(x1x-u[n].x)-t.x,
+				y2:-dy,
+				m:t.m,
+				s:Math.max(t.y+dy,t.y),
+				});
+			j++;}
 			break} 
 	}//switch
 	x1x+=u[n].x;
 	y1y+=u[n].y;//
-	//svg.innerHTML+=`<circle r="3" cx="${x1x}" cy="${y1y}" fill="${ak}"/>`;// точки контура
+	/*
+	svg.innerHTML+=
+`<circle 
+	r="3" 
+	cx="${x1x}" 
+	cy="${y1y}" 
+	fill="${ak}"/>`;// точки контура
+	*/
 };//i
 
 
 stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
+//alert(stek3.map(i=>i.m).join(''));
 
-stek3.forEach(x=>{
+stek3.forEach((x,j)=>{
+//alert(x.m);
 	switch (x.m){
 		case '(': {rng(x.x1,x.y1,x.x2,); break}
 		case '[': {rng(x.x1,x.y1+dy,x.x2,); break}		
@@ -453,50 +507,96 @@ stek3.forEach(x=>{
 		case '1':
 		case '2':
 		case 'a':{recta(x.x1,x.y1,x.x2,x.y2,x.m,1,);break}
-		case '0':{trg0(x.x1,x.y1,x.t);;break}// alert(x.t)
-		case '3':{trg3(x.x1,x.y1,); break}
+		case '0':{trg0(x.x1,x.y1,x.t);break}// alert(x.t)
+		case '3':{trg3(x.x1,x.y1,); break}//150+j*5
 	}//switch
 });//forEach   
 
+stek4.forEach(x=>{svg.innerHTML+=sq0(x[0],x[1],x[2])});
+
 const ck=document.querySelectorAll('#svg *');
-ck.forEach(x=>{x.addEventListener('click',(e)=>{e.target.setAttribute('fill',mainColor)})});
+ck.forEach(x=>{x.addEventListener('click',(e)=>{
+	e.target.setAttribute('fill',mainColor)})
+	});
 
 }//main
 //*****************************************************************//
 const cpy=x=>{ // копирование в буфер обмена
-	const tacopy=document.querySelector('#tacopy');
-	tacopy.value=`<svg width="${s700}" height="215" viewBox="0 0 ${s700} 215" fill="none">`;
-	tacopy.value+=svg.innerHTML;// пугает /rect да и хрен на него
-	tacopy.value+=`</svg>`;
-	tacopy.select();
+	const cop=document.querySelector('#cop');
+	cop.value=`<svg width="${s700}" height="215" viewBox="0 0 ${s700} 215" fill="none">`;
+	cop.value+=svg.innerHTML;// пугает /rect да и хрен на него
+	cop.value+=`</svg>`;
+	cop.select();
 	document.execCommand('copy');
 } 
 
-const sq2=(x1,y,x2)=>
-`<ellipse 
+const sq2=(x1,y,x2)=>{
+	//stek4.push([x1,y,x2]);
+	stek4.unshift([x1,y,x2]);	
+	return `<ellipse 
      cx="${(x1+x2)/2}" 
-     cy="${y}" 
-     rx="${(x2-x1)/2}" ///-30
+     cy="${y-25}" 
+     rx="${(x2-x1)/2}" 
      ry="10" 
      stroke="blue" 
      fill="violet" 
-     stroke-width="1"/>\r\n`;
+	 opacity="${city}"
+     stroke-width="1"/>\r\n`;}
 const sq3=(x1,y1)=>
-`<polygon class="rect1" points="${x1} ${y1} ${x1+dx/2|0} ${y1+3*dy} ${x1+dx} ${y1}" fill="#198754" />\r\n`;
+`<polygon 
+	class="rect1" 
+	points="${x1} ${y1} ${x1+dx/2|0} ${y1+3*dy} ${x1+dx} ${y1}" 
+	opacity="${city}"
+	fill="#198754" />\r\n`;
 const sq4=(x1,y0,name0)=>
 `<text class="txt1" x="${x1}" y="${y0}">${name0}</text>\r\n`;
 const sq5=(x1,y1)=>
-`<polygon class="rect1" points="${x1} ${y1} ${x1+dx/2|0} ${y1+2*dy} ${x1+dx} ${y1}" fill="blue" />\r\n`;
-const sq6=()=>`\r\n<style type="text/css">\r\n.rect1, .polygon1 {stroke: blue;}\r\n.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n</style>\r\n<rect x="0" y="0" width="${s700}" height="250" fill="#6c757d" />\r\n`;
-const sq7=(x1,y1,x2,y2,m,n)=>
-`<rect class="rect1" x="${x1}" y="${y1}" width="${x2}" height="${y2}" fill="#ffc107" />\r\n`;
-const sq8=(x1,y1,x2,y2,m,n)=>
-	`<polygon class="rect1" points="${x1} ${y1-dy} ${x1+(dx*0.4)|0} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" fill="#ffc107" />\r\n`;
-const sq9=(x1,y1,x2,y2,m,n)=>
-`<polygon  class="rect1" points="${x1-(dx*0.1)|0} ${y1-dy} ${x1} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" fill="#ffc107" />\r\n`;
- 
- 
- 
+`<polygon 
+	class="rect1" 
+	points="${x1} ${y1} ${x1+dx/2|0} ${y1+2*dy} ${x1+dx} ${y1}" 
+	opacity="${city}"
+	fill="blue" />\r\n`;
+const sq6=()=>`\r\n<style type="text/css">\r\n.rect1, .polygon1 {stroke: blue;}\r\n.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n</style>\r\n<rect x="0" y="0" width="${s700}" height="250" fill="white" />\r\n`;
+const sq7=(x1,y1,x2,y2,m,n)=>// квадрат
+`<rect 
+	class="rect1" 
+	x="${x1}" 
+	y="${y1}" 
+	width="${x2}" 
+	height="${y2}" 
+	opacity="${city}"
+	fill="#ffc107" />\r\n`;
+const sq8=(x1,y1,x2,y2,m,n)=>// список
+`<polygon 
+	class="rect1" 
+	points="${x1} ${y1-dy} ${x1+(dx*0.4)|0} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" 
+	opacity="${city}"
+	fill="#ffc107" />\r\n`;
+const sq9=(x1,y1,x2,y2,m,n)=>// список
+`<polygon  
+	class="rect1" 
+	points="${x1-(dx*0.1)|0} ${y1-dy} ${x1} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" 
+	opacity="${city}"
+	fill="#ffc107" />\r\n`;
+function sq0(x1,y1,x2){// рюмашка (рисуем с 4-ого стека)
+	console.log(x1);
+	y1=y1-10;
+	let y2=y1+50;
+	return `<path 
+	class="rect1" 
+	d="M${x1+20} ${y2+z} 
+	C${x1+20+5} ${y2-5+z} ${x1-5} ${y1+5+z}
+	${x1} ${y1+z} 
+	C${x1} ${y1+5+z} ${x1+(x2-x1)/2-5} ${y1+10+z}
+	${x1+(x2-x1)/2} ${y1+10+z} 
+	C${x1+(x2-x1)/2+5} ${y1+10+z} ${x2} ${y1+5+z}
+	${x2} ${y1+z} 
+	C${x2+5} ${y1+5+z} ${x2-20-5} ${y2-5+z}
+	${x2-20} ${y2+z}z"  
+	opacity="${city}"
+	fill="springgreen" />\r\n`; 
+ }
+ main();
 </script>
 </body>
 </html>
