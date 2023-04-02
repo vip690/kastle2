@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- 1apr2023
+<!-- 2apr2023
 т.к. обнаружирось что прога крашится почти любом входящем значении, счел нужным составить список допустимых значений. в listbox. ну и пока что работает только с формулами. 
 -->
 <html lang="en">
@@ -34,6 +34,7 @@ align-items: flex-end;
 	width: 27px;
 	height: 30px;
 	margin-left:-27px;
+	margin-bottom:20px;	
 } 
 .kod article{align-self: flex-start}
 
@@ -69,7 +70,9 @@ padding:3px;border-radius:6px;
 		<input type="radio" id="rok3" name="rokki">	
 		<button id="x3" onclick="rok3.checked=true;kx='dotx3';ky='doty3'">x</button><br>
 		<input type="radio" id="rok4" name="rokki">	
-		<button id="x4" onclick="rok4.checked=true;kx='dotx4';ky='doty4'">x</button><br>	
+		<button id="x4" onclick="rok4.checked=true;kx='dotx4';ky='doty4'">x</button><br>
+		<input type="radio" id="rok5" name="rokki">	
+		<button id="x5" onclick="rok5.checked=true;kx='dotx5';ky='doty5'">x</button><br>		
 	</article>
 </div>
 <br>
@@ -122,8 +125,15 @@ padding:3px;border-radius:6px;
 </article>
 
 <h2 id="la" style="font-family: sans-serif"></h2>
-  <script>
-  yrr={dotx0:-4,doty0:6,dotx1:5,doty1:-15,dotx2:8,doty2:45,dotx3:0,doty3:5,dotx4:41,doty4:9,}
+
+<script>
+  yrr={// модель чаши
+	  dotx0:-4,doty0:6, // ножка
+	  dotx1:5,doty1:-15, // изгиб ножки
+	  dotx2:8,doty2:45, // дно
+	  dotx3:0,doty3:5, // внешний изгиб края
+	  dotx4:41,doty4:9, // внутренний изгиб края
+	  dotx5:0,doty5:0,} // край
   let kx='dotx1',ky='doty1';
   let z=-17;
   let hey=415;// высота svg
@@ -319,49 +329,43 @@ s=vvod.value;
 const svg=document.querySelector('#svg');
 svg.setAttribute("width", s700);
 svg.setAttribute("viewBox", "0 0 "+s700+" "+hey);
-//svg.width=s700; 
-//svg.viewBox="0 0 "+s700+" 215";
 
 svg.innerHTML=sq6();// стиль
 
-const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');
+const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в кольце
 
- 
+//******** преотрисовка ... графические примитивы
 const recta=(x1,y1,x2,y2,m,n)=>{
-switch (m){
-	case 'a': {svg.innerHTML+=sq7(x1,y1,x2,y2,m,n);break}//rect	
-	case '1': {svg.innerHTML+=sq8(x1,y1,x2,y2,m,n);break}//ul	
-	case '2': {svg.innerHTML+=sq9(x1,y1,x2,y2,m,n);break}//li	
-}//switch
-}
-
-
-//#dc3545
+	switch (m){
+		case 'a': {svg.innerHTML+=sq7(x1,y1,x2,y2,m,n);break}//rect	
+		case '1': {svg.innerHTML+=sq8(x1,y1,x2,y2,m,n);break}//ul	
+		case '2': {svg.innerHTML+=sq9(x1,y1,x2,y2,m,n);break}//li	
+		}//switch
+	}
 const trg0=(x1,y1,t)=>{
 	svg.innerHTML+=sq5(x1,y1);// треуг
 	let name0=sp[sp2.indexOf(t)];
 	let y0=(name0.length===1)?55:35;
 	svg.innerHTML+=sq4(x1,y0,name0);// надпись
-}
-
-
-
-
+	}
 const trg3=(x1,y1)=>{
 	svg.innerHTML+=sq3(x1,y1);// полигон
-}
+	}
 const rng=(x1,y1,x2)=>{
 	svg.innerHTML+=sq2(x1,y1,x2);// эллипс
-}
+	}
+/*******************
+первый и второй стеки пусты на выходе из ханойской сортировки, из них не берется для отрисовки.
+нахуя их два? это намек что они могут пересекаться?
+несмог представить случай a(z), всетаки стек будет один
+*/
 
+ 
 
-
+let stek3=[]; // квадраты и труги, кольца...порядок рисования
+//******************************************
+///////**********ханойская сортировка begin
 let ss=s;
-let stek1=[]; // квадраты и труги
-let stek2=[]; // кольца
-let stek3=[]; // порядок рисования
-
-
 const u={
 	'a':{x:0,y:dy,},
 	'z':{x:0,y:-dy,},
@@ -375,21 +379,21 @@ const u={
 	'[':{x:dx/2|0,y:dy,},
 	']':{x:dx/2|0,y:-dy,},
 	};
-let x1x=x11x,y1y=y11y;//+50
+let x1x=x11x,y1y=y11y;// точка отсчета
 
 //svg.innerHTML+=sq1;// стартовая точка контура
 let j=0;
-
+let stk=[]; // 
 for (let i=0; i<ss.length; i++){// ханойская сортировка
 	let n=ss[i];
 	n=n.replace(/[bcdefghijklmnopqrstuvwxy]/gi,'0');
 
 	let ak='black';
 
-	let ell=u['('].x/2;//0;//
+	//let ell=u['('].x/2;//0;//
 	switch (n){
-		case '(':{stek2.push({x:x1x,y:y1y});break}//
-		case ')':{let v=stek2.pop();//+ell+ell
+		case '(':{stk.push({x:x1x,y:y1y});break}//*
+		case ')':{let v=stk.pop();//*
 			stek3.push({
 				x1:v.x,
 				y1:v.y,
@@ -397,8 +401,8 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 				m:'(',
 				s:y1y+1,});
 			break}
-		case '[':{stek2.push({x:x1x,y:y1y});break}//
-		case ']':{let v=stek2.pop();//
+		case '[':{stk.push({x:x1x,y:y1y});break}//*
+		case ']':{let v=stk.pop();//*
 			stek3.push({
 				x1:v.x,
 				y1:v.y,
@@ -407,9 +411,9 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 				s:y1y+1,
 				});
 			break}			
-		case 'a':{if(ss[i+1]!=='(')stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
-		case '1':{stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
-		case '2':{stek1.push({x:x1x,y:y1y,m:n,});ak='green';break}
+		case 'a':{if(ss[i+1]!=='(')stk.push({x:x1x,y:y1y,m:n,});ak='green';break}
+		case '1':{stk.push({x:x1x,y:y1y,m:n,});ak='green';break}
+		case '2':{stk.push({x:x1x,y:y1y,m:n,});ak='green';break}
 		case '0':{
 				
 				stek3.push({
@@ -420,7 +424,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 					t:ss[i]//
 					}); 
 				break}
-		case '3':{//trg3(x1x,y1y);
+		case '3':{//
 				stek3.push({
 					x1:x1x,
 					y1:y1y,
@@ -429,7 +433,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 					});
 				break}
 		case '-':{break}
-		case 'z':{let t;if(ss[i-1]!==')')t=stek1.pop(); ak='red'; 
+		case 'z':{let t;if(ss[i-1]!==')')t=stk.pop(); ak='red'; 
 			if (!t) break;// стек исчерпался
 			if(ss[i-1]!==')'){stek3.push({
 				x1:t.x,
@@ -453,7 +457,8 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 	fill="${ak}"/>`;// точки контура
 	*/
 };//i
-
+///////**********ханойская сортировка end
+//****************************************
 
 stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
 
@@ -482,60 +487,65 @@ ck.forEach(x=>{x.addEventListener('click',(e)=>{
 //*****************************************************************//
 const cpy=x=>{ // копирование в буфер обмена
 	const cop=document.querySelector('#cop');
-	cop.value=`<svg width="${s700}" height="215" viewBox="0 0 ${s700} 215" fill="none">`;
+	cop.value='<svg width="'+s700+'" height="'+hey+'" viewBox="0 0 '+s700+' '+hey+'" fill="none">';
 	cop.value+=svg.innerHTML;// пугает /rect да и хрен на него
-	cop.value+=`</svg>`;
+	cop.value+='</svg>';
 	cop.select();
 	document.execCommand('copy');
 } 
 
-const sq2=(x1,y,x2)=>{
-	stek4.unshift([x1,y,x2]);	
-	return `<ellipse 
-     cx="${(x1+x2)/2}" 
-     cy="${y-25}" 
-     rx="${(x2-x1)/2}" 
-     ry="10" 
-     stroke="blue" 
-     fill="violet" 
-	 opacity="${city}"
-     stroke-width="1"/>\r\n`;}
+//*********************************  отрисовка
+const sq2=(x1,y,x2)=>{// кольцо
+	stek4.unshift([x1,y,x2]);// единственный источник заполнения stek4	
+	return '<ellipse \r\n'+
+'     cx="'+((x1+x2)/2)+'" \r\n'+
+'     cy="'+(y-25)+'" \r\n'+
+'     rx="'+((x2-x1)/2)+'" \r\n'+
+'     ry="10" \r\n'+
+'     stroke="blue" \r\n'+
+'     fill="violet" \r\n'+
+'	 opacity="'+city+'"\r\n'+
+'     stroke-width="1"/>\r\n';}
 const sq3=(x1,y1)=>
-`<polygon 
-	class="rect1" 
-	points="${x1} ${y1} ${x1+dx/2|0} ${y1+3*dy} ${x1+dx} ${y1}" 
-	opacity="${city}"
-	fill="#198754" />\r\n`;
+'<polygon\r\n '+
+'	class="rect1" \r\n'+
+'	points="'+x1+' '+y1+' '+(x1+dx/2|0)+' '+(y1+3*dy)+' '+(x1+dx)+' '+y1+'" \r\n'+
+'	opacity="'+city+'"\r\n'+
+'	fill="#198754" />\r\n';
 const sq4=(x1,y0,name0)=>
-`<text class="txt1" x="${x1}" y="${y0}">${name0}</text>\r\n`;
+'<text class="txt1" x="'+x1+'" y="'+y0+'">'+name0+'</text>\r\n';
 const sq5=(x1,y1)=>
-`<polygon 
-	class="rect1" 
-	points="${x1} ${y1} ${x1+dx/2|0} ${y1+2*dy} ${x1+dx} ${y1}" 
-	opacity="${city}"
-	fill="blue" />\r\n`;
-const sq6=()=>`\r\n<style type="text/css">\r\n.rect1, .polygon1 {stroke: blue;}\r\n.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n</style>\r\n<rect x="0" y="0" width="${s700}" height="${hey}" fill="white" />\r\n`;
+'<polygon \r\n'+
+'	class="rect1" \r\n'+
+'	points="'+x1+' '+y1+' '+(x1+dx/2|0)+' '+(y1+2*dy)+' '+(x1+dx)+' '+y1+'" \r\n'+
+'	opacity="'+city+'"\r\n'+
+'	fill="blue" />\r\n';
+const sq6=()=>'\r\n<style type="text/css">\r\n'+
+'.rect1, .polygon1 {stroke: blue;}\r\n'+
+'.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
+'</style>\r\n'+
+'<rect x="0" y="0" width="'+s700+'" height="'+hey+'" fill="white" />\r\n';
 const sq7=(x1,y1,x2,y2,m,n)=>// квадрат который не спит на спине
-`<rect 
-	class="rect1" 
-	x="${x1}" 
-	y="${y1}" 
-	width="${x2}" 
-	height="${y2}" 
-	opacity="${city}"
-	fill="#ffc107" />\r\n`;
+'<rect \r\n'+
+'	class="rect1" \r\n'+
+'	x="'+x1+'" \r\n'+
+'	y="'+y1+'" \r\n'+
+'	width="'+x2+'" \r\n'+
+'	height="'+y2+'" \r\n'+
+'	opacity="'+city+'"\r\n'+
+'	fill="#ffc107" />\r\n';
 const sq8=(x1,y1,x2,y2,m,n)=>// список
-`<polygon 
-	class="rect1" 
-	points="${x1} ${y1-dy} ${x1+(dx*0.4)|0} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" 
-	opacity="${city}"
-	fill="#ffc107" />\r\n`;
+'<polygon \r\n'+
+'	class="rect1" \r\n'+
+'	points="'+x1+' '+(y1-dy)+' '+(x1+(dx*0.4)|0)+' '+y1+' '+(x1+x2)+' '+y1+' '+(x1+x2)+' '+(y1-dy)+'" \r\n'+
+'	opacity="'+city+'"\r\n'+
+'	fill="#ffc107" />\r\n';
 const sq9=(x1,y1,x2,y2,m,n)=>// список
-`<polygon  
-	class="rect1" 
-	points="${x1-(dx*0.1)|0} ${y1-dy} ${x1} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" 
-	opacity="${city}"
-	fill="#ffc107" />\r\n`;
+'<polygon  \r\n'+
+'	class="rect1" \r\n'+
+'	points="'+(x1-(dx*0.1)|0)+' '+(y1-dy)+' '+x1+' '+y1+' '+(x1+x2)+' '+y1+' '+(x1+x2)+' '+(y1-dy)+'" \r\n'+
+'	opacity="'+city+'"\r\n'+
+'	fill="#ffc107" />\r\n';
 function sq0(x1,y1,x2){// рюмашка (рисуем с 4-ого стека)
 	//console.log(x1);
 	y1=y1-10;
@@ -544,11 +554,11 @@ function sq0(x1,y1,x2){// рюмашка (рисуем с 4-ого стека)
 	class="rect1" 
 	d="M${x1+20+yrr['dotx0']} ${y2+z+yrr['doty0']} 
 	C${x1+20+yrr['dotx1']} ${y2+yrr['doty1']+z} ${x1-yrr['dotx2']} ${y1+yrr['doty2']+z}
-	${x1} ${y1+z} 
+	${x1+yrr['dotx5']} ${y1+z+yrr['doty5']} 
 	C${x1-yrr['dotx3']} ${y1+yrr['doty3']+z} ${x1+(x2-x1)/2-yrr['dotx4']} ${y1+yrr['doty4']+z}
 	${x1+(x2-x1)/2} ${y1+10+z} 
 	C${x1+(x2-x1)/2+yrr['dotx4']} ${y1+yrr['doty4']+z} ${x2+yrr['dotx3']} ${y1+yrr['doty3']+z}
-	${x2} ${y1+z} 
+	${x2-yrr['dotx5']} ${y1+z+yrr['doty5']} 
 	C${x2+yrr['dotx2']} ${y1+yrr['doty2']+z} ${x2-20-yrr['dotx1']} ${y2+yrr['doty1']+z}
 	${x2-20-yrr['dotx0']} ${y2+z+yrr['doty0']}z"  
 	opacity="${city}"
@@ -558,6 +568,7 @@ function sq0(x1,y1,x2){// рюмашка (рисуем с 4-ого стека)
  
  //********************* выбранная точка перемещается курсорными клавишами
  document.addEventListener('keydown', (e) => {// ←↑↓→
+ //if(kx===undefined||kx===null)return;
 	switch(e.keyCode) {
 		case 40: {//↓
 		  yrr[ky]=yrr[ky]+1;
@@ -581,7 +592,8 @@ function sq0(x1,y1,x2){// рюмашка (рисуем с 4-ого стека)
 	  x1.innerText=[yrr['dotx1'],yrr['doty1']].join(' ');
 	  x2.innerText=[yrr['dotx2'],yrr['doty2']].join(' ');	  
 	  x3.innerText=[yrr['dotx3'],yrr['doty3']].join(' ');	  
-	  x4.innerText=[yrr['dotx4'],yrr['doty4']].join(' ');	  
+	  x4.innerText=[yrr['dotx4'],yrr['doty4']].join(' ');
+	  x5.innerText=[yrr['dotx5'],yrr['doty5']].join(' ');	  
 	main();  
 });
 //**************************
