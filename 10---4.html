@@ -8,7 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="
-data:image/gif;base64,R0lGODlhEAAQAOYAAP///4KF5gDxhgDuhxvNpayF3jTDp/b2//9K/wD7dwD/dAD/cQD3gBvAo7Gn/G3lzZ7S6Lmi//9P/xXPnAD/dwD/fwD/eADej9C//O1L9QD/XgD/ZAD/aH2E0FCpvAD/dQD9gAD/eQDfjs2U9/9k/wDliQD/fAD/ewi0pgD/cwDejup6//9c/w3GpQD+fwDPl+zf/36sxwNdcwB3NADCfgD/dgD9fgDNmK7E20uNlwBmXAB1NAB/Ow6CRyB+RAa6lAD9fwDNl+zd/wDmiQm0p7Gp/KDS6bmk//T1//9M/gD7dQD/bwD4fpCT6QzelA7eljPPsLSE4DHEpgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFewAAACwAAAAAEAAQAAAHsoAAgoMAODiEiIg5OYmNADo6jogwOztCkoMxPDwxkhgjKzI9PTIrIxiIDhkkLDM+PjMsJBlFhA8aJS00Pz80LUMaD4QQGyYmNScnNcYbRoMHERwWLjZAQDYuFhxHSAABCBIdJxYh5SEWJx0SSU0CCRMeKC83QUE3L0QeE0pOAwoUH1J8oEAQoEAKC54QWFABhEMQ1h6CqLAESgEG5MxpNMckioEGF0SoUCGS5EgRFxpICQQAOw==">
+data:image/gif;base64,R0lGODlhEAAQAOYAAP///4XL2l4VO3sACHMFIoErbsxs4QD1oDBTSpEAAHwAAHcAAH8OMb/C/8qM88K09e3e/wD/ghavdZgAAHoAAIAAAH8AAKjO6wD/aWUAeXEAXoAAdjA2jADEm3kAADPLsgD/Z1wUl4kAeYUAgI0AflMUspIAAHsAAAD4pgD/jkk6rIsAgHsAgIQAe2YAsIcAANra/493sAACMgAAAD0AXY4AfHsAfoMAfGkAsn4AAISEpRcXQjcAZ5AAhnEAqnJymAAAHTUAZ3oAfoIAfHgAAKqq219HgAAAFTsAXI8AfWsAsQD9qwD/lkYroIwAgHsAf2YAsoYAACfNrAD/aFgbl4kAeoMAgIwAfloJsZTN4gD/Y2YAf3cAY4gAdEwTiwCzoY+p9a5U2aV+2sqs/wD/gQ66eZkAAAD8mCtfUHwHH33M1VwaPHwAB3UEHoEmYMVk1gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFewAAACwAAAAAEAAQAAAHsIAAgoMAOj+EiIg7QImNADMzjogwkEWSgzGQRpIXHygykEdLUlmIDRggKZCQTFNaYIQOGSEqNDxBSE1UW2GEDxoiKzU9PUlOVVxihBAbIyw2NkI2T1ZdY4IBBxEcJC03N0M3LVdeZGdqAggSHSUuOD4+SlBYX2VoawMJEwkmLxUeRCxEMZHAjAk2BBRQ8HBCQQ4LEBWc8EDhRJsCCypohMjRgsYKRNwYYNCxJMc0bwIBADs=">
+
 
 
   
@@ -78,15 +79,21 @@ padding:3px;border-radius:6px;
 <br>
 
 <select id="selen" style="width:440px" onchange="vvod.value=this.value; main()">
+  <option value="a12(c)zzz">a12(c)zzz</option>
+  <option value="a12czzz" selected>a12czzz</option>  
+  <option value="acz">acz</option>  
   <option value="a(c)z">a(c)z</option>
   <option value="aaa(c)zzz">aaa(c)zzz</option> a(a(a(c)z)z)z
   <option value="a(a(a(c)z)z)z">a(a(a(c)z)z)z</option>  
-  <option value="a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z" selected>a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z</option>  
+  <option value="a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z">a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z</option>  
   
 </select><br>
 
 <input id="vvod" type="text" value="a(c)z">
-<button class="btn0" type="button" onclick="ss=vvod.value; main()">do</button>
+<button class="btn0" type="button" onclick="
+ss=vvod.value; main();
+//window.navigator.clipboard.writeText(`nova.product.help@gmail.com`);
+">do</button>
 
 <br>
 <textarea id="ta1" rows="20" cols="90" style="display:none;color: white; background: #1e154f;">
@@ -149,11 +156,13 @@ document.querySelectorAll('.color').
 let stek4=[]; // рюмашки
 const fy=-10;
 let city=1.0;// opacity прозрачность фигур
+
+
 let dx=40;//100;//20;//34;//  
-let x11x=dx,y11y=hey-10//180;//+50  
+let x11x=0,y11y=hey-15//180;//+50dx  
 let s700=700;//
 
-const dy=-23; // 
+const dy=-25; // 
   
 const clr=()=>{ta1.value=""}
 
@@ -319,6 +328,7 @@ s=bz.join('');
 //***************************************** отладка 
   s='3-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-aaczz';
 s='aa(c)zc-aa(c)zcz-b-bz';//-0-aa(c)z-0z-30
+s=s.replace('2(','a(');
 s=vvod.value;
 //*******************************************  
   //console.log('s> ',s);
@@ -365,11 +375,13 @@ const rng=(x1,y1,x2)=>{
 let stek3=[]; // квадраты и труги, кольца...порядок рисования
 //******************************************
 ///////**********ханойская сортировка begin
+/*обьекты внутри кольца проигрывают в высоте, надо 
+для них акселератор чтоли какойто добавить. а-ля гормон 
+роста*/
 let ss=s;
 const u={
-	'a':{x:0,y:dy,},
-	'z':{x:0,y:-dy,},
 	'0':{x:dx,y:0,},
+	'a':{x:0,y:dy,},	
 	'1':{x:dx/2|0,y:dy,},
 	'2':{x:0,y:dy,},
 	'3':{x:dx,y:0,},
@@ -378,8 +390,10 @@ const u={
 	')':{x:dx/2|0,y:-fy,},//
 	'[':{x:dx/2|0,y:dy,},
 	']':{x:dx/2|0,y:-dy,},
+	'z':{x:0,y:-dy,},	
 	};
 let x1x=x11x,y1y=y11y;// точка отсчета
+//alert(x1x+' '+y1y);
 
 //svg.innerHTML+=sq1;// стартовая точка контура
 let j=0;
@@ -411,14 +425,15 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 				s:y1y+1,
 				});
 			break}			
-		case 'a':{if(ss[i+1]!=='(')stk.push({x:x1x,y:y1y,m:n,});ak='green';break}
-		case '1':{stk.push({x:x1x,y:y1y,m:n,});ak='green';break}
-		case '2':{stk.push({x:x1x,y:y1y,m:n,});ak='green';break}
+		case 'a':{if(ss[i+1]!=='(')
+				  stk.push({x:x1x,y:y1y-dy,m:n,});ak='green';break}
+		case '1':{stk.push({x:x1x,y:y1y-dy,m:n,});ak='green';break}
+		case '2':{stk.push({x:x1x,y:y1y-dy,m:n,});ak='green';break}
 		case '0':{
 				
 				stek3.push({
 					x1:x1x,
-					y1:y1y,
+					y1:y1y,////
 					m:(bab(i))?'3':n,// заключено в скобки
 					s:y1y,
 					t:ss[i]//
@@ -437,7 +452,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 			if (!t) break;// стек исчерпался
 			if(ss[i-1]!==')'){stek3.push({
 				x1:t.x,
-				y1:(t.y+dy),
+				y1:(t.y+dy),///
 				x2:(x1x-u[n].x)-t.x,
 				y2:-dy,
 				m:t.m,
@@ -461,24 +476,26 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 };//i
 ///////**********ханойская сортировка end
 //****************************************
-
+{// стекер-3 ☯
 stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
-
-
+console.clear();
+stek3.forEach(x=>console.table(x));
 stek3.forEach((x,j)=>{
 	switch (x.m){
+		//блоки
 		case '(': {rng(x.x1,x.y1,x.x2,); break}
-		case '[': {rng(x.x1,x.y1+dy,x.x2,); break}		
-		
+		case '[': {rng(x.x1,x.y1+dy,x.x2,); break}				
 		case '1':
 		case '2':
 		case 'a':{recta(x.x1,x.y1,x.x2,x.y2,x.m,1,);break}
+		//элементы
 		case '0':{trg0(x.x1,x.y1,x.t);break}// alert(x.t)
 		case '3':{trg3(x.x1,x.y1,); break}//150+j*5
 	}//switch
 });//forEach   
+}
 
-stek4.forEach(x=>{svg.innerHTML+=sq0(x[0],x[1],x[2])});
+//stek4.forEach(x=>{svg.innerHTML+=sq0(x[0],x[1],x[2])});
 
 const ck=document.querySelectorAll('#svg *');
 ck.forEach(x=>{x.addEventListener('click',(e)=>{
@@ -519,7 +536,7 @@ const sq4=(x1,y0,name0)=>
 const sq5=(x1,y1)=>
 '<polygon \r\n'+
 '	class="rect1" \r\n'+
-'	points="'+x1+' '+y1+' '+(x1+dx/2|0)+' '+(y1+2*dy)+' '+(x1+dx)+' '+y1+'" \r\n'+
+'	points="'+(x1)+' '+y1+' '+(x1+dx/2|0)+' '+(y1+2*dy)+' '+(x1+dx)+' '+y1+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
 '	fill="blue" />\r\n';
 const sq6=()=>'\r\n<style type="text/css">\r\n'+
@@ -531,7 +548,7 @@ const sq7=(x1,y1,x2,y2,m,n)=>// квадрат который не спит на
 '<rect \r\n'+
 '	class="rect1" \r\n'+
 '	x="'+x1+'" \r\n'+
-'	y="'+y1+'" \r\n'+
+'	y="'+(y1+dy)+'" \r\n'+
 '	width="'+x2+'" \r\n'+
 '	height="'+y2+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
@@ -539,13 +556,13 @@ const sq7=(x1,y1,x2,y2,m,n)=>// квадрат который не спит на
 const sq8=(x1,y1,x2,y2,m,n)=>// список
 '<polygon \r\n'+
 '	class="rect1" \r\n'+
-'	points="'+x1+' '+(y1-dy)+' '+(x1+(dx*0.4)|0)+' '+y1+' '+(x1+x2)+' '+y1+' '+(x1+x2)+' '+(y1-dy)+'" \r\n'+
+'	points="'+x1+' '+(y1)+' '+(x1+(dx*0.4)|0)+' '+(y1+dy)+' '+(x1+x2)+' '+(y1+dy)+' '+(x1+x2)+' '+(y1)+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
 '	fill="#ffc107" />\r\n';
 const sq9=(x1,y1,x2,y2,m,n)=>// список
 '<polygon  \r\n'+
 '	class="rect1" \r\n'+
-'	points="'+(x1-(dx*0.1)|0)+' '+(y1-dy)+' '+x1+' '+y1+' '+(x1+x2)+' '+y1+' '+(x1+x2)+' '+(y1-dy)+'" \r\n'+
+'	points="'+(x1-(dx*0.1)|0)+' '+(y1)+' '+x1+' '+(y1+dy)+' '+(x1+x2)+' '+(y1+dy)+' '+(x1+x2)+' '+(y1)+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
 '	fill="#ffc107" />\r\n';
 function sq0(x1,y1,x2){// рюмашка (рисуем с 4-ого стека)
