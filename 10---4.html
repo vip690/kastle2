@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- 2apr2023
-т.к. обнаружирось что прога крашится почти любом входящем значении, счел нужным составить список допустимых значений. в listbox. ну и пока что работает только с формулами. 
+<!-- 5apr2023
+Удалоь подружить знакоместа с глифами. 
 -->
 <html lang="en">
 <head>
@@ -8,7 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="
-data:image/gif;base64,R0lGODlhEAAQAPcAAP7+/vT0/mmb1Rj8jBn+i////////f///tzF//9R/ADwh8TP+jTlsA3fl0vSvODf/8mk+f9o+DWzs/39/eTp/91K9DmksgD/cgX/fQDyhKbR6dCN+P948niM0uS5//9x/7p09RD/gx7/jgn/gQH1g5/j4+90//9y/n1c6cTU5sHM7qrA3ZS8yld2sWFrmjtMnwL/gRv9jBf+igz/ggX/gkuZvpKUzwCqpy+SZA6DRhCGRxiOShSATyeLTyNVbg//ihz9ixj+ixn+ihP/hgj4gxH/ewCwpDWUajWWaSyEaDOIYSxPeBH/kRr9ihr/ixTtihv7hA+dsh2MUSSQVSuWWSiHXjWMXDBUdhX/kh39ixj/iRD0hhn/gQqoq4m0vWWbrEmLmS+FggNlaghzVAxYZQD/fxL/hgf/gA7RlTbGpQC9mvSw//9y/7pc/xD/iB7+jhD/hAD+flHoueJj//9r/1Vk3NfX//9d9GqQyQX/eQ3/hQD/fmLJy9qI/f9784SA2ZqV9ADajgD/agDakZnR4v/+/8ic9/9s9UiovP/j///9/9q9//9Y/Qjilv7+/f3//f3+/ejw/1ZgzQD/Zuju/J3k24TlzgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFewAFACwAAAAAEAAQAAAI5wABCBSYAodBLwMTDiygIgcOKV8KKBw4ocAKHUemgCkwYeKBAwVY7EBCJUyBjwkLFKDgoQWPJFXErLGjcuGCCh9c9FBiZQybO4AKOBJYgIEFEC98LLlCpg2eQAUMEG1wIQSMH0ywlHGTR1CioQAKOMAgIgaQJlmavNEzSNEjog8yjJARpK4MOHsIFYAk0EABDSRmCCFAwEwcPoU4CgRZoASNIU60nJGjEmUABBA2mKhB5MkWNHP6GFoUCYCABBE4nLBRBAqXNHT8HGIkidIABRI6oLhhJEoXNXX+IGo0qRLh48iTE7AUEAA7">
+data:image/gif;base64,R0lGODlhEAAQAOYAAAAAAAAAEAAADgAAOoCB6ph+dPjNJv/bM//WM+/JRsOkTINtTxwUTQAAGNPT//r//9DO/9u0Af/lAP/ZAP/eAP/kAP/xAP/+AMysKgEBeoaF7v/jAP/aAP3UAP7VAP/XAP7WAImM/7rA/7myx6GNgsSiKv/dAP3TAAAAHQAASo13sMCZJP/QAP/mAKaLUv/nAP3SAP7XAE9CQc+uPf/yGv//AP/2AP/cAP3WAP/iAJ2BYP/qAP3RAAMCMzcuVqKJVf/XCZyAYf/pAAAAIGtp/62Xg8aeBquMR3Bz9erx/8HF/4Z+0dizHgAAU4V4rf/fAP/WAP7TAP/TAKWl/r625f/0AP/sAP/yAP/7A413RgAACzw9oWVQTK6QL7OWTLOUTKKITHhjTDksTgAAPwAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQEewABACwAAAAAEAAQAAAHqoAAgoMAMj2EiIgzPomNKDQ/jYkpNUBDkoIZISo2FkRITYkDDg8PKxQbRaVTWoQEpSIsNzdGSaVbhAUQDyMUODcTSg9UXIQGERokLTkbOUtOT12DAQcSGyUuOkFHTE9VXoMCCBMcJi87QhIUUC9fhAkUHScwPDwwHTBWYIQKFR4gMQICjHIlDKEFFjqA8MDwn5QLYggxuPABhEWLv7CMIdQAw8WPILKQERQIADs=">
+
 
 
 
@@ -83,9 +84,7 @@ padding:3px;border-radius:6px;
 		
 		<input type="radio" id="rok4" name="rokki">	
 		<button id="x4"
-		onclick="rok4.checked=true;kx='dotx4';ky='doty4'">x</button><br>
-		
-		
+		onclick="rok4.checked=true;kx='dotx4';ky='doty4'">x</button><br>		
 	</article>
 </div>
 <br>
@@ -174,7 +173,7 @@ let stek4=[]; // рюмашки
 let city=1.0;// opacity прозрачность фигур
 
 let off; // смещение композиции к центру
-let dx=40;//100;//20;//34;//  
+let dx=25;//100;//20;//34;//  
 let dy=-25; // 
 let x11x=0,y11y=hey-15//180;//+50dx  
 let s700=700;//
@@ -183,7 +182,7 @@ let s700=700;//
   
 const clr=()=>{ta1.value=""}
 
-function ff(x){
+function ff(x){// сокращения 
 const cre=x=>{
 	let r = /-/ig;
 	let t, a=[];
@@ -322,22 +321,23 @@ mc=s.match(/(2[^-\r\n]+)/gi);// разбираюсь с лишками
 //console.log('s>>',s);//aaac-czc-cz-aac-cz-ac-cz-ac-czc-czcz
 //console.log(s);return 0; //aac-czdaezdaezdaezdaezz
 if (!!mc) mc.forEach(x=>{let y=new RegExp(x+'-'+x,'g');s=s.replace(y,x)});
-s=ff(s);// сокращения 
+s=ff(s);// сокращения ------------------------------------------------------------------
 console.log(s);//return 0; //aa(c)zdaezdaezdaezdaezz
-let dom=[];
-let brk=s.split('').map(x=>0);
+
+let dom=[];// ставлю брекеты
+let brk=s.split('').map(x=>0);// б
 let war=s.split('').forEach((x,i)=>{
 	if (x==='(')dom.push(i);
 	if(x===')'){brk[i]=dom.pop();brk[brk[i]]=i}});
 //console.log(brk);
 //console.log(s.indexOf('-('));
 let bz=s.split('');
-
 for (let i=0; i<bz.length; i++){if(bz[i]==='-'&&bz[i+1]==='(')
 	{bz[i+1]='['; bz[brk[i+1]]=']'}}
 for (let i=1; i<bz.length; i++){if(bz[i]==='-'&&bz[i-1]===')')
 	{bz[i-1]=']'; bz[brk[i-1]]='['}}	
 s=bz.join('');
+
   //console.log(s);
 
   //console.log('sp> ',sp);
@@ -414,13 +414,14 @@ const u={
 	'z':{x:0,y:-dy,},	
 	};
 let x1x=x11x,y1y=y11y;// точка отсчета
-//alert(x1x+' '+y1y);
+/*
 	svg.innerHTML+=// начало пути черепашки
 `<circle 
 	r="3" 
 	cx="${x1x}" 
 	cy="${y1y}" 
 	fill="violet"/>`;//gold
+	*/
 //svg.innerHTML+=sq1;// стартовая точка контура
 let j=0;
 let stk=[]; // 
@@ -549,7 +550,7 @@ stek3.forEach((x,j)=>{
   
 }
 
-//stek4.forEach(x=>{svg.innerHTML+=sq0(1,x[0],x[1],x[2])});// драпировка
+//
 stek4.sort((a,b)=>-1).forEach(x=>{svg.innerHTML+=sq0(1,x[0],x[1],x[2])});// драпировка в обратном порядке
 
 const ck=document.querySelectorAll('#svg *');
@@ -603,7 +604,7 @@ f+='<ellipse \r\n'+
 '     rx="'+(x2/2)+'" \r\n'+
 '     ry="10" \r\n'+
 '     stroke="blue" \r\n'+
-'     fill="gold" \r\n'+//violet
+'     fill="white" \r\n'+//violet
 '	 opacity="1"\r\n'+//'+city+'
 '     stroke-width="1"/>\r\n';
 return f;
@@ -626,7 +627,7 @@ const sq6=()=>'\r\n<style type="text/css">\r\n'+
 '.rect1, .polygon1 {stroke: blue;}\r\n'+
 '.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
 '</style>\r\n'+
-'<rect x="0" y="0" width="'+s700+'" height="'+hey+'" fill="white" />\r\n';
+'<rect x="0" y="0" width="'+s700+'" height="'+hey+'" fill="black" />\r\n';
 const sq7=(axe,x1,y1,x2,y2,m,n)=>// квадрат который не спит на спине
 '<rect \r\n'+
 '	class="rect1" \r\n'+
@@ -648,25 +649,36 @@ const sq9=(axe,x1,y1,x2,y2,m,n)=>// список li
 '	points="'+(x1-(dx*0.1)|0)+' '+(y1)+' '+x1+' '+(y1+axe*dy)+' '+(x1+x2)+' '+(y1+axe*dy)+' '+(x1+x2)+' '+(y1)+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
 '	fill="gold" />\r\n';//#ffc107
+
+ 
 function sq0(axe,x1,y1,x2){// рюмашка (рисуем с 4-ого стека)
-	//console.log(x1);
-	y1=y1-10;
-	let y2=y1+50;
+	let x40=dx/40;
+	let y25=dy/25;
+	const i=(x2-x1)/6;
 	return `<path 
 	class="rect1" 
-	d="M${x1+20+yrr['dotx0']} ${y2+z+yrr['doty0']} 
-	C${x1+20+yrr['dotx1']} ${y2+yrr['doty1']+z} ${x1-yrr['dotx2']} ${y1+yrr['doty2']+z}
-	${x1+yrr['dotx5']} ${y1+z+yrr['doty5']} 
-	C${x1-yrr['dotx3']} ${y1+yrr['doty3']+z} ${x1+(x2-x1)/2-yrr['dotx4']} ${y1+yrr['doty4']+z}
-	${x1+(x2-x1)/2} ${y1-48} 
-	C${x1+(x2-x1)/2+yrr['dotx4']} ${y1+yrr['doty4']+z} ${x2+yrr['dotx3']} ${y1+yrr['doty3']+z}
-	${x2-yrr['dotx5']} ${y1+z+yrr['doty5']} 
-	C${x2+yrr['dotx2']} ${y1+yrr['doty2']+z} ${x2-20-yrr['dotx1']} ${y2+yrr['doty1']+z}
-	${x2-20-yrr['dotx0']} ${y2+z+yrr['doty0']}z"  
+	d="M${x1+2*i} ${y1} 
+	C${x1+x40*40} ${y1+y25*25} ${x1-i} ${y1+y25*25}
+	${x1} ${y1+y25*68} 
+	C${x1+i} ${y1+y25*59} ${x1+2*i} ${y1+y25*58}
+${x1+((x2-x1)/2)} ${y1+y25*58} 
+	C${x2-2*i} ${y1+y25*58} ${x2-i} ${y1+y25*59}
+	${x2} ${y1+y25*68} 
+	C${x2+i} ${y1+y25*25} ${x2-x40*40} ${y1+y25*25}
+	${x2-2*i} ${y1}z"  
 	opacity="${city}"
-	fill="gold" />\r\n`; //springgreen
- }
- main();//+z+10
+	fill="gold" />\r\n`; //springgreen	
+/*	
+`<circle 
+	r="3" 
+	cx="${x1+x40*40}" 
+	cy="${y1+y25*25}" 
+	fill="lime"/>`;// точки контура	
+	*/
+ } 
+
+ main();//
+ 
  
  //********************* выбранная точка перемещается курсорными клавишами
  document.addEventListener('keydown', (e) => {// ←↑↓→
