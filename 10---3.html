@@ -703,15 +703,15 @@ function sq0(axe,x1,y1,x2){// рюмашка (рисуем с 4-ого стек�
 	const i=(x2-x1)/6;
 	return `<path 
 	class="rect1" 
-	d="M${x1+2*i} ${y1} 
-	C${x1+x40*40} ${y1+y25*25} ${x1-i} ${y1+y25*25}
+	d="M${(x1+2*i).toFixed(1)} ${y1} 
+	C${x1+x40*40} ${y1+y25*25} ${(x1-i).toFixed(1)} ${y1+y25*25}
 	${x1} ${y1+y25*68} 
-	C${x1+i} ${y1+y25*59} ${x1+2*i} ${y1+y25*58}
+	C${(x1+i).toFixed(1)} ${y1+y25*59} ${(x1+2*i).toFixed(1)} ${y1+y25*58}
 ${x1+((x2-x1)/2)} ${y1+y25*58} 
-	C${x2-2*i} ${y1+y25*58} ${x2-i} ${y1+y25*59}
+	C${(x2-2*i).toFixed(1)} ${y1+y25*58} ${(x2-i).toFixed(1)} ${y1+y25*59}
 	${x2} ${y1+y25*68} 
-	C${x2+i} ${y1+y25*25} ${x2-x40*40} ${y1+y25*25}
-	${x2-2*i} ${y1}z"  
+	C${(x2+i).toFixed(1)} ${y1+y25*25} ${x2-x40*40} ${y1+y25*25}
+	${(x2-2*i).toFixed(2)} ${y1}z"  
 	opacity="${city}"
 	fill="gold" />\r\n`; //springgreen	
 /*	
