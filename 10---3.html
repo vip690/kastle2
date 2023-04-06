@@ -229,10 +229,7 @@ function ff(x){// сокращения -----------------------------------------
 может мешаются ()? позаменить их на чтото нейтральное типа <>?
 */
 lenx=x.length;// длина входящего сообщения
-//console.log(x);
-//x=x.replace(/\(/g,'<');x=x.replace(/\)/g,'>');
-//x=[...x].map(x=>(x===')')?'>':x).join('');x=[...x].map(x=>(x==='(')?'<':x).join('');
-//
+
 const cre=x=>{
 	let r = /-+/ig;
 	let t, a=[];
@@ -242,19 +239,7 @@ const cre=x=>{
 
 let e,xe,xd,n,i,s3,s4;
 
-/*
-let m=1;
-x=[...x].map(x=>{
-	if(x==='1'||x==='2'||x==='a')m++;
-	if(x==='z')m--;
-	let u=(x==='-')?x.repeat(m):x;
-	//alert(u);
-	return u}).join('');
-alert(x);
-*/
-
 let a=cre(x);  //a: array of integer;
-//alert(a);
 for (let i=0; i<a.length; i++){//i
 	n=a[i];
 	e=''; d='';
@@ -268,16 +253,12 @@ for (let i=0; i<a.length; i++){//i
 			case 'a':
 			case '1':
 			case '2': {xe--; break}
-			case '<':
-			case '>': {break}
 		   }   
 		switch(x[a[i]+j]){
 			case 'a':
 			case '1':
 			case '2': {xd++; break}
-			case 'z': {xd--; break}
-			case '<':
-			case '>': {break}			
+			case 'z': {xd--; break}			
 			}
 
 		if ((xe<0)||(xd<0)) break;	  
@@ -285,17 +266,10 @@ for (let i=0; i<a.length; i++){//i
 		
 		s3=x.substring(0,n); //  от индекса a до индекса b 
 		s4=x.substring(n); // от n до конца
-		//console.log(e);
 		let r=new RegExp("("+e+")(-\\1)+",'g');
 		//let s="aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzzz-a(agz)zhzz";
 		//s=s.replace(/(aadz-aaezfzz)(-\1)+/gi,'($1)');
 		s4=s4.replace(r,'($1)');
-		//s4=s4.replace(/([^-]+)(-\1)+/gi,'($1)')
-		
-		
-		//s3=[...s3].map(x=>(x==='>')?')':x).join('');s3=[...s3].map(x=>(x==='<')?'(':x).join('');
-		//s4=[...s4].map(x=>(x==='>')?')':x).join('');s4=[...s4].map(x=>(x==='<')?'(':x).join('');		
-		
 		
 		if(s4.length<lenx)
 			{return s3 + ff(s4)}else{return s3+s4}
@@ -400,11 +374,13 @@ console.log(s);
 
 let sed;
 do{
-sed=[...s].map(i=>i).join('');
-s=[...s].map(x=>(x===')')?'>':x).join('');s=[...s].map(x=>(x==='(')?'<':x).join('');
-s=ff(s);// сокращения ------------------------------------------------------------------
-s=[...s].map(x=>(x==='>')?')':x).join('');s=[...s].map(x=>(x==='<')?'(':x).join('');
-}while(sed!==s);//выход если обработка не изменила строку
+	sed=[...s].map(i=>i).join('');
+	s=[...s].map(x=>(x===')')?'>':x).join('');
+	s=[...s].map(x=>(x==='(')?'<':x).join('');
+	s=ff(s);// сокращения ------------------------------------------------------------------
+	s=[...s].map(x=>(x==='>')?')':x).join('');
+	s=[...s].map(x=>(x==='<')?'(':x).join('');
+	}while(sed!==s);//выход если обработка не изменила строку
 
 
 //******
@@ -433,7 +409,7 @@ s=bz.join('');
   //console.log('sp> ',sp);
   //console.log('sp2> ',sp2);  
 //***************************************** отладка 
-if (md===1){
+if (md===1){// брать с эдита
 s=vvod.value;
 s=s.replace(/2\(/g,'a(');
 s=s.replace(/a\(/g,'(');// попробую так 4.4.23
@@ -520,7 +496,6 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 
 	let ak='black';
 
-	//let ell=u['('].x/2;//0;//
 	switch (n){
 		case '(':{axe=2.3;stk.push({x:x1x,y:y1y,axe: axe,});break}//*
 		case ')':{let v=stk.pop();//*
@@ -546,7 +521,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 				});
 			break}
 */			
-		case 'a':{axe=1.5;//if(ss[i+1]!=='(')
+		case 'a':{axe=1.5;//
 				  stk.push({x:x1x,y:y1y-dy,m:n,axe: axe,});ak='green';break}
 		case '1':{axe=2.0;stk.push({x:x1x,y:y1y-dy,m:n,axe: axe,});ak='green';break}
 		case '2':{axe=0.5;stk.push({x:x1x,y:y1y-dy,m:n,axe: axe,});ak='green';break}
@@ -571,12 +546,11 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 					});
 				break}
 		case '-':{break}
-		case 'z':{let t;//if(ss[i-1]!==')')
+		case 'z':{let t;//
 			t=stk.pop(); ak='red'; 
 			if (!t) break;// стек исчерпался
 			// а черепаха-то знает чем ты тут занимаешься?
 			axe=t.axe;
-			//if(ss[i-1]!==')')
 			{stek3.push({
 				x1:t.x,
 				y1:(t.y+dy),///
@@ -604,7 +578,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 };//i
 ///////**********ханойская сортировка end
 //****************************************
-off=(700-x1x)/2;
+off=(700-x1x)/2;// смещение композиции
 {// стекер-3 ☯
 
 stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
@@ -640,7 +614,8 @@ stek3.forEach((x,j)=>{
 }
 
 //
-stek4.sort((a,b)=>-1).forEach(x=>{svg.innerHTML+=sq0(1,x[0],x[1],x[2])});// драпировка в обратном порядке
+stek4.sort((a,b)=>-1)
+	.forEach(x=>{svg.innerHTML+=sq0(1,x[0],x[1],x[2])});// драпировка в обратном порядке
 
 const ck=document.querySelectorAll('#svg *');
 ck.forEach(x=>{x.addEventListener('click',(e)=>{
