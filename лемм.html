@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<svg id="svg" width="715" height="215" viewBox="0 0 715 215" fill="none">
+<rect x="0" y="0" width="700" height="250" fill="silver" />
+</svg>  
+  <script>
+
+  ///////////////////////////////////////////////////////////////
+function ff(x){
+const cre=x=>{
+let r = /-/ig;
+let t, a=[];
+while (t =r.exec(x))a.push(t.index); 
+return a  
+}  
+
+let e,xe,xd,n,i,s3,s4;//j,
+
+let a=cre(x);  //a: array of integer;
+for (let i=0; i<a.length; i++){//i
+	n=a[i];
+	e=''; d='';
+	xe=0; xd=0;
+	for (let j=1;j<=Math.min(a[i],x.length-a[i]); j++) {//j 
+		n--;
+		d=d+x[a[i]+j];
+		e=x[a[i]-j]+e;
+		switch(x[a[i]-j]){
+		case 'z': {xe++; break}
+		case 'a':
+		case '1':
+		case '2': {xe--; break}
+		   }   
+		switch(x[a[i]+j]){
+		case 'a':
+		case '1':
+		case '2': {xd++; break}
+		case 'z': {xd--; break}
+		}
+
+		if ((xe<0)||(xd<0)) break;	  
+		if ((xe===xd)&&(xd===0)&&(e===d)) {	  
+		s3=x.substring(0,n); //  от индекса a до индекса b 
+		s4=x.substring(n); // от n до конца
+		s4=s4.replace(/([^-]+)(-\1)+/gi,'($1)')
+		return s3 + ff(s4);
+		}
+	}//j
+}//i
+return x;
+}//func ff	
+  ////////////////////////////////
+  (function(){
+  let alf="abcdefghijklmnopqrstuvwxyz";
+
+  let s="<section><a><h2></h2></a><ul><li><div><img><p><a></a></p></div></li><li><div><img><p><a></a></p></div></li><li><div><img><p><a></a></p></div></li></ul><ul><li><div><img><p><a></a></p></div></li><li><div><img><p><a></a></p></div></li><li><div><img><p><a></a></p></div></li></ul><ol><li></li><li></li><li></li></ol></section>";
+  
+  let sp=['li'],sp2=['b'];
+  s=s.replace(/(<svg>.*<\/svg>?)/gi,'<svg>');//анти svg
+  //alert(s);
+  while ((/<(.+)><\/\1>|<img>|<input>|<svg>/i).test(s)){// крыши
+	  let g=s.match(/<(.+)><\/\1>|<(img)>|<(input>)|<(svg)>/i);//[1]
+	 // console.log(g);
+	//if (!!g[1]) {g=g[1]} else {g=g[2]};//вау
+	/*
+	if (!!g[1]) {g=g[1]} else{
+	if (!!g[2]) {g=g[2]} else{
+	if (!!g[3]) {g=g[3]}}};
+	*/
+	g=g[1]||g[2]||g[3]||g[4];
+if(!(sp.indexOf(g)+1)){sp.push(g);sp2.push(alf[sp.length])};
+
+	 console.log(g);
+	 let w=' _'+sp2[sp.indexOf(g)]+'_ ';
+	  switch (g){
+	  case 'img':{s=s.replace(/<img>/i,w); break}//_c_
+	  case 'svg':{s=s.replace(/<svg>/i,w); break}//e
+	  case 'input':{s=s.replace(/<input>/i,w); break}//d
+	  case 'h2':{s=s.replace(/<h2><\/h2>/i,w); break}  //
+	  case 'li':{s=s.replace(/<li><\/li>/i,w); break}  // лишки крышки
+	  case 'a':{s=s.replace(/<a><\/a>/i,w); break} 
+	  default :{s=s.replace(/<(.+)><\/\1>/i,w); break}//|<img>|<input>
+	  }//switch
+  }//while
+s=s.replace(/<ul>|<ol>/gi,'1'); 
+s=s.replace(/<li>/gi,'2');   
+s=s.replace(/(<[^\/]+?>)/gi,' a ');
+s=s.replace(/(<\/.+?>)/gi,' z ');  
+s=s.replace(/[<> _]/gi,'');  
+s=s.replace(/za/gi,'z-a');//отступы меж башнями
+s=s.replace(/z2/gi,'z-2');// 
+s=s.replace(/z1/gi,'z-1');//
+s=s.replace(/az/gi,'3');//
+s=s.replace(/b+/gi,'b');//c лишками крышками
+mc=s.match(/(2[^-\r\n]+)/gi);// разбираюсь с лишками
+//console.log(s);
+if (!!mc) mc.forEach(x=>{let y=new RegExp(x+'-'+x,'g');s=s.replace(y,x)});
+//
+s=ff(s);
+  console.log(s);  
+  console.log(sp);
+  console.log(sp2);
+//////////////////////////////////////draw  
+const svg=document.querySelector('#svg');
+svg.innerHTML='<rect x="0" y="0" width="700" height="250" fill="#6c757d" />';  
+const recta=(x1,y1,x2,y2,m,n)=>{
+switch (m){
+	case 'a': {svg.innerHTML+=`<rect x="${x1}" y="${y1}" width="${x2}" height="${y2}" fill="#ffc107" stroke="blue" />`;
+	break}
+	case '1': {
+	svg.innerHTML+=
+	`<polygon points="${x1} ${y1-dy} ${x1+(dx*0.4)|0} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" fill="#ffc107" stroke="blue" />`;
+	break}
+	case '2': {
+	svg.innerHTML+=
+	`<polygon points="${x1-(dx*0.1)|0} ${y1-dy} ${x1} ${y1} ${x1+x2} ${y1} ${x1+x2} ${y1-dy}" fill="#ffc107" stroke="blue" />`;
+	break}
+
+}//switch
+}
+
+
+const trg0=(x1,y1,t)=>{
+//alert(t);
+svg.innerHTML+=`<polygon points="${x1} ${y1} ${x1+dx/2|0} ${y1+2*dy} ${x1+dx} ${y1}" fill="#dc3545" stroke="blue" />`;
+svg.innerHTML+=`<text x="${x1}" y="35" style="font-family: Arial; font-size: 24px; line-height: 0; fill:white;">${sp[sp2.indexOf(t)]}</text>`;
+
+}
+const trg3=(x1,y1)=>{
+svg.innerHTML+=`<polygon points="${x1} ${y1} ${x1+dx/2|0} ${y1+3*dy} ${x1+dx} ${y1}" fill="#198754" stroke="blue" />`;
+}
+const rng=(x1,y1,x2)=>{
+svg.innerHTML+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y1}" stroke="teal" stroke-linecap="round" stroke-width="20"/>`;
+svg.innerHTML+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y1}" stroke="yellow" stroke-linecap="round" stroke-width="18"/>`;  
+}
+
+
+
+let ss=s;
+let stek1=[]; // квадраты и труги
+let stek2=[]; // кольца
+let stek3=[]; // порядок рисования
+const dx=50;
+const dy=-23;
+const u={'a':{x:0,y:dy,},'z':{x:0,y:-dy,},'0':{x:dx,y:0,},'1':{x:dx/2|0,y:dy,},'2':{x:0,y:dy,},'3':{x:dx,y:0,},'-':{x:dx,y:0,},'(':{x:0,y:0,},')':{x:0,y:0,},};
+let x1=dx,y1=180;
+//svg.innerHTML+=`<circle r="3" cx="${x1}" cy="${y1}" fill="black"/>`;// стартовая точка контура
+let j=0;
+for (let i=0; i<ss.length; i++){//alert(ss[i]);
+	let n=ss[i];
+	n=n.replace(/[bcdefghijklmnopqrstuvwxy]/gi,'0');
+	let ak='black';
+	//if (n==='(' || n===')') continue;
+	switch (n){
+		case '(':{stek2.push({x:x1,y:y1});break}
+		case ')':{let v=stek2.pop();
+			stek3.push({x1:v.x,y1:v.y,x2:x1,m:'(',s:y1+1,});
+			break}
+		case 'a':{stek1.push({x:x1,y:y1,m:n,});ak='green';break}
+		case '1':{stek1.push({x:x1,y:y1,m:n,});ak='green';break}
+		case '2':{stek1.push({x:x1,y:y1,m:n,});ak='green';break}
+		case '0':{/*trg0(x1,y1);*/stek3.push({x1:x1,y1:y1,m:n,s:y1,t:ss[i]}); break}//;alert(ss[i])
+		case '3':{trg3(x1,y1);stek3.push({x1:x1,y1:y1,m:n,s:y1,}); break}
+		case '-':{break}
+		case 'z':{let t=stek1.pop(); ak='red'; 
+			recta(t.x,(t.y+dy),(x1-u[n].x)-t.x,-dy,t.m,j,);//
+			stek3.push({x1:t.x,y1:(t.y+dy),x2:(x1-u[n].x)-t.x,y2:-dy,m:t.m,s:Math.max(t.y+dy,t.y),});
+			j++;
+			break} 
+	}//switch
+	x1+=u[n].x;
+	y1+=u[n].y;
+	//svg.innerHTML+=`<circle r="3" cx="${x1}" cy="${y1}" fill="${ak}"/>`;// точки контура
+};//i
+
+
+stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
+
+stek3.forEach(x=>{
+	switch (x.m){
+		case '(': {rng(x.x1,x.y1,x.x2,); break}
+		case '1':
+		case '2':
+		case 'a':{recta(x.x1,x.y1,x.x2,x.y2,x.m,1,);break}
+		case '0':{trg0(x.x1,x.y1,x.t);;break}// alert(x.t)
+		case '3':{trg3(x.x1,x.y1,); break}
+	}//switch
+}); //forEach 
+  
+  })()
+//////////////////////////////////////////  
+
+  </script>
+
+</body>
+</html>
