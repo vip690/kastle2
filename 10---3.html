@@ -100,12 +100,13 @@ padding:3px;border-radius:6px;
   <option value="a(c)z">a(c)z</option> 
   <option value="aacca(cc)zzca(c)zcccccca(c)zcz">aacc(cc)zc(c)cccccc(c)cz</option>  
   <option value="aaa(c)zzz">aaa(c)zzz</option> a(a(a(c)z)z)z
-  <option value="a(a(a(c)z)z)z" selected>a(a(a(c)z)z)z</option>  
+  <option value="a(a(a(c)z)z)z">a(a(a(c)z)z)z</option>  
   <option value="a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z">a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z</option>  
   <option value="a(c-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-a(a(a(a(c)z)z)z)z)z">a(c-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-a(a(a(a(c)z)z)z)z)z</option>  
   <option value="aacadz-aaaefzzz-a(f)zz(g)zz">aacadz-aaaefzzz-a(f)zz(g)zz</option>   
-  
-</select><br>
+  <option value="aaa(c)zza(d)zz">aa(c)z(d)z</option>  
+  <option value="acaa(adz)z(e)zzz" selected>aca(adz)(e)zz</option>    
+</select><br>  
 
 
 
@@ -207,10 +208,10 @@ let stek4=[]; // рюмашки
 let city=1.0;// opacity прозрачность фигур
 
 let off; // смещение композиции к центру
-let dx=25;//25 
+let dx=20;//25 
 let dy=-25; // 25
 let x11x=0,y11y=hey-15//180;//+50dx  
-let s700=700;//
+let s700=1400;//1300
 
 
   
@@ -386,6 +387,7 @@ do{
 
 //******
 s=s.replace(/2\(/g,'a(');
+ta2.value+='\n'+s;
 s=s.replace(/a\(/g,'(');// попробую так 4.4.23
 s=s.replace(/\)z/g,')');
 
@@ -580,7 +582,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 };//i
 ///////**********ханойская сортировка end
 //****************************************
-off=(700-x1x)/2;// смещение композиции
+off=(s700-x1x)/2;// смещение композиции
 {// стекер-3 ☯
 
 stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация

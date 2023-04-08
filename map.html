@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="data:image/gif;base64,R0lGODlhEAAQANUAAP7+/v8AAP////39/Tc3N4iIiG1tbT09PcPDw2xsbNLS0lZWVuXl5WdnZ2VlZVdXV4ODg+3t7RISEmZmZmNjYwcHB5SUlHh4eIuLi3R0dFNTU3BwcGtra5mZmQAAAJeXl09PT0tLS/j4+EhISL6+vmlpaXV1dQwMDGJiYlxcXIeHh9jY2FtbW9/f3y4uLrOzs52dnSsrK6ysrNzc3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFewACACwAAAAAEAAQAAAGhUCAcAgIGI1E4jEwRCqNgqhU4CwGBIvHRAMqsVBUIbTAiG5C0RcMeRUYopSoSR4ODAiHBqTCMZwuJTEoR1EIURZRYAIyUYQJUW8CBFEOAgNMVwoOERdRKS0sM5ZiUhIYAiIqLlJIlwNRGR0jnZZVSAIKHh4rAlZJUAIfJFRVT6x2SU9HyUEAOw==">
+
+
+  <title>Кристал карта</title>
+  <style>
+#i{padding: 33px 0;background: linear-gradient(rgba(0,0,0,0.9), blue); 
+text-align: center;
+}
+
+body{
+color: white;
+background-color: black;
+
+b0ackground-image: url(13.bmp);
+background-image-opacity:.5;/* нет такого свойства */
+background-size: cover;
+background-repeat: no-repeat;
+
+}
+d0iv{background: yellow;border:1px solid blue;}
+.ira{position: absolute;cursor: move; color: white;font-family:sans-serif;
+	display: grid; place-items:center; user-select: none;
+	font-size:16px;width:25px; aspect-ratio:1;
+    z-index: 9;}
+.hljs-function {}	
+.hljs-keyword {color:#8959a8; font-weight:700;}
+.hljs-title {color:#4271ae; font-weight:700;}
+.hljs-params {color:#6e0620;}
+.hljs-built_in {color:#884301;}/*#f5871f*/
+.hljs-number {color:#081fc9;}
+.hljs-string {color:#718c00;}	
+.hljs-rem {color:#677c0d;}	
+
+.km{margin:2px;display: inline-block;width:33px; aspect-ratio:1; border:4px solid blue;}
+#m1,#m2{margin: auto; color: white; text-align: left;
+border:5px solid white;
+font-family : monospace;
+width: fit-content;
+padding: 0 4%;
+font-size:88px;
+letter-spacing: 38px;
+}
+#m1{
+border:5px solid #ffffff80;
+color:#ffffff80;
+}
+legend{font-family : monospace;
+font-size:24px;
+text-align: center;color: blue;
+}
+h1{text-align: center; text-transform: uppercase}
+
+/***************/
+#act{
+	margin: 0 auto;
+	padding:3px 10px 2px;
+	display: flex; 
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: fit-content;
+	color: black;
+	background-color: none;
+	font-family: sans-serif;
+	}
+
+.fan{
+	margin:1px;
+	width:51px;
+	aspect-ratio:1;
+	border-radius:50%;
+	border: 3px solid black;
+	display:grid;
+	place-items:center;
+	background: transparent;
+	font-family: sans-serif;
+	font-size:28px;
+	}
+	
+	
+#xhh,#xmm,#xss{
+	line-height:0;
+	font-size:9px;
+	margin-top:-4px;
+	}
+#fanh,#fanm,#fans{
+	display: inline-block;
+}	
+
+
+#tablo{display: flex;}
+#soon{d0isplay: none;font-family: r4;font-size:31px;
+font-weight:900;text-align: center;
+text-transform:uppercase;color: var(--nice2);
+}
+
+
+  </style>  
+</head>
+<body text=pink>
+<h1>Схема сайта</h1> 
+
+
+	<div id="act">
+		<h3 id="soon">До конца акции осталось</h3>	
+		<div id="tablo">
+			
+			    <button class="fan" style="">
+					<span id="fanh">6</span>
+					<h3 id="xhh">час</h3>
+				</button>
+			
+			
+				<button class="fan" style="b0ackground: cyan;">
+					<span id="fanm">00</span>
+					<h3 id="xmm">минут</h3>
+				</button>				
+			
+			
+				<button class="fan" style="b0ackground: yellow;">
+					<span id="fans">00</span>
+					<h3 id="xss">секунд</h3>
+				</button>				
+						
+		</div>
+
+	</div>	<!-- act -->
+
+
+
+<svg width="700" height="415" viewBox="0 0 700 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="700" height="415" fill="black"></rect>
+<text class="txt1" x="246" y="75">Хедер №1. Фотографический.</text>
+<text class="txt1" x="246" y="95">Со встроенным таймером.</text>
+<polygon class="rect1" points="344 325 344 267.5 418 267.5 418 325" opacity="0" fill="red"></polygon>
+<ellipse cx="381" cy="257.5" rx="37" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="282 250 294 212.5 307 250" opacity="1" fill="red"></polygon>
+<text class="txt1" x="282" y="35">span</text>
+<rect class="rect1" x="282" y="250" width="25" height="37.5" opacity="1" fill="white"></rect>
+<rect class="rect1" x="282" y="287.5" width="25" height="37.5" opacity="1" fill="yellow"></rect>
+<rect class="rect1" x="282" y="325" width="25" height="37.5" opacity="1" fill="gold"></rect>
+<polygon class="rect1" points="319 325 331 287.5 344 325" opacity="1" fill="red"></polygon>
+<text class="txt1" x="319" y="35">h3</text>
+<polygon class="rect1" points="356 230 368 192.5 381 230" opacity="1" fill="red"></polygon>
+<text class="txt1" x="356" y="35">span</text>
+<polygon class="rect1" points="381 230 393 192.5 406 230" opacity="1" fill="red"></polygon>
+<text class="txt1" x="381" y="35">h3</text>
+<rect class="rect1" x="356" y="230" width="50" height="37.5" opacity="1" fill="springgreen"></rect>
+<rect class="rect1" x="319" y="325" width="99" height="37.5" opacity="1" fill="violet"></rect>
+<rect class="rect1" x="282" y="362.5" width="136" height="37.5" opacity="1" fill="springgreen"></rect>
+<path class="rect1" d="M368.7 325 
+	C369 300 331.7 300
+	344 257 
+	C356.3 266 368.7 267
+381 267 
+	C393.3 267 405.7 266
+	418 257 
+	C430.3 300 393 300
+	393.33 325z" opacity="1" fill="yellow"></path>
+</svg>
+<svg width="700" height="415" viewBox="0 0 700 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="700" height="415" fill="black"></rect>
+
+<text class="txt1" x="246" y="75">Хедер №2. Лирический.</text>
+<polygon class="rect1" points="301 325 301 267.5 350 267.5 350 325" opacity="0" fill="red"></polygon>
+<ellipse cx="325.5" cy="257.5" rx="24.5" ry="10" stroke="blue" fill="white" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="350 362.5 350 305 399 305 399 362.5" opacity="0" fill="red"></polygon>
+<ellipse cx="374.5" cy="295" rx="24.5" ry="10" stroke="blue" fill="white" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="313 267.5 325 230 338 267.5" opacity="1" fill="red"></polygon>
+<rect class="rect1" x="301" y="325" width="49" height="37.5" opacity="1" fill="aqua"></rect>
+<polygon class="rect1" points="362 305 374 267.5 387 305" opacity="1" fill="red"></polygon>
+<rect class="rect1" x="301" y="362.5" width="98" height="37.5" opacity="1" fill="gold"></rect>
+<path class="rect1" d="M317.3 325 
+	C326 300 292.8 300
+	301 257 
+	C309.2 266 317.3 267
+325.5 267 
+	C333.7 267 341.8 266
+	350 257 
+	C358.2 300 325 300
+	333.67 325z" opacity="1" fill="aqua"></path>
+<path class="rect1" d="M366.3 362.5 
+	C375 337.5 341.8 337.5
+	350 294.5 
+	C358.2 303.5 366.3 304.5
+374.5 304.5 
+	C382.7 304.5 390.8 303.5
+	399 294.5 
+	C407.2 337.5 374 337.5
+	382.67 362.5z" opacity="1" fill="aqua"></path>
+</svg>
+
+
+
+<svg width="1400" height="415" viewBox="0 0 1400 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="1400" height="415" fill="black"></rect>
+<text class="txt1" x="146" y="75">Три части спойлера</text>
+<polygon class="rect1" points="110 325 110 267.5 150 267.5 150 325" opacity="0" fill="red"></polygon>
+<ellipse cx="130" cy="257.5" rx="20" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="250 325 250 267.5 290 267.5 290 325" opacity="0" fill="red"></polygon>
+<ellipse cx="270" cy="257.5" rx="20" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="320 325 320 267.5 360 267.5 360 325" opacity="0" fill="red"></polygon>
+<ellipse cx="340" cy="257.5" rx="20" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="390 325 390 267.5 430 267.5 430 325" opacity="0" fill="red"></polygon>
+<ellipse cx="410" cy="257.5" rx="20" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="460 325 460 267.5 500 267.5 500 325" opacity="0" fill="red"></polygon>
+<ellipse cx="480" cy="257.5" rx="20" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="530 325 530 267.5 570 267.5 570 325" opacity="0" fill="red"></polygon>
+<ellipse cx="550" cy="257.5" rx="20" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="670 325 670 267.5 710 267.5 710 325" opacity="0" fill="red"></polygon>
+<ellipse cx="690" cy="257.5" rx="20" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="810 325 810 267.5 860 267.5 860 325" opacity="0" fill="red"></polygon>
+<ellipse cx="835" cy="257.5" rx="25" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="920 325 920 267.5 960 267.5 960 325" opacity="0" fill="red"></polygon>
+<ellipse cx="940" cy="257.5" rx="20" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="1070 287.5 1070 230 1120 230 1120 287.5" opacity="0" fill="red"></polygon>
+<ellipse cx="1095" cy="220" rx="25" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="120 267.5 130 230 140 267.5" opacity="1" fill="fuchsia"></polygon>
+<polygon class="rect1" points="160 287.5 170 250 180 287.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="160" y="35">emp</text>
+<rect class="rect1" x="160" y="287.5" width="20" height="37.5" opacity="1" fill="fuchsia"></rect>
+<polygon class="rect1" points="190 212.5 200 175 210 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="190" y="35">img</text>
+<polygon class="rect1" points="210 212.5 220 175 230 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="210" y="35">emp</text>
+<rect class="rect1" x="190" y="212.5" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<rect class="rect1" x="190" y="250" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<rect class="rect1" x="190" y="287.5" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<polygon class="rect1" points="230 325 240 287.5 250 325" opacity="1" fill="red"></polygon>
+<text class="txt1" x="230" y="35">emp</text>
+<polygon class="rect1" points="260 267.5 270 230 280 267.5" opacity="1" fill="white"></polygon>
+<polygon class="rect1" points="300 275 310 237.5 320 275" opacity="1" fill="red"></polygon>
+<text class="txt1" x="300" y="35">li</text>
+<polygon class="rect1" points="290 325 298 275 320 275 320 325" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="330 267.5 340 230 350 267.5" opacity="1" fill="white"></polygon>
+<polygon class="rect1" points="370 275 380 237.5 390 275" opacity="1" fill="red"></polygon>
+<text class="txt1" x="370" y="35">li</text>
+<polygon class="rect1" points="360 325 368 275 390 275 390 325" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="400 267.5 410 230 420 267.5" opacity="1" fill="white"></polygon>
+<polygon class="rect1" points="440 275 450 237.5 460 275" opacity="1" fill="red"></polygon>
+<text class="txt1" x="440" y="35">li</text>
+<polygon class="rect1" points="430 325 438 275 460 275 460 325" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="470 267.5 480 230 490 267.5" opacity="1" fill="white"></polygon>
+<polygon class="rect1" points="510 275 520 237.5 530 275" opacity="1" fill="red"></polygon>
+<text class="txt1" x="510" y="35">li</text>
+<polygon class="rect1" points="500 325 508 275 530 275 530 325" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="540 267.5 550 230 560 267.5" opacity="1" fill="white"></polygon>
+<polygon class="rect1" points="580 275 590 237.5 600 275" opacity="1" fill="red"></polygon>
+<text class="txt1" x="580" y="35">li</text>
+<polygon class="rect1" points="570 325 578 275 600 275 600 325" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="600 325 610 287.5 620 325" opacity="1" fill="red"></polygon>
+<text class="txt1" x="600" y="35">emp</text>
+<polygon class="rect1" points="620 212.5 630 175 640 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="620" y="35">img</text>
+<polygon class="rect1" points="640 212.5 650 175 660 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="640" y="35">emp</text>
+<rect class="rect1" x="620" y="212.5" width="40" height="37.5" opacity="1" fill="white"></rect>
+<rect class="rect1" x="620" y="250" width="40" height="37.5" opacity="1" fill="silver"></rect>
+<rect class="rect1" x="620" y="287.5" width="40" height="37.5" opacity="1" fill="#6c757d"></rect>
+<rect class="rect1" x="110" y="325" width="550" height="37.5" opacity="1" fill="green"></rect>
+<polygon class="rect1" points="680 267.5 690 230 700 267.5" opacity="1" fill="fuchsia"></polygon>
+<polygon class="rect1" points="720 287.5 730 250 740 287.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="720" y="35">emp</text>
+<rect class="rect1" x="720" y="287.5" width="20" height="37.5" opacity="1" fill="fuchsia"></rect>
+<polygon class="rect1" points="750 212.5 760 175 770 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="750" y="35">emp</text>
+<polygon class="rect1" points="770 212.5 780 175 790 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="770" y="35">emp</text>
+<rect class="rect1" x="750" y="212.5" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<rect class="rect1" x="750" y="250" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<rect class="rect1" x="750" y="287.5" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<polygon class="rect1" points="790 325 800 287.5 810 325" opacity="1" fill="red"></polygon>
+<text class="txt1" x="790" y="35">emp</text>
+<polygon class="rect1" points="830 217.5 840 180 850 217.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="830" y="35">li</text>
+<polygon class="rect1" points="820 267.5 828 217.5 850 217.5 850 267.5" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="870 212.5 880 175 890 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="870" y="35">emp</text>
+<polygon class="rect1" points="890 212.5 900 175 910 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="890" y="35">emp</text>
+<rect class="rect1" x="870" y="212.5" width="40" height="37.5" opacity="1" fill="white"></rect>
+<rect class="rect1" x="870" y="250" width="40" height="37.5" opacity="1" fill="silver"></rect>
+<rect class="rect1" x="870" y="287.5" width="40" height="37.5" opacity="1" fill="#6c757d"></rect>
+<rect class="rect1" x="670" y="325" width="240" height="37.5" opacity="1" fill="green"></rect>
+<polygon class="rect1" points="930 267.5 940 230 950 267.5" opacity="1" fill="fuchsia"></polygon>
+<polygon class="rect1" points="970 287.5 980 250 990 287.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="970" y="35">emp</text>
+<rect class="rect1" x="970" y="287.5" width="20" height="37.5" opacity="1" fill="fuchsia"></rect>
+<polygon class="rect1" points="1000 212.5 1010 175 1020 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1000" y="35">img</text>
+<polygon class="rect1" points="1020 212.5 1030 175 1040 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1020" y="35">emp</text>
+<rect class="rect1" x="1000" y="212.5" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<rect class="rect1" x="1000" y="250" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<rect class="rect1" x="1000" y="287.5" width="40" height="37.5" opacity="1" fill="fuchsia"></rect>
+<polygon class="rect1" points="1050 287.5 1060 250 1070 287.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1050" y="35">emp</text>
+<polygon class="rect1" points="1090 180 1100 142.5 1110 180" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1090" y="35">li</text>
+<polygon class="rect1" points="1080 230 1088 180 1110 180 1110 230" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="1120 287.5 1130 250 1140 287.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1120" y="35">emp</text>
+<polygon class="rect1" points="1150 237.5 1160 200 1170 237.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1150" y="35">li</text>
+<polygon class="rect1" points="1140 287.5 1148 237.5 1170 237.5 1170 287.5" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="1200 175 1210 137.5 1220 175" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1200" y="35">li</text>
+<polygon class="rect1" points="1190 225 1198 175 1220 175 1220 225" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="1188 237.5 1190 225 1220 225 1220 237.5" opacity="1" fill="springgreen"></polygon>
+<polygon class="rect1" points="1220 237.5 1230 200 1240 237.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1220" y="35">li</text>
+<polygon class="rect1" points="1180 287.5 1188 237.5 1240 237.5 1240 287.5" opacity="1" fill="gold"></polygon>
+<rect class="rect1" x="1050" y="287.5" width="190" height="37.5" opacity="1" fill="gold"></rect>
+<polygon class="rect1" points="1250 212.5 1260 175 1270 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1250" y="35">img</text>
+<polygon class="rect1" points="1270 212.5 1280 175 1290 212.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="1270" y="35">emp</text>
+<rect class="rect1" x="1250" y="212.5" width="40" height="37.5" opacity="1" fill="white"></rect>
+<rect class="rect1" x="1250" y="250" width="40" height="37.5" opacity="1" fill="silver"></rect>
+<rect class="rect1" x="1250" y="287.5" width="40" height="37.5" opacity="1" fill="#6c757d"></rect>
+<rect class="rect1" x="920" y="325" width="370" height="37.5" opacity="1" fill="green"></rect>
+<rect class="rect1" x="110" y="362.5" width="1180" height="37.5" opacity="1" fill="lime"></rect>
+<path class="rect1" d="M123.3 325 
+	C130 300 103.3 300
+	110 257 
+	C116.7 266 123.3 267
+130 267 
+	C136.7 267 143.3 266
+	150 257 
+	C156.7 300 130 300
+	136.67 325z" opacity="1" fill="fuchsia"></path>
+<path class="rect1" d="M263.3 325 
+	C270 300 243.3 300
+	250 257 
+	C256.7 266 263.3 267
+270 267 
+	C276.7 267 283.3 266
+	290 257 
+	C296.7 300 270 300
+	276.67 325z" opacity="1" fill="gold"></path>
+<path class="rect1" d="M333.3 325 
+	C340 300 313.3 300
+	320 257 
+	C326.7 266 333.3 267
+340 267 
+	C346.7 267 353.3 266
+	360 257 
+	C366.7 300 340 300
+	346.67 325z" opacity="1" fill="gold"></path>
+<path class="rect1" d="M403.3 325 
+	C410 300 383.3 300
+	390 257 
+	C396.7 266 403.3 267
+410 267 
+	C416.7 267 423.3 266
+	430 257 
+	C436.7 300 410 300
+	416.67 325z" opacity="1" fill="gold"></path>
+<path class="rect1" d="M473.3 325 
+	C480 300 453.3 300
+	460 257 
+	C466.7 266 473.3 267
+480 267 
+	C486.7 267 493.3 266
+	500 257 
+	C506.7 300 480 300
+	486.67 325z" opacity="1" fill="gold"></path>
+<path class="rect1" d="M543.3 325 
+	C550 300 523.3 300
+	530 257 
+	C536.7 266 543.3 267
+550 267 
+	C556.7 267 563.3 266
+	570 257 
+	C576.7 300 550 300
+	556.67 325z" opacity="1" fill="gold"></path>
+<path class="rect1" d="M683.3 325 
+	C690 300 663.3 300
+	670 257 
+	C676.7 266 683.3 267
+690 267 
+	C696.7 267 703.3 266
+	710 257 
+	C716.7 300 690 300
+	696.67 325z" opacity="1" fill="fuchsia"></path>
+<path class="rect1" d="M826.7 325 
+	C830 300 801.7 300
+	810 257 
+	C818.3 266 826.7 267
+835 267 
+	C843.3 267 851.7 266
+	860 257 
+	C868.3 300 840 300
+	843.33 325z" opacity="1" fill="gold"></path>
+<path class="rect1" d="M933.3 325 
+	C940 300 913.3 300
+	920 257 
+	C926.7 266 933.3 267
+940 267 
+	C946.7 267 953.3 266
+	960 257 
+	C966.7 300 940 300
+	946.67 325z" opacity="1" fill="fuchsia"></path>
+<path class="rect1" d="M1086.7 287.5 
+	C1090 262.5 1061.7 262.5
+	1070 219.5 
+	C1078.3 228.5 1086.7 229.5
+1095 229.5 
+	C1103.3 229.5 1111.7 228.5
+	1120 219.5 
+	C1128.3 262.5 1100 262.5
+	1103.33 287.5z" opacity="1" fill="gold"></path>
+</svg>
+
+
+<svg width="700" height="415" viewBox="0 0 700 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="700" height="415" fill="black"></rect>
+<polygon class="rect1" points="325.5 325 325.5 267.5 374.5 267.5 374.5 325" opacity="0" fill="red"></polygon>
+<ellipse cx="350" cy="257.5" rx="24.5" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="300.5 325 313 287.5 325.5 325" opacity="1" fill="red"></polygon>
+<text class="txt1" x="300.5" y="35">h3</text>
+<text class="txt1" x="300.5" y="75">Баннер</text>
+<polygon class="rect1" points="337.5 267.5 350 230 362.5 267.5" opacity="1" fill="red"></polygon>
+<polygon class="rect1" points="374.5 250 387 212.5 399.5 250" opacity="1" fill="red"></polygon>
+<text class="txt1" x="374.5" y="35">span</text>
+<rect class="rect1" x="374.5" y="250" width="25" height="37.5" opacity="1" fill="purple"></rect>
+<rect class="rect1" x="374.5" y="287.5" width="25" height="37.5" opacity="1" fill="white"></rect>
+<rect class="rect1" x="300.5" y="325" width="99" height="37.5" opacity="1" fill="silver"></rect>
+<rect class="rect1" x="300.5" y="362.5" width="99" height="37.5" opacity="1" fill="white"></rect>
+<path class="rect1" d="M341.8 325 
+	C350.5 300 317.3 300
+	325.5 257 
+	C333.7 266 341.8 267
+350 267 
+	C358.2 267 366.3 266
+	374.5 257 
+	C382.7 300 349.5 300
+	358.17 325z" opacity="1" fill="white"></path>
+</svg>
+<svg width="700" height="415" viewBox="0 0 700 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="700" height="415" fill="black"></rect>
+<polygon class="rect1" points="313 287.5 313 230 387 230 387 287.5" opacity="0" fill="red"></polygon>
+<ellipse cx="350" cy="220" rx="37" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="288 325 300 287.5 313 325" opacity="1" fill="red"></polygon>
+<text class="txt1" x="288" y="35">h2</text>
+<text class="txt1" x="137.5" y="65">Архитектурный ансамбль. Газоводоэлектростанция.</text>
+<text class="txt1" x="137.5" y="85">Охраняется государством. Слайдер №1. Галерея фотографий.</text>
+
+<polygon class="rect1" points="325 192.5 337 155 350 192.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="325" y="35">div</text>
+<polygon class="rect1" points="350 192.5 362 155 375 192.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="350" y="35">img</text>
+<rect class="rect1" x="325" y="192.5" width="50" height="37.5" opacity="1" fill="gold"></rect>
+<polygon class="rect1" points="387 287.5 399 250 412 287.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="387" y="35">span</text>
+<rect class="rect1" x="313" y="287.5" width="99" height="37.5" opacity="1" fill="lime"></rect>
+<rect class="rect1" x="288" y="325" width="124" height="37.5" opacity="1" fill="green"></rect>
+<rect class="rect1" x="288" y="362.5" width="124" height="37.5" opacity="1" fill="olive"></rect>
+<path class="rect1" d="M337.7 287.5 
+	C338 262.5 300.7 262.5
+	313 219.5 
+	C325.3 228.5 337.7 229.5
+350 229.5 
+	C362.3 229.5 374.7 228.5
+	387 219.5 
+	C399.3 262.5 362 262.5
+	362.33 287.5z" opacity="1" fill="springgreen"></path>
+</svg>
+
+<svg width="700" height="415" viewBox="0 0 700 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="700" height="415" fill="black"></rect>
+<polygon class="rect1" points="313.5 325 313.5 267.5 362.5 267.5 362.5 325" opacity="0" fill="red"></polygon>
+<ellipse cx="338" cy="257.5" rx="24.5" ry="10" stroke="blue" fill="white" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="362.5 325 362.5 267.5 411.5 267.5 411.5 325" opacity="0" fill="red"></polygon>
+<ellipse cx="387" cy="257.5" rx="24.5" ry="10" stroke="blue" fill="white" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="288.5 362.5 301 325 313.5 362.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="288.5" y="35">h2</text>
+<polygon class="rect1" points="325.5 230 338 192.5 350.5 230" opacity="1" fill="fuchsia"></polygon>
+<text class="txt1" x="325.5" y="35">video</text>
+<text class="txt1" x="137.5" y="65">Архитектурный ансамбль. Теплоэлектростанция.</text>
+<text class="txt1" x="137.5" y="85">Охраняется государством. Слайдер №2. Видео отзывы.</text>
+
+
+<rect class="rect1" x="325.5" y="230" width="25" height="37.5" opacity="1" fill="blue"></rect>
+<polygon class="rect1" points="374.5 267.5 387 230 399.5 267.5" opacity="1" fill="red"></polygon>
+<rect class="rect1" x="313.5" y="325" width="98" height="37.5" opacity="1" fill="silver"></rect>
+<rect class="rect1" x="288.5" y="362.5" width="123" height="37.5" opacity="1" fill="teal"></rect>
+<path class="rect1" d="M329.8 325 
+	C338.5 300 305.3 300
+	313.5 257 
+	C321.7 266 329.8 267
+338 267 
+	C346.2 267 354.3 266
+	362.5 257 
+	C370.7 300 337.5 300
+	346.17 325z" opacity="1" fill="white"></path>
+<path class="rect1" d="M378.8 325 
+	C387.5 300 354.3 300
+	362.5 257 
+	C370.7 266 378.8 267
+387 267 
+	C395.2 267 403.3 266
+	411.5 257 
+	C419.7 300 386.5 300
+	395.17 325z" opacity="1" fill="white"></path>
+</svg>
+
+
+
+<svg width="700" height="415" viewBox="0 0 700 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="700" height="415" fill="black"></rect>
+<polygon class="rect1" points="313.5 325 313.5 267.5 362.5 267.5 362.5 325" opacity="0" fill="red"></polygon>
+<ellipse cx="338" cy="257.5" rx="24.5" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="362.5 325 362.5 267.5 411.5 267.5 411.5 325" opacity="0" fill="red"></polygon>
+<ellipse cx="387" cy="257.5" rx="24.5" ry="10" stroke="blue" fill="aqua" opacity="1" stroke-width="1"></ellipse>
+<polygon class="rect1" points="288.5 362.5 301 325 313.5 362.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="288.5" y="35">img</text>
+<text class="txt1" x="137.5" y="65">Архитектурный ансамбль. Теплоэлектростанция.</text>
+<text class="txt1" x="137.5" y="85">Охраняется государством. Слайдер №3. ВК-отзывы.</text>
+
+<polygon class="rect1" points="325.5 230 338 192.5 350.5 230" opacity="1" fill="red"></polygon>
+<text class="txt1" x="325.5" y="35">span</text>
+<rect class="rect1" x="325.5" y="230" width="25" height="37.5" opacity="1" fill="gold"></rect>
+<polygon class="rect1" points="374.5 267.5 387 230 399.5 267.5" opacity="1" fill="red"></polygon>
+<rect class="rect1" x="313.5" y="325" width="98" height="37.5" opacity="1" fill="white"></rect>
+<rect class="rect1" x="288.5" y="362.5" width="123" height="37.5" opacity="1" fill="gold"></rect>
+<path class="rect1" d="M329.8 325 
+	C338.5 300 305.3 300
+	313.5 257 
+	C321.7 266 329.8 267
+338 267 
+	C346.2 267 354.3 266
+	362.5 257 
+	C370.7 300 337.5 300
+	346.17 325z" opacity="1" fill="white"></path>
+<path class="rect1" d="M378.8 325 
+	C387.5 300 354.3 300
+	362.5 257 
+	C370.7 266 378.8 267
+387 267 
+	C395.2 267 403.3 266
+	411.5 257 
+	C419.7 300 386.5 300
+	395.17 325z" opacity="1" fill="white"></path>
+</svg>
+<svg width="700" height="415" viewBox="0 0 700 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="700" height="415" fill="black"></rect>
+<polygon class="rect1" points="337.5 287.5 350 250 362.5 287.5" opacity="1" fill="green"></polygon>
+<text class="txt1" x="337.5" y="35">span</text>
+<text class="txt1" x="137.5" y="65">Одинокая водонапорная башня на границе штата.</text>
+<text class="txt1" x="137.5" y="85">Охраняется государством. Кнопка ватцап.</text>
+<rect class="rect1" x="337.5" y="287.5" width="25" height="37.5" opacity="1" fill="aqua"></rect>
+<rect class="rect1" x="337.5" y="325" width="25" height="37.5" opacity="1" fill="aqua"></rect>
+<rect class="rect1" x="337.5" y="362.5" width="25" height="37.5" opacity="1" fill="aqua"></rect>
+</svg>
+<svg width="700" height="415" viewBox="0 0 700 415" fill="none">
+<style type="text/css">
+.rect1, .polygon1 {stroke: blue;}
+.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}
+</style>
+<rect x="0" y="0" width="700" height="415" fill="black"></rect>
+<polygon class="rect1" points="306.5 187.5 319 150 331.5 187.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="306.5" y="35">svg</text>
+
+<text class="txt1" x="137.5" y="65">Одинокий замок товарища Хрущева.</text>
+<text class="txt1" x="137.5" y="85">Охраняется государством. Футер со всеми причиндалами.</text>
+<rect class="rect1" x="306.5" y="187.5" width="25" height="37.5" opacity="1" fill="gold"></rect>
+<polygon class="rect1" points="304 237.5 306.5 225 331.5 225 331.5 237.5" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="294.5 287.5 304 237.5 331.5 237.5 331.5 287.5" opacity="1" fill="gold"></polygon>
+<polygon class="rect1" points="355.5 237.5 368 200 380.5 237.5" opacity="1" fill="red"></polygon>
+<text class="txt1" x="355.5" y="35">li</text>
+<polygon class="rect1" points="380.5 225 393 187.5 405.5 225" opacity="1" fill="red"></polygon>
+<text class="txt1" x="380.5" y="55">a</text>
+<polygon class="rect1" points="378 237.5 380.5 225 405.5 225 405.5 237.5" opacity="1" fill="yellow"></polygon>
+<polygon class="rect1" points="343.5 287.5 353 237.5 405.5 237.5 405.5 287.5" opacity="1" fill="gold"></polygon>
+<rect class="rect1" x="294.5" y="287.5" width="111" height="37.5" opacity="1" fill="gold"></rect>
+<rect class="rect1" x="294.5" y="325" width="111" height="37.5" opacity="1" fill="springgreen"></rect>
+<rect class="rect1" x="294.5" y="362.5" width="111" height="37.5" opacity="1" fill="maroon"></rect>
+</svg>
+
+<script>
+let timername='r111g0';
+let timeron=false;// потомучто должен включ автоматом далее
+let tm=null;// timer
+let now = new Date(), // шесть часов воспользоваться шансом
+	goodtime;
+if (localStorage.getItem(timername) === null) {		
+		localStorage.setItem(timername,now);
+		goodtime=now;
+	}else{
+		goodtime=new Date(localStorage.getItem(timername));
+	}
+
+
+const hhh=x=>
+	((x>4)&&(x<21))?'часов':
+	(x%10<5)?
+	['часов','час','часа','часа','часа',][x%10]
+	:'часов';
+
+const mmm=x=>
+	((x>4)&&(x<21))?'минут':
+	(x%10<5)?
+	['минут','минута','минуты','минуты','минуты',][x%10]
+	:'минут';
+	
+const sss=x=>
+	((x>4)&&(x<21))?'секунд':
+	(x%10<5)?
+	['секунд','секунда','секунды','секунды','секунды',][x%10]
+	:'секунд';	
+
+function present(){
+	now = new Date();
+	const t = Math.ceil(
+		Math.abs(now.getTime()-
+		goodtime.getTime())/(1000*60));
+	const k = Math.ceil(
+		Math.abs(now.getTime()-
+		goodtime.getTime())/(1000));
+//alert(t);		
+	if (t<360){// шесть часов
+	    if (!timeron){console.log('ok');timeron=true}
+			fanh.innerText=(360-t)/60|0;
+			fanm.innerText=((360-t)%60)
+				.toString()
+				.padStart(2, '0');
+			fans.innerText=((60*360-k)%60)
+				.toString()
+				.padStart(2, '0');			
+				
+			xhh.innerText=hhh((360-t)/60|0);
+			xmm.innerText=mmm((360-t)%60);
+			xss.innerText=sss((60*360-k)%60);
+			tm=setTimeout(present,1000);
+		}
+		else
+		{
+			//act.style.display='none';
+			localStorage.setItem(timername,now);
+			goodtime=now;			
+		}
+		}
+present();// сообщение о подарках
+</script>   
+</body>
+</html>
