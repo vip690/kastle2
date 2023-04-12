@@ -54,6 +54,7 @@ padding:3px;border-radius:6px;
 #vvod{width:444px;}
 [id^='rok']{display:none;}/* перермещение точек пиалы */
 [id^='rok']:checked + * {background-color: cyan;border-radius:0;}
+.box{padding: 10px 12px 0;border: 2px solid green;display: inline-block;width: fit-content;border-radius: 8px;}
   </style>
 </head>
 <body>
@@ -92,6 +93,7 @@ padding:3px;border-radius:6px;
 </div>
 <br>
 
+<div class="box">
 <select id="selen" style="width:440px" onchange="vvod.value=this.value; md=1; main()">
   <option value="a(aa(c)zz)z">a(aa(c)zz)z</option>a(aa(c)zz)z
   <option value="a12(c)zzz">a12(c)zzz</option>
@@ -118,6 +120,8 @@ md=1;
 main();
 //window.navigator.clipboard.writeText(`nova.product.help@gmail.com`);
 ">do</button>
+</div>
+
 
 <button class="btn0" type="button" onclick="
 md=0;
