@@ -88,9 +88,35 @@ padding:3px;border-radius:6px;
 		
 		<input type="radio" id="rok5" name="rokki">	
 		<button id="x5"
-		o0nclick="rok5.checked=true;kx='dotx5';ky='doty5'"
-		onclick="yrr[0]['txt']=prompt(); main();"
-		>x</button><br>		
+		onclick="yrr[w]['txt']=prompt(); main();"
+		>text</button>
+		<button id="x51"
+		onclick="yrr[w]['color']=prompt(); main();"
+		>color</button>		
+		
+		<br>		
+		
+		
+		<button id="x6"
+		onclick="
+		let x=-100+Math.min(yrr[w]['dotx0'],yrr[w]['dotx1'],yrr[w]['dotx2'],yrr[w]['dotx3']);
+
+		let y=Math.min(yrr[w]['doty0'],yrr[w]['doty1'],yrr[w]['doty2'],yrr[w]['doty3']);		
+		yrr.push(
+	{dotx0:yrr[w]['dotx0']-x,doty0:yrr[w]['doty0']-y, // ножка
+	  dotx1:yrr[w]['dotx1']-x,doty1:yrr[w]['doty1']-y, // изгиб ножки
+	  dotx2:yrr[w]['dotx2']-x,doty2:yrr[w]['doty2']-y, // внешний изгиб края
+	  dotx3:yrr[w]['dotx3']-x,doty3:yrr[w]['doty3']-y, // край	  
+	  dotx4:-2,doty4:-37, // внутренний изгиб края
+	  dotx5:38,doty5:-31, // изгиб дно
+		txt:'Д',
+		color:'white',}		
+		
+		);
+		w++;
+		main();"
+		>new</button><br>			
+		
 	</article>
 </div>
 <br>
@@ -196,9 +222,11 @@ let md=1; // откуда брать данные 0-из та, 1-из эдита
 	  dotx3:478,doty3:123, // край	  
 	  dotx4:-2,doty4:-37, // внутренний изгиб края
 	  dotx5:38,doty5:-31, // изгиб дно
-		txt:'Дезоксирибонуклеиноваякислота',}
+		txt:'Дезоксирибонуклеиноваякислота',
+		color:'yellow',}
 	  ]; 
   let kx='dotx1',ky='doty1';
+  let w=0;// курсор текстовых лейблов
   let z=-17;
   let hey=415;// высота svg
 let mainColor='white';
@@ -633,35 +661,41 @@ if(!rok4.checked)
 svg.innerHTML+=// начало п
 `<circle 
 	r="3" 
-	cx="${yrr[0]['dotx0']}" 
-	cy="${yrr[0]['doty0']}" 
+	cx="${yrr[w]['dotx0']}" 
+	cy="${yrr[w]['doty0']}" 
 	fill="violet"/>`;//gold	
 svg.innerHTML+=// начало п
 `<circle 
 	r="3" 
-	cx="${yrr[0]['dotx1']}" 
-	cy="${yrr[0]['doty1']}" 
+	cx="${yrr[w]['dotx1']}" 
+	cy="${yrr[w]['doty1']}" 
 	fill="red"/>`;//gold		
 svg.innerHTML+=// начало п
 `<circle 
 	r="3" 
-	cx="${yrr[0]['dotx2']}" 
-	cy="${yrr[0]['doty2']}" 
+	cx="${yrr[w]['dotx2']}" 
+	cy="${yrr[w]['doty2']}" 
 	fill="gold"/>`;//gold		
 svg.innerHTML+=// начало п
 `<circle 
 	r="3" 
-	cx="${yrr[0]['dotx3']}" 
-	cy="${yrr[0]['doty3']}" 
+	cx="${yrr[w]['dotx3']}" 
+	cy="${yrr[w]['doty3']}" 
 	fill="springgreen"/>`;//gold	
 }	
 
+
+yrr.forEach((i,j)=>{
 svg.innerHTML+=	
-`<defs><path id="tp" d="M${yrr[0]['dotx0']},${yrr[0]['doty0']} C${yrr[0]['dotx1']}, ${yrr[0]['doty1']} ${yrr[0]['dotx2']}, ${yrr[0]['doty2']} ${yrr[0]['dotx3']},${yrr[0]['doty3']}"></path></defs>
-<use xlink:href="#tp"></use>	
-<text x="0" y="0" fill="${mainColor}"><textPath xlink:href="#tp">
-${yrr[0]['txt']}
+`<defs><path id="tp${j}" d="M${i['dotx0']},${i['doty0']} C${i['dotx1']}, ${i['doty1']} ${i['dotx2']}, ${i['doty2']} ${i['dotx3']},${i['doty3']}"></path></defs>
+<use xlink:href="#tp${j}"></use>	
+<text x="0" y="0" fill="${i['color']}"><textPath xlink:href="#tp${j}">
+${i['txt']}
 </textPath></text>`;	//Дезоксирибонуклеиноваякислота
+//console.table(i);
+});
+
+
 
 const ck=document.querySelectorAll('#svg *');
 ck.forEach(x=>{x.addEventListener('click',(e)=>{
@@ -780,19 +814,19 @@ ${x1+((x2-x1)/2)} ${y1+y25*58}
  if (!rok4.checked)
 	{switch(e.keyCode) {
 		case 40: {//↓
-		  yrr[0][ky]=yrr[0][ky]+1;
+		  yrr[w][ky]=yrr[w][ky]+1;
 		  break;
 		}
 		case 38: {//↑
-		  yrr[0][ky]=yrr[0][ky]-1;
+		  yrr[w][ky]=yrr[w][ky]-1;
 		  break;
 		}	  
 		case 39: {//→
-		  yrr[0][kx]=yrr[0][kx]+1;
+		  yrr[w][kx]=yrr[w][kx]+1;
 		  break;
 		}
 		case 37: {//←
-		  yrr[0][kx]=yrr[0][kx]-1;
+		  yrr[w][kx]=yrr[w][kx]-1;
 		  break;
 		}				
 		default: break;
@@ -801,42 +835,43 @@ ${x1+((x2-x1)/2)} ${y1+y25*58}
 	  else{
 		switch(e.keyCode) {//dotx1
 			case 40: {//↓
-			  yrr[0]['doty0']=yrr[0]['doty0']+1;			
-			  yrr[0]['doty1']=yrr[0]['doty1']+1;
-			  yrr[0]['doty2']=yrr[0]['doty2']+1;
-			  yrr[0]['doty3']=yrr[0]['doty3']+1;			  
+			  yrr[w]['doty0']=yrr[w]['doty0']+1;			
+			  yrr[w]['doty1']=yrr[w]['doty1']+1;
+			  yrr[w]['doty2']=yrr[w]['doty2']+1;
+			  yrr[w]['doty3']=yrr[w]['doty3']+1;			  
 			  break;
 			}
 			case 38: {//↑		
-			  yrr[0]['doty0']=yrr[0]['doty0']-1;			
-			  yrr[0]['doty1']=yrr[0]['doty1']-1;
-			  yrr[0]['doty2']=yrr[0]['doty2']-1;
-			  yrr[0]['doty3']=yrr[0]['doty3']-1;		  			  
+			  yrr[w]['doty0']=yrr[w]['doty0']-1;			
+			  yrr[w]['doty1']=yrr[w]['doty1']-1;
+			  yrr[w]['doty2']=yrr[w]['doty2']-1;
+			  yrr[w]['doty3']=yrr[w]['doty3']-1;		  			  
 			  break;
 			}	  
 			case 39: {//→
-			  yrr[0]['dotx0']=yrr[0]['dotx0']+1;
-			  yrr[0]['dotx1']=yrr[0]['dotx1']+1;		  
-			  yrr[0]['dotx2']=yrr[0]['dotx2']+1;				  
-			  yrr[0]['dotx3']=yrr[0]['dotx3']+1;				  		  
+			  yrr[w]['dotx0']=yrr[w]['dotx0']+1;
+			  yrr[w]['dotx1']=yrr[w]['dotx1']+1;		  
+			  yrr[w]['dotx2']=yrr[w]['dotx2']+1;				  
+			  yrr[w]['dotx3']=yrr[w]['dotx3']+1;				  		  
 			  break;
 			}
 			case 37: {//←
-			  yrr[0]['dotx0']=yrr[0]['dotx0']-1;
-			  yrr[0]['dotx1']=yrr[0]['dotx1']-1;			  
-			  yrr[0]['dotx2']=yrr[0]['dotx2']-1;			  
-			  yrr[0]['dotx3']=yrr[0]['dotx3']-1;			  
+			  yrr[w]['dotx0']=yrr[w]['dotx0']-1;
+			  yrr[w]['dotx1']=yrr[w]['dotx1']-1;			  
+			  yrr[w]['dotx2']=yrr[w]['dotx2']-1;			  
+			  yrr[w]['dotx3']=yrr[w]['dotx3']-1;			  
 			  break;
 			}				
 			default: break;
 		  }	  	  
 	  }
-	  x0.innerText=[yrr[0]['dotx0'],yrr[0]['doty0']].join(' ');	  
-	  x1.innerText=[yrr[0]['dotx1'],yrr[0]['doty1']].join(' ');
-	  x2.innerText=[yrr[0]['dotx2'],yrr[0]['doty2']].join(' ');	  
-	  x3.innerText=[yrr[0]['dotx3'],yrr[0]['doty3']].join(' ');	  
-	  x4.innerText=[yrr[0]['dotx4'],yrr[0]['doty4']].join(' ');
-	  x5.innerText=[yrr[0]['dotx5'],yrr[0]['doty5']].join(' ');	  
+	  x0.innerText=[yrr[w]['dotx0'],yrr[w]['doty0']].join(' ');	  
+	  x1.innerText=[yrr[w]['dotx1'],yrr[w]['doty1']].join(' ');
+	  x2.innerText=[yrr[w]['dotx2'],yrr[w]['doty2']].join(' ');	  
+	  x3.innerText=[yrr[w]['dotx3'],yrr[w]['doty3']].join(' ');	  
+	  //x4.innerText=[yrr[w]['dotx4'],yrr[w]['doty4']].join(' ');
+	  //x5.innerText=[yrr[w]['dotx5'],yrr[w]['doty5']].join(' ');	  
+	  //alert(w);
 	main();  
 });
 //**************************
