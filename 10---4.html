@@ -232,8 +232,8 @@ let md=1; // откуда брать данные 0-из та, 1-из эдита
 	  dotx3:478,doty3:123, // край	  
 	  dotx4:-2,doty4:-37, // внутренний изгиб края
 	  dotx5:38,doty5:-31, // изгиб дно
-		txt:'Дезоксирибонуклеиноваякислота',
-		color:'yellow',}
+		txt:'Тринитротолуол',
+		color:'navy',}
 	  ]; 
   let kx='dotx1',ky='doty1';
   let w=0;// курсор текстовых лейблов
@@ -546,7 +546,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 	let ak='black';
 
 	switch (n){
-		case '(':{axe=2.3;stk.push({x:x1x,y:y1y,axe: axe,});break}//*
+		case '(':{axe=1.3;stk.push({x:x1x,y:y1y,axe: axe,});break}//*
 		case ')':{let v=stk.pop();//*
 			axe=v.axe;
 			stek3.push({
@@ -701,7 +701,7 @@ svg.innerHTML+=
 <use xlink:href="#tp${j}"></use>	
 <text x="0" y="0" fill="${i['color']}"><textPath xlink:href="#tp${j}">
 ${i['txt']}
-</textPath></text>`;	//Дезоксирибонуклеиноваякислота
+</textPath></text>`;	
 //console.table(i);
 });
 
@@ -765,7 +765,7 @@ const sq6=()=>'\r\n<style type="text/css">\r\n'+
 '.rect1, .polygon1 {stroke: blue;}\r\n'+
 '.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
 '</style>\r\n'+
-'<rect x="0" y="0" width="'+s700+'" height="'+hey+'" fill="black" />\r\n';
+'<rect x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
 const sq7=(axe,x1,y1,x2,y2,m,n)=>// квадрат который не спит на спине
 '<rect \r\n'+
 '	class="rect1" \r\n'+
@@ -805,7 +805,7 @@ ${x1+((x2-x1)/2)} ${y1+y25*58}
 	C${(x2+i).toFixed(1)} ${y1+y25*25} ${x2-x40*40} ${y1+y25*25}
 	${(x2-2*i).toFixed(2)} ${y1}z"  
 	opacity="${city}"
-	fill="gold" />\r\n`; //springgreen	gold  
+	fill="none" />\r\n`; //springgreen	none
 /*	
 `<circle 
 	r="3" 
