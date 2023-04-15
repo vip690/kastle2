@@ -54,7 +54,7 @@ padding:3px;border-radius:6px;
 #vvod{width:444px;}
 [id^='rok']{display:none;}/* перермещение точек пиалы */
 [id^='rok']:checked + * {background-color: cyan;border-radius:0;}
-.box{padding: 10px 12px 0;border: 2px solid green;display: inline-block;width: fit-content;border-radius: 8px;}
+.box{padding: 10px 12px 0;border: 2px solid green;display: inline-block;width: fit-content;border-radius: 8px;background: #ded;}
   </style>
 </head>
 <body>
@@ -88,10 +88,10 @@ padding:3px;border-radius:6px;
 		
 		<input type="radio" id="rok5" name="rokki">	
 		<button id="x5"
-		onclick="yrr[w]['txt']=prompt(); main();"
+		onclick="yrr[w]['txt']=prompt()||yrr[w]['txt']; main();"
 		>text</button>
 		<button id="x51"
-		onclick="yrr[w]['color']=prompt(); main();"
+		onclick="yrr[w]['color']=prompt()||yrr[w]['color']; main();"
 		>color</button>		
 		
 		<br>		
@@ -145,7 +145,9 @@ padding:3px;border-radius:6px;
   <option value="a(c-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-a(a(a(a(c)z)z)z)z)z">a(c-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-a(a(a(a(c)z)z)z)z)z</option>  
   <option value="aacadz-aaaefzzz-a(f)zz(g)zz">aacadz-aaaefzzz-a(f)zz(g)zz</option>   
   <option value="aaa(c)zza(d)zz">aa(c)z(d)z</option>  
-  <option value="acaa(adz)z(e)zzz" selected>aca(adz)(e)zz</option>    
+  <option value="acaa(adz)z(e)zzz">aca(adz)(e)zz</option>    
+  <option value="acaa[adz]z[e]zzz" selected>aca[adz][e]zz</option>   
+  
 </select><br>  
 
 
@@ -232,7 +234,7 @@ let md=1; // откуда брать данные 0-из та, 1-из эдита
 	  dotx3:478,doty3:123, // край	  
 	  dotx4:-2,doty4:-37, // внутренний изгиб края
 	  dotx5:38,doty5:-31, // изгиб дно
-		txt:'Антананариву', 
+		txt:'Новокуйбышевск', 
 		color:'navy',}
 	  ]; 
   let kx='dotx1',ky='doty1';
@@ -547,7 +549,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 	let ak='black';
 
 	switch (n){
-		case '(':{axe=(r===1)?r:2.4;stk.push({x:x1x,y:y1y,axe: axe,});break}//*
+		case '(':{axe=2.4;stk.push({x:x1x,y:y1y,axe: axe,});break}//(r===1)?r:
 		case ')':{let v=stk.pop();//*
 			r++;
 			axe=v.axe;
@@ -557,21 +559,23 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 				x2:x1x-v.x+u[n].x,//,
 				m:'(',
 				sort:y1y+1,
-				axe: axe,//(axe===1)?axe:2.4,
+				axe: v.axe,//(axe===1)?axe:2.4,
 				});
 			break}
-			/*
-		case '[':{stk.push({x:x1x,y:y1y});break}//*
+	/*	*/	
+		case '[':{axe=0.5;stk.push({x:x1x,y:y1y,axe});break}//*
 		case ']':{let v=stk.pop();//*
+			axe=v.axe;
 			stek3.push({
 				x1:v.x,
 				y1:v.y,
-				x2:x1x+u[n].x,
+				x2:x1x-v.x+u[n].x,
 				m:'[',
 				sort:y1y+1,
+				axe: v.axe,
 				});
 			break}
-*/			
+		
 		case 'a':{axe=1.5;//
 				  stk.push({x:x1x,y:y1y-dy,m:n,axe: axe,});ak='green';break}
 		case '1':{axe=2.0;stk.push({x:x1x,y:y1y-dy,m:n,axe: axe,});ak='green';break}
@@ -633,13 +637,13 @@ off=(s700-x1x)/2;// смещение композиции
 {// стекер-3 ☯
 
 stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
-//console.clear();
-//stek3.forEach(x=>console.table(x));
+console.clear();// контроль содержимого
+stek3.forEach(x=>console.table(x));
 stek3.forEach((x,j)=>{
 	switch (x.m){
 		//блоки
 		case '(': {rng(x.axe,x.x1,x.y1,x.x2,); break}
-		case '[': {rng(x.axe,x.x1,x.y1+dy,x.x2,); break}				
+		case '[': {rng(x.axe,x.x1,x.y1,x.x2,); break}	//	+dy		
 		//case '1':
 		//case '2':
 		//case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,1,);break}
@@ -697,7 +701,7 @@ svg.innerHTML+=// начало п
 }	
 
 
-yrr.forEach((i,j)=>{
+yrr.forEach((i,j)=>{ // айдишники пересекаются при неодном svg. как решить хз
 svg.innerHTML+=	
 `<defs><path id="tp${j}" d="M${i['dotx0']},${i['doty0']} C${i['dotx1']}, ${i['doty1']} ${i['dotx2']}, ${i['doty2']} ${i['dotx3']},${i['doty3']}"></path></defs>
 <use xlink:href="#tp${j}"></use>	
@@ -797,7 +801,7 @@ function sq0(axe,x1,y1,x2){// рюмашка (рисуем с 4-ого стек�
 	const i=(x2-x1)/6;
 	//if(axe>1)axe=2.4; нельзя. черепаха отстанет
 	//if(axe%2===0)
-	if(axe<=1)
+	if(axe<=1)// парящий от летящего отличается масштабом
 	return `<path 
 	class="r0ect1" 
 	d="M${(x1+3*i).toFixed(1)} ${(y1+12+y25*58*axe/2.3).toFixed(1)} 
@@ -817,9 +821,7 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	C${(x1+i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)} ${(x1+2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)}
 ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)} 
 	C${(x2-2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)} ${(x2-i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)}
-	${x2} ${(y1-10+y25*58*axe/2.3).toFixed(1)} 
-	"
-	
+	${x2} ${(y1-10+y25*58*axe/2.3).toFixed(1)}"	
 	stroke-width="2"
 	stroke="blue" />\r\n`; //springgreen	none
 	else
