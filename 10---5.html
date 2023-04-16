@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="
-data:image/gif;base64,R0lGODlhEAAQAPcAAH8Af3gAh3IfjX8AfH0AfngAhWsAkGoAmHcAh3wAgYIAe4AAfX4Af3oAg2MDnJBqbdK/K/7WAHkAdIV7l9bFC8q/M5BnbGAAn3IAi4EAfIAAfnsAgqVjWv//AP/fAHYAba2M7+Lr/v/hAP/rAP/xAOTGGWsAlHQAiYIAfHYAh5hUZ//0AP3MAGwAZObz/////9OrDP/dAP/XAN2/IGUAmHkAhHgAhJpUZf/3AP3OAGMAfMLC/7KTPv3TAP/bAP/tALWNSGMAm24AkJlQZv3PADoAqbStpfbIAM2oF//kAP/eALaUR20jkJx9Yf/pAP3QAJtbY/bcAMeoN//lAP/qANq+JP3SAKNyXP/9AP/wAMemNv/gAP/YANOyKv3RAH8AgEEAoMy0S//WANCtHv/aAP/sAOXLGJ51X7WgSFwAif7//6ygy7GRLtu8IlwAoWYAl5JFbWwAZez9/9ayGuPEGmwAknUAa7KX993n///SAP/cAP/mAPXZCGYFl3QAioEAfZ9bX//ZAHkAc3IYrbnAkM63L2oOlXEAjIBOfczLMsC3Pb+hP38AenkAfl0Anj8AtT4AwWYAmHUAiX0AgHcAhm0AkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFewAvACwAAAAAEAAQAAAI+QABCBwIAMqVLwQHDpDwoYWOIlGwgEkTx44gRgIJHADh4oWRH1nCqJFzZ1AjgQUmhHix44gHD2LWvMBDyJFAAxREwOCBRIqWMWzm5OnwSOCBCiNiiEgiYkuSl3o6QBKIwAIJGT2yWskqZk+hSAITXCgxwkeEsxHIjOBjSJJABRhMzPih5KxaOn0OZRC4IMMJGkB+xOBSpk0dPxkWCGSgAUWNIEumKDHj5sSfBQwENtiQwoYQJlQ8nHnToPQkgQ44qLgxpEmVLmjg3ACEiJLABx1W4CDhZIqHMj9wYEmUAkAACB5Y5CDyxIoXK0RyBFJUCYAAtNizLxIYEAA7">
-
+data:image/gif;base64,R0lGODlhEAAQAOYAAP4A/v8A/f8A/v8A//0A/fMA/8UA/58A/7wA/7EU9ADVhP//APf/ALjCO7Yn1voA/4uQUcurMjGVtQD/enq7Z6hUqcWmOP7WAADsgAD/bAGcpv39AP7+APb/ALlWp/gA/8OhPgDNhmyn5sam/6pxjNYA/90A/7GHWMwb/slq/+n//////93W/+L/AOf/AMPAH+Dd/v///v///czM/+3wAMagPtwD/rI3/+L3/+HT/9L5BNr6CMHAHwDcgkq8y5iN//L/ALVLsuEA/+kA/7WEWgDihgD/bgi1l7Ar0sGhPj+IuwD/e5HAWbg/vv4A/8anNsYB/QC3j/D/AKSiW36FX7+hP/sA/9UA/7MA/80A//MA88cA0f4A/dkA4fQA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFewArACwAAAAAEAAQAAAHvoAAgoMAKDA2hIQDi4spMTeMi1oAAQMJEhghKjI4PUVKUANbAAIFChMZIisxKz5GS1FWXAADBgsUGiMsMzk/R0wLV4ICBwvGxjTHxliCAQgMCxsb0dHTUlnNAw0LHN0b3cZTA4IEAw7G3ekLQAjjAOUPFR3cHMYdTQMB5LQDHsbTQJA4WUSo3AcSx4IsKtdlEAFaJVos0CFkXDkvgiKZcLFgx5BI5AZAsADixIsaPIgkeULFnaAIF2LKlFlFUCAAOw==">
 
 
 
@@ -146,7 +145,7 @@ padding:3px;border-radius:6px;
   <option value="aacadz-aaaefzzz-a(f)zz(g)zz">aacadz-aaaefzzz-a(f)zz(g)zz</option>   
   <option value="aaa(c)zza(d)zz">aa(c)z(d)z</option>  
   <option value="acaa(adz)z(e)zzz">aca(adz)(e)zz</option>    
-  <option value="acaa[adz]z[e]zzz" selected>aca[adz][e]zz</option>   
+  <option value="acaa(adz)z[e]zzz" selected>aca(adz)[e]zz</option>   
   
 </select><br>  
 
@@ -172,8 +171,10 @@ main();
 ta1.value='';
 ">clear</button>
 
-<br>
-<textarea id="ta1" rows="20" cols="90" style="color: white; background: #1e154f;">
+<br><!--  xor 20 xor 1 -->
+<textarea id="ta1" rows="20" cols="90" style="color: white; background: #1e154f;"
+onclick="this.setAttribute('rows',+this.getAttribute('rows') ^ 20 ^ 2)"
+>
 &lt;p&gt;
 &lt;a&gt;
 &lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
@@ -475,7 +476,7 @@ s=s.replace(/\)z/g,')');
 const svg=document.querySelector('#svg');
 svg.setAttribute("width", s700);
 svg.setAttribute("viewBox", "0 0 "+s700+" "+hey);
-
+0
 svg.innerHTML=sq6();// стиль
 
 const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в кольце
@@ -483,9 +484,9 @@ const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в к�
 //******** преотрисовка ... графические примитивы
 const recta=(axe,x1,y1,x2,y2,m,n)=>{
 	switch (m){
-		case 'a': {svg.innerHTML+=sq7(axe,off+x1,y1,x2,y2,m,n);break}//rect	
-		case '1': {svg.innerHTML+=sq8(axe,off+x1,y1,x2,y2,m,n);break}//ul	
-		case '2': {svg.innerHTML+=sq9(axe,off+x1,y1,x2,y2,m,n);break}//li	
+		case 'a': {svg.innerHTML+=qq7(axe,off+x1,y1,x2,y2);break}//rect	//,m,n
+		case '1': {svg.innerHTML+=qq8(axe,off+x1,y1,x2,y2);break}//ul	,m,n
+		case '2': {svg.innerHTML+=qq9(axe,off+x1,y1,x2,y2);break}//li	//,m,n
 		}//switch
 	}
 const trg0=(axe,x1,y1,t)=>{
@@ -493,7 +494,7 @@ const trg0=(axe,x1,y1,t)=>{
 	let name0=sp[sp2.indexOf(t)]??'emp';
 	
 	let y0=(name0.length===1)?55:35;
-	svg.innerHTML+=sq4(axe,off+x1,y0,name0);// надпись
+	//svg.innerHTML+=sq4(axe,off+x1,y0,name0);// надпись
 	}
 const trg3=(axe,x1,y1)=>{
 	svg.innerHTML+=sq3(axe,off+x1,y1);// полигон
@@ -660,7 +661,7 @@ stek3.forEach((x,j)=>{
 		//case '[': {rng(x.axe,x.x1,x.y1+dy,x.x2,); break}				
 		case '1':
 		case '2':
-		case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,1,);break}
+		case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,);break}//1,
 		//элементы
 		case '0':{trg0(x.axe,x.x1,x.y1,x.t);break}// alert(x.t)
 		case '3':{trg3(x.axe,x.x1,x.y1,); break}//150+j*5
@@ -762,7 +763,7 @@ return '<polygon\r\n '+
 '	points="'+x1+' '+y1+' '+(x1+dx/2|0)+' '+((y1+axe*dy))+' '+(x1+dx)+' '+y1+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
 '	fill="gold" />\r\n'+//#198754
-'	<defs><path id="tp'+ee+'" d="M'+(x1+10)+','+(y1-11).toFixed(1)+ (x1+60)+','+(y1-60).toFixed(1)+'"></path></defs>'+
+'	<defs><path id="tp'+ee+'" d="M'+(x1+10)+','+(y1-40).toFixed(1)+' '+ (x1+60)+','+(y1-90).toFixed(1)+'"></path></defs>'+
 '	<use xlink:href="#tp'+ee+'"></use>'+	
 '	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
 '	привет'+
@@ -789,7 +790,8 @@ const sq6=()=>'\r\n<style type="text/css">\r\n'+
 '.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
 '</style>\r\n'+
 '<rect x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
-const sq7=(axe,x1,y1,x2,y2,m,n)=>// квадрат который не спит на спине
+
+const sq777=(axe,x1,y1,x2,y2,m,n)=>// квадрат который не спит на спине
 {
 ee++;
 return '<rect \r\n'+
@@ -806,21 +808,78 @@ return '<rect \r\n'+
 '	мир'+
 '	</textPath></text>\r\n';
 }
-const sq8=(axe,x1,y1,x2,y2,m,n)=>// список ul
-'<polygon \r\n'+
+
+const qq7=(axe,x,y,w,h)=>// квадрат который не спит на спине,m,n
+{
+ee++;
+let yy=y+axe*dy;
+return '<rect \r\n'+
+'	class="rect1" \r\n'+
+'	x="'+x+'" \r\n'+
+'	y="'+(yy).toFixed(1)+'" \r\n'+
+'	width="'+w+'" \r\n'+
+'	height="'+(axe*h).toFixed(1)+'" \r\n'+
+'	opacity="'+city+'"\r\n'+
+'	fill="gold" />\r\n'+//#ffc107
+'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-10).toFixed(1)+' '+ (x+w+60)+','+(yy-60).toFixed(1)+'"></path></defs>'+
+'	<use xlink:href="#tp'+ee+'"></use>'+	
+'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
+'	май'+
+'	</textPath></text>\r\n';
+}
+
+
+const sq888=(axe,x1,y1,x2,y2,m,n)=>// список ul
+{
+ee++;
+return '<polygon \r\n'+
 '	class="rect1" \r\n'+
 '	points="'+x1+' '+(y1)+' '+(x1+(dx*0.4)|0)+' '+(y1+axe*dy)+' '+(x1+x2)+' '+(y1+axe*dy)+' '+(x1+x2)+' '+(y1)+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
-'	fill="gold" />\r\n';//#ffc107
-const sq9=(axe,x1,y1,x2,y2,m,n)=>// список li
-'<polygon  \r\n'+
-'	class="rect1" \r\n'+
-'	points="'+(x1-(dx*0.1)|0)+' '+(y1)+' '+x1+' '+(y1+axe*dy)+' '+(x1+x2)+' '+(y1+axe*dy)+' '+(x1+x2)+' '+(y1)+'" \r\n'+
-'	opacity="'+city+'"\r\n'+
-'	fill="gold" />\r\n';//#ffc107
+'	fill="gold" />\r\n'+//#ffc107
+'	<defs><path id="tp'+ee+'" d="M'+(x1+x2+10)+','+(y1-y2-10).toFixed(1)+' '+ (x1+x2+60)+','+(y1-y2-60).toFixed(1)+'"></path></defs>'+
+'	<use xlink:href="#tp'+ee+'"></use>'+	
+'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
+'	ul'+
+'	</textPath></text>\r\n';
+}
 
- 
-function sq0(axe,x1,y1,x2){// рюмашка (рисуем с 4-ого стека) единичный означает парение
+const qq8=(axe,x,y,w,h)=>// список ul  //,m,n
+	{
+	ee++;
+	let yy=y+axe*dy;
+	return '<polygon \r\n'+
+	'	class="rect1" \r\n'+
+	'	points="'+x+' '+(y)+' '+(x+(dx*0.4)|0).toFixed(1)+' '+(yy).toFixed(1)+
+	' '+(x+w)+' '+(yy).toFixed(1)+' '+(x+w)+' '+(y)+'" \r\n'+
+	'	opacity="'+city+'"\r\n'+
+	'	fill="gold" />\r\n'+//#ffc107
+	'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-0).toFixed(1)+' '+ (x+w+60)+','+(yy-50).toFixed(1)+'"></path></defs>'+
+	'	<use xlink:href="#tp'+ee+'"></use>'+	
+	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
+	'	ul'+
+	'	</textPath></text>\r\n';
+	}
+
+
+const qq9=(axe,x,y,w,h)=>// список li  //,m,n
+	{
+	ee++;
+	let yy=y+axe*dy;
+	return '<polygon  \r\n'+
+	'	class="rect1" \r\n'+
+	'	points="'+(x-(dx*0.1)|0).toFixed(1)+' '+(y)+' '+x+' '+(yy).toFixed(1)+' '+(x+w)+' '+(yy).toFixed(1)+' '+(x+w)+' '+(y)+'" \r\n'+
+	'	opacity="'+city+'"\r\n'+
+	'	fill="gold" />\r\n'+//#ffc107
+	'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy).toFixed(1)+' '+ (x+w+60)+','+(yy-50).toFixed(1)+'"></path></defs>'+
+	'	<use xlink:href="#tp'+ee+'"></use>'+	
+	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
+	'	li'+
+	'	</textPath></text>\r\n';
+	}
+	 
+function sq0(axe,x1,y1,x2)// рюмашка (рисуем с 4-ого стека) единичный означает парение
+	{
     ee++;
 	let x40=dx/40;
 	let y25=dy/25;
@@ -849,12 +908,7 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	C${(x2-2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)} ${(x2-i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)}
 	${x2} ${(y1-10+y25*58*axe/2.3).toFixed(1)}"	
 	stroke-width="2"
-	stroke="blue" />\r\n
-	<defs><path id="tp${ee}" d="M${x2+10},${(y1-11+y25*58*axe/2.3).toFixed(1)} ${x2+60},${(y1-60+y25*58*axe/2.3).toFixed(1)}"></path></defs>
-	<use xlink:href="#tp${ee}"></use>	
-	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp${ee}">
-	как дела?
-	</textPath></text>`; //springgreen	none
+	stroke="blue" />\r\n`; //springgreen	none
 	else
 	return `<path 
 	class="rect1" 
@@ -868,8 +922,12 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	C${(x2+i).toFixed(1)} ${(y1+y25*25*axe/2.3).toFixed(1)} ${x2-x40*40} ${(y1+y25*25*axe/2.3).toFixed(1)}
 	${(x2-2*i).toFixed(2)} ${y1}z"  
 	opacity="${city}"
-	fill="white" />\r\n`; //springgreen	none	
-	
+	fill="white" />\r\n`+ //springgreen	none	
+`	<defs><path id="tp${ee}" d="M${x2+10},${(y1-11+y25*58*axe/2.3).toFixed(1)} ${x2+60},${(y1-60+y25*58*axe/2.3).toFixed(1)}"></path></defs>
+	<use xlink:href="#tp${ee}"></use>	
+	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp${ee}">
+	как дела?
+	</textPath></text>`;	
 	
 	
 	
