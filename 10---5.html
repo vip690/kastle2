@@ -81,7 +81,7 @@ padding:3px;border-radius:6px;
 		<button id="x3"   style="border-width:3px;" 
 		onclick="rok3.checked=true;kx='dotx3';ky='doty3'">x</button><br>		
 		
-		<input type="radio" id="rok4" name="rokki">	
+		<input type="radio" id="rok4" name="rokki" checked>	
 		<button id="x4"
 		onclick="rok4.checked=true;kx='dotx4';ky='doty4';main();">move text</button><br>
 		
@@ -705,22 +705,36 @@ svg.innerHTML+=// начало п
 
 yrr.forEach((i,j)=>{ // айдишники пересекаются при неодном svg. как решить хз
 svg.innerHTML+=	
-`<defs><path id="tp${j}" d="M${i['dotx0']},${i['doty0']} C${i['dotx1']}, ${i['doty1']} ${i['dotx2']}, ${i['doty2']} ${i['dotx3']},${i['doty3']}"></path></defs>
-<use xlink:href="#tp${j}"></use>	
-<text x="0" y="0" fill="${i['color']}"><textPath xlink:href="#tp${j}">
-${i['txt']}
-</textPath></text>`;	
-//console.table(i);
+'<defs><path id="tp'+j+'" d="M'+i['dotx0']+','+i['doty0']+' C'+i['dotx1']+', '+i['doty1']+' '+i['dotx2']+', '+i['doty2']+' '+i['dotx3']+','+i['doty3']+'"></path></defs>'+
+'<use xlink:href="#tp'+j+'"></use>'+	
+'<text x="0" y="0" fill="'+i['color']+'"><textPath xlink:href="#tp'+j+'">'+
+i['txt']+
+'</textPath></text>';	
 });
 
 
 
-const ck=document.querySelectorAll('#svg *');
-ck.forEach(x=>{x.addEventListener('click',(e)=>{
-	e.target.setAttribute('fill',mainColor);
-	
-	})
+
+/*
+поделить на две коллекции: одна при щелчке меняет цвет, 
+другая щелчком задается текст.
+без введения вспомогательного класса х не смог. подумаю.
+*/
+const ck=document.querySelectorAll('#svg .x'); // смена цвета
+ck.forEach(x=>{
+	x.addEventListener('click',(e)=>{
+		//if(e.target.currentTarget==='text')alert('0');
+		e.target.setAttribute('fill',mainColor);	
+		})	
 	});
+	
+const mk=document.querySelectorAll('#svg textPath');  // смена текста
+mk.forEach(x=>{
+	x.addEventListener('click',(e)=>{
+		e.target.setAttribute('fill','black');
+		e.target.innerHTML=prompt(e.target.innerHTML)||e.target.innerHTML;	//'5454545';//
+		})	
+	});	
 
 }//main
 //*****************************************************************//
@@ -737,14 +751,15 @@ const cpy=x=>{ // копирование в буфер обмена
 const sq2=(axe,x1,y,x2)=>{// кольцо (+драпировка)
 	stek4.unshift([x1,y,x1+x2,axe]);// единственный источник заполнения stek4	
 let f='<polygon\r\n '+
-'	class="rect1" \r\n'+
+'	class="rect1 x" \r\n'+
 '	points="'+x1+' '+y+' '+
 (x1)+' '+((y+axe*dy))+' '+
 (x1+x2)+' '+((y+axe*dy))+' '+
 (x1+x2)+' '+y+'" \r\n'+
 '	opacity="0"\r\n'+
 '	fill="red" />\r\n';
-f+='<ellipse \r\n'+
+f+='<ellipse class="x" \r\n'+
+//'	  class="x"\r\n'
 '     cx="'+(x1+(x2/2))+'" \r\n'+
 '     cy="'+(y+axe*dy-10)+'" \r\n'+//-33
 '     rx="'+(x2/2)+'" \r\n'+
@@ -763,11 +778,11 @@ const qq3=(axe,x,y)=>// треуг особый
 	let yy=y+axe*dy;
 	let xx=x+dx/2|0;
 	return '<polygon\r\n '+
-	'	class="rect1" \r\n'+
+	'	class="rect1 x" \r\n'+
 	'	points="'+x+' '+y+' '+(xx)+' '+(yy).toFixed(1)+' '+(x+dx)+' '+y+'" \r\n'+
 	'	opacity="'+city+'"\r\n'+
 	'	fill="gold" />\r\n'+//#198754
-	'	<defs><path id="tp'+ee+'" d="M'+(xx)+','+(yy-3).toFixed(1)+' '+ (xx+50)+','+(yy-53).toFixed(1)+'"></path></defs>'+
+	'	<defs><path id="tp'+ee+'" d="M'+(xx)+','+(yy-3).toFixed(1)+' '+ (xx+250)+','+(yy-253).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
 	'	хелло'+
@@ -785,11 +800,11 @@ ee++;
 let xx=x+dx/2|0;
 let yy=y+axe*dy;
 return '<polygon \r\n'+
-'	class="rect1" \r\n'+
+'	class="rect1 x" \r\n'+
 '	points="'+(x)+' '+y+' '+(xx)+' '+(yy)+' '+(x+dx)+' '+y+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
 '	fill="gold" />\r\n'+//blue
-'	<defs><path id="tp'+ee+'" d="M'+(xx+5)+','+(yy-5).toFixed(1)+' '+ (xx+55)+','+(yy-55).toFixed(1)+'"></path></defs>'+
+'	<defs><path id="tp'+ee+'" d="M'+(xx+5)+','+(yy-5).toFixed(1)+' '+ (xx+255)+','+(yy-255).toFixed(1)+'"></path></defs>'+
 '	<use xlink:href="#tp'+ee+'"></use>'+	
 '	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
 '	гуд'+
@@ -801,7 +816,7 @@ const sq6=()=>'\r\n<style type="text/css">\r\n'+
 '.rect1, .polygon1 {stroke: blue;}\r\n'+
 '.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
 '</style>\r\n'+
-'<rect x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
+'<rect class="x" x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
 
 
 const qq7=(axe,x,y,w,h)=>// квадрат который не спит на спине,m,n
@@ -809,14 +824,14 @@ const qq7=(axe,x,y,w,h)=>// квадрат который не спит на с�
 ee++;
 let yy=y+axe*dy;
 return '<rect \r\n'+
-'	class="rect1" \r\n'+
+'	class="rect1 x" \r\n'+
 '	x="'+x+'" \r\n'+
 '	y="'+(yy).toFixed(1)+'" \r\n'+
 '	width="'+w+'" \r\n'+
 '	height="'+(axe*h).toFixed(1)+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
 '	fill="gold" />\r\n'+//#ffc107
-'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-10).toFixed(1)+' '+ (x+w+60)+','+(yy-60).toFixed(1)+'"></path></defs>'+
+'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-10).toFixed(1)+' '+ (x+w+260)+','+(yy-260).toFixed(1)+'"></path></defs>'+
 '	<use xlink:href="#tp'+ee+'"></use>'+	
 '	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
 '	мир'+
@@ -831,12 +846,12 @@ const qq8=(axe,x,y,w,h)=>// список ul  //,m,n
 	ee++;
 	let yy=y+axe*dy;
 	return '<polygon \r\n'+
-	'	class="rect1" \r\n'+
+	'	class="rect1 x" \r\n'+
 	'	points="'+x+' '+(y)+' '+(x+(dx*0.4)|0).toFixed(1)+' '+(yy).toFixed(1)+
 	' '+(x+w)+' '+(yy).toFixed(1)+' '+(x+w)+' '+(y)+'" \r\n'+
 	'	opacity="'+city+'"\r\n'+
 	'	fill="gold" />\r\n'+//#ffc107
-	'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-0).toFixed(1)+' '+ (x+w+60)+','+(yy-50).toFixed(1)+'"></path></defs>'+
+	'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-0).toFixed(1)+' '+ (x+w+260)+','+(yy-250).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
 	'	ul'+
@@ -849,11 +864,11 @@ const qq9=(axe,x,y,w,h)=>// список li  //,m,n
 	ee++;
 	let yy=y+axe*dy;
 	return '<polygon  \r\n'+
-	'	class="rect1" \r\n'+
+	'	class="rect1 x" \r\n'+
 	'	points="'+(x-(dx*0.1)|0).toFixed(1)+' '+(y)+' '+x+' '+(yy).toFixed(1)+' '+(x+w)+' '+(yy).toFixed(1)+' '+(x+w)+' '+(y)+'" \r\n'+
 	'	opacity="'+city+'"\r\n'+
 	'	fill="gold" />\r\n'+//#ffc107
-	'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy).toFixed(1)+' '+ (x+w+60)+','+(yy-50).toFixed(1)+'"></path></defs>'+
+	'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy).toFixed(1)+' '+ (x+w+260)+','+(yy-250).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
 	'	li'+
@@ -866,11 +881,9 @@ function sq0(axe,x1,y1,x2)// рюмашка (рисуем с 4-ого стека
 	let x40=dx/40;
 	let y25=dy/25;
 	const i=(x2-x1)/6;
-	//if(axe>1)axe=2.4; нельзя. черепаха отстанет
-	//if(axe%2===0)
 	if(axe<=1)// парящий от летящего отличается масштабом
 	return `<path 
-	class="r0ect1" 
+	class="x" 
 	d="M${(x1+3*i).toFixed(1)} ${(y1+12+y25*58*axe/2.3).toFixed(1)} 
 	C${x1+x40*40} ${(y1+10+y25*58*axe/2.3).toFixed(1)} ${(x1-i).toFixed(1)} ${(y1+5+y25*58*axe/2.3).toFixed(1)}
 	${x1} ${(y1-10+y25*58*axe/2.3).toFixed(1)} 
@@ -893,7 +906,7 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	stroke="blue" />\r\n`; //springgreen	none
 	else
 	return `<path 
-	class="rect1" 
+	class="rect1 x" 
 	d="M${(x1+2*i).toFixed(1)} ${y1} 
 	C${x1+x40*40} ${(y1+y25*25*axe/2.3).toFixed(1)} ${(x1-i).toFixed(1)} ${(y1+y25*25*axe/2.3).toFixed(1)}
 	${x1} ${(y1-10+y25*58*axe/2.3).toFixed(1)} 
@@ -905,7 +918,7 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	${(x2-2*i).toFixed(2)} ${y1}z"  
 	opacity="${city}"
 	fill="white" />\r\n`+ //springgreen	none	
-`	<defs><path id="tp${ee}" d="M${x2+10},${(y1-11+y25*58*axe/2.3).toFixed(1)} ${x2+60},${(y1-60+y25*58*axe/2.3).toFixed(1)}"></path></defs>
+`	<defs><path id="tp${ee}" d="M${x2+10},${(y1-11+y25*58*axe/2.3).toFixed(1)} ${x2+260},${(y1-260+y25*58*axe/2.3).toFixed(1)}"></path></defs>
 	<use xlink:href="#tp${ee}"></use>	
 	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp${ee}">
 	как дела?
