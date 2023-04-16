@@ -142,10 +142,10 @@ padding:3px;border-radius:6px;
   <option value="a(a(a(c)z)z)z">a(a(a(c)z)z)z</option>  
   <option value="a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z">a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z</option>  
   <option value="a(c-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-a(a(a(a(c)z)z)z)z)z">a(c-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-a(a(a(a(c)z)z)z)z)z</option>  
-  <option value="aacadz-aaaefzzz-a(f)zz(g)zz">aacadz-aaaefzzz-a(f)zz(g)zz</option>   
+  <option value="aacadz-aaa3fzzz-a(f)zz(g)zz">aacadz-aaa3fzzz-a(f)zz(g)zz</option>   
   <option value="aaa(c)zza(d)zz">aa(c)z(d)z</option>  
   <option value="acaa(adz)z(e)zzz">aca(adz)(e)zz</option>    
-  <option value="acaa(adz)z[e]zzz" selected>aca(adz)[e]zz</option>   
+  <option value="acaa(a3z)z[e]zzz" selected>aca(a3z)[e]zz</option>   
   
 </select><br>  
 
@@ -497,7 +497,7 @@ const trg0=(axe,x1,y1,t)=>{
 	//svg.innerHTML+=sq4(axe,off+x1,y0,name0);// надпись
 	}
 const trg3=(axe,x1,y1)=>{
-	svg.innerHTML+=sq3(axe,off+x1,y1);// полигон
+	svg.innerHTML+=qq3(axe,off+x1,y1);// полигон
 	}
 const rng=(axe,x1,y1,x2)=>{
 	svg.innerHTML+=sq2(axe,off+x1,y1,x2);// эллипс
@@ -599,7 +599,7 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 					y1:y1y,
 					m:n,
 					sort:y1y,
-					axe: 0.5,
+					axe: 3.0,
 					});
 				break}
 		case '-':{break}
@@ -755,59 +755,54 @@ f+='<ellipse \r\n'+
 '     stroke-width="1"/>\r\n';
 return f;
 }
-const sq3=(axe,x1,y1)=>// треуг особый
+
+
+const qq3=(axe,x,y)=>// треуг особый
+	{
+	ee++;
+	let yy=y+axe*dy;
+	let xx=x+dx/2|0;
+	return '<polygon\r\n '+
+	'	class="rect1" \r\n'+
+	'	points="'+x+' '+y+' '+(xx)+' '+(yy).toFixed(1)+' '+(x+dx)+' '+y+'" \r\n'+
+	'	opacity="'+city+'"\r\n'+
+	'	fill="gold" />\r\n'+//#198754
+	'	<defs><path id="tp'+ee+'" d="M'+(xx)+','+(yy-3).toFixed(1)+' '+ (xx+50)+','+(yy-53).toFixed(1)+'"></path></defs>'+
+	'	<use xlink:href="#tp'+ee+'"></use>'+	
+	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
+	'	хелло'+
+	'	</textPath></text>\r\n';
+	}
+
+
+const sq4=(axe,x,y,name0)=>//
+{return '<text class="txt1" x="'+x+'" y="'+y+'">'+name0+'</text>\r\n';}
+
+
+const sq5=(axe,x,y)=>// треуг простой
 {
 ee++;
-return '<polygon\r\n '+
-'	class="rect1" \r\n'+
-'	points="'+x1+' '+y1+' '+(x1+dx/2|0)+' '+((y1+axe*dy))+' '+(x1+dx)+' '+y1+'" \r\n'+
-'	opacity="'+city+'"\r\n'+
-'	fill="gold" />\r\n'+//#198754
-'	<defs><path id="tp'+ee+'" d="M'+(x1+10)+','+(y1-40).toFixed(1)+' '+ (x1+60)+','+(y1-90).toFixed(1)+'"></path></defs>'+
-'	<use xlink:href="#tp'+ee+'"></use>'+	
-'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-'	привет'+
-'	</textPath></text>\r\n';
-}
-const sq4=(axe,x1,y0,name0)=>
-'<text class="txt1" x="'+x1+'" y="'+y0+'">'+name0+'</text>\r\n';
-const sq5=(axe,x1,y1)=>// треуг простой
-{
-ee++;
+let xx=x+dx/2|0;
+let yy=y+axe*dy;
 return '<polygon \r\n'+
 '	class="rect1" \r\n'+
-'	points="'+(x1)+' '+y1+' '+(x1+dx/2|0)+' '+(y1+axe*dy)+' '+(x1+dx)+' '+y1+'" \r\n'+
+'	points="'+(x)+' '+y+' '+(xx)+' '+(yy)+' '+(x+dx)+' '+y+'" \r\n'+
 '	opacity="'+city+'"\r\n'+
 '	fill="gold" />\r\n'+//blue
-'	<defs><path id="tp'+ee+'" d="M'+(x1+15)+','+(y1-43).toFixed(1)+' '+ (x1+65)+','+(y1-93).toFixed(1)+'"></path></defs>'+
+'	<defs><path id="tp'+ee+'" d="M'+(xx+5)+','+(yy-5).toFixed(1)+' '+ (xx+55)+','+(yy-55).toFixed(1)+'"></path></defs>'+
 '	<use xlink:href="#tp'+ee+'"></use>'+	
 '	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-'	привет'+
+'	гуд'+
 '	</textPath></text>\r\n';
 }
+
+
 const sq6=()=>'\r\n<style type="text/css">\r\n'+
 '.rect1, .polygon1 {stroke: blue;}\r\n'+
 '.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
 '</style>\r\n'+
 '<rect x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
 
-const sq777=(axe,x1,y1,x2,y2,m,n)=>// квадрат который не спит на спине
-{
-ee++;
-return '<rect \r\n'+
-'	class="rect1" \r\n'+
-'	x="'+x1+'" \r\n'+
-'	y="'+(y1+axe*dy)+'" \r\n'+
-'	width="'+x2+'" \r\n'+
-'	height="'+(axe*y2)+'" \r\n'+
-'	opacity="'+city+'"\r\n'+
-'	fill="gold" />\r\n'+//#ffc107
-'	<defs><path id="tp'+ee+'" d="M'+(x1+x2+10)+','+(y1-y2-10).toFixed(1)+' '+ (x1+x2+60)+','+(y1-y2-60).toFixed(1)+'"></path></defs>'+
-'	<use xlink:href="#tp'+ee+'"></use>'+	
-'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-'	мир'+
-'	</textPath></text>\r\n';
-}
 
 const qq7=(axe,x,y,w,h)=>// квадрат который не спит на спине,m,n
 {
@@ -824,25 +819,12 @@ return '<rect \r\n'+
 '	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-10).toFixed(1)+' '+ (x+w+60)+','+(yy-60).toFixed(1)+'"></path></defs>'+
 '	<use xlink:href="#tp'+ee+'"></use>'+	
 '	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-'	май'+
+'	мир'+
 '	</textPath></text>\r\n';
 }
 
 
-const sq888=(axe,x1,y1,x2,y2,m,n)=>// список ul
-{
-ee++;
-return '<polygon \r\n'+
-'	class="rect1" \r\n'+
-'	points="'+x1+' '+(y1)+' '+(x1+(dx*0.4)|0)+' '+(y1+axe*dy)+' '+(x1+x2)+' '+(y1+axe*dy)+' '+(x1+x2)+' '+(y1)+'" \r\n'+
-'	opacity="'+city+'"\r\n'+
-'	fill="gold" />\r\n'+//#ffc107
-'	<defs><path id="tp'+ee+'" d="M'+(x1+x2+10)+','+(y1-y2-10).toFixed(1)+' '+ (x1+x2+60)+','+(y1-y2-60).toFixed(1)+'"></path></defs>'+
-'	<use xlink:href="#tp'+ee+'"></use>'+	
-'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-'	ul'+
-'	</textPath></text>\r\n';
-}
+
 
 const qq8=(axe,x,y,w,h)=>// список ul  //,m,n
 	{
