@@ -476,7 +476,7 @@ s=s.replace(/\)z/g,')');
 const svg=document.querySelector('#svg');
 svg.setAttribute("width", s700);
 svg.setAttribute("viewBox", "0 0 "+s700+" "+hey);
-0
+
 svg.innerHTML=sq6();// стиль
 
 const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в кольце
@@ -815,6 +815,7 @@ return '<polygon \r\n'+
 const sq6=()=>'\r\n<style type="text/css">\r\n'+
 '.rect1, .polygon1 {stroke: blue;}\r\n'+
 '.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
+'textPath {font-family: sans-serif; font-size: 16px;}\r\n'+
 '</style>\r\n'+
 '<rect class="x" x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
 
