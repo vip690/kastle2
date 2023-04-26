@@ -352,6 +352,7 @@ for (let i=0; i<s.length; i++){// теги переношу атрибуты н�
 	}//switch
 }
 s=d;
+//alert(s);
 //console.log(s);
 ['<br>','<hr>','<meta>','<!doctype>',
 //'<sc'+'ript>','</sc'+'ript>',
@@ -365,7 +366,7 @@ s=d;
 '<strong>','</strong>',
 '<sub>','</sub>','<sup>','</sup>',
 '<tt>','</tt>',
-'<source>',//одинарные неизвестные теги глушат движок
+//'<source>',//одинарные неизвестные теги глушат движок
 '<center>','</center>',
 ].forEach(x=>{
 	let y=new RegExp(x,'g');
@@ -376,7 +377,8 @@ s=d;
   s=s.replace(/(<sc?ript>.*?<\/sc?ript>)/gi,'');//анти скрипт
   s=s.replace(/(<style>.*?<\/style>)/gi,'');//анти style 
   s=s.replace(/(<svg>.*?<\/svg>)/gi,'<svg>');//анти svg   
-  
+   s=s.replace(/(<source>)/gi,'<img>');//анти source 
+   
   s=s.replace(/(<table>.*?<\/table>)/gi,'<table></table>');//анти table  
   s=s.replace(/(<pre>.*?<\/pre>)/gi,'');//анти svg   
   
@@ -391,6 +393,8 @@ s=d;
   //console.log(s);	
 //console.log(s);return 0;  
 /*заменить*/ 
+
+alert(s);
   let sp=['li'],sp2=['b'];
   while ((/<([^>]+)><\/\1>|<img>|<input>|<svg>/i).test(s)){// крыши
 	let g=s.match(/<([^>]+)><\/\1>|<(img)>|<(input)>|<(svg)>/i);
@@ -408,6 +412,8 @@ s=d;
 		default :{s=s.replace(/<([^>]+)><\/\1>/i,w); break}
 	}//switch
   }//while	
+alert(s);
+  
 s=s.replace(/<ul>|<ol>/gi,'1'); 
 s=s.replace(/<li>/gi,'2');   
 s=s.replace(/(<[^\/]+?>)/gi,' a ');
