@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- 5apr2023
-Удалоь подружить знакоместа с глифами. 
+<!-- 26apr2023
+Здесь обработка комментариев 
 -->
 <html lang="en">
 <head>
@@ -254,14 +254,14 @@ document.querySelectorAll('.color').
 		x.addEventListener('click',(e)=>{mainColor=cc[i];if(rok0.checked){main();}})
 		}); 
 /************************************/
-let stek4=[]; // рюмашки
+let stek4=[]; // рюмка водки на столе
 let city=1.0;// opacity прозрачность фигур
 
 let off; // смещение композиции к центру
 let dx=25;//25 
 let dy=-25; // 25
 let x11x=0,y11y=hey-15//180;//+50dx  
-let s700=700;//1300;//
+let s700=700;//1300
 
 
   
@@ -337,8 +337,11 @@ stek4=[];
 /*высушить*/
 s=ta1.value;
 s=s.replace(/\n/g,'_');//в одинарных тегах теперь эти палки делают их неузнаваемыми
-s=s.replace(/<!--.*?-->/g,'_');//жадность была нежадной 26,04,2023
+//s=s.replace(/<!--.*-->?/g,'_');
+s=s.replace(/<!--.*?-->/g,'_');// жадность была неверно записана 26,04,2023
+
 //s=s.replace('_','');
+console.log(s);
 let d='';
 let b=false;
 for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
@@ -351,6 +354,7 @@ for (let i=0; i<s.length; i++){// теги переношу атрибуты н�
 	}//switch
 }
 s=d;
+//alert(s);
 //console.log(s);
 ['<br>','<hr>','<meta>','<!doctype>',
 //'<sc'+'ript>','</sc'+'ript>',
@@ -364,7 +368,7 @@ s=d;
 '<strong>','</strong>',
 '<sub>','</sub>','<sup>','</sup>',
 '<tt>','</tt>',
-'<source>',//одинарные неизвестные теги глушат движок
+//'<source>',//одинарные неизвестные теги глушат движок
 '<center>','</center>',
 ].forEach(x=>{
 	let y=new RegExp(x,'g');
@@ -374,7 +378,9 @@ s=d;
 //////////////////////////////////// заглушить
   s=s.replace(/(<sc?ript>.*?<\/sc?ript>)/gi,'');//анти скрипт
   s=s.replace(/(<style>.*?<\/style>)/gi,'');//анти style 
-  s=s.replace(/(<svg>.*?<\/svg>)/gi,'<svg>');//анти svg  
+  s=s.replace(/(<svg>.*?<\/svg>)/gi,'<svg>');//анти svg   
+ //  s=s.replace(/(<source>)/gi,'<img>');//анти source 
+   
   s=s.replace(/(<table>.*?<\/table>)/gi,'<table></table>');//анти table  
   s=s.replace(/(<pre>.*?<\/pre>)/gi,'');//анти svg   
   
@@ -389,14 +395,17 @@ s=d;
   //console.log(s);	
 //console.log(s);return 0;  
 /*заменить*/ 
+
+//alert(s);
   let sp=['li'],sp2=['b'];
-  while ((/<([^>]+)><\/\1>|<img>|<input>|<svg>/i).test(s)){// крыши
-	let g=s.match(/<([^>]+)><\/\1>|<(img)>|<(input)>|<(svg)>/i);
-	g=g[1]||g[2]||g[3]||g[4];
+  while ((/<([^>]+)><\/\1>|<img>|<input>|<svg>|<source>/i).test(s)){// крыши
+	let g=s.match(/<([^>]+)><\/\1>|<(img)>|<(input)>|<(svg)>|<(source)>/i);
+	g=g[1]||g[2]||g[3]||g[4]||g[5];
 	if(!(sp.indexOf(g)+1)){sp.push(g); sp2.push(alf[sp.length])};
 	let w=' _'+sp2[sp.indexOf(g)]+'_ ';
 	switch (g){
 		case 'img':{s=s.replace(/<img>/i,w); break}
+		case 'source':{s=s.replace(/<source>/i,w); break}		
 		case 'svg':{s=s.replace(/<svg>/i,w); break}
 		case 'input':{s=s.replace(/<input>/i,w); break}
 		case 'h2':{s=s.replace(/<h2><\/h2>/i,w); break}
@@ -405,6 +414,8 @@ s=d;
 		default :{s=s.replace(/<([^>]+)><\/\1>/i,w); break}
 	}//switch
   }//while	
+//alert(s);
+  
 s=s.replace(/<ul>|<ol>/gi,'1'); 
 s=s.replace(/<li>/gi,'2');   
 s=s.replace(/(<[^\/]+?>)/gi,' a ');
@@ -1015,6 +1026,32 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 });
 //**************************
 selen.onchange(); // выбранная формула юзается для постройки пиалы
+
+
+//тестовая фраза. дает ложную формулу a3zzczz, вместо aaaaczzdzz, точнее aa(acz)dzz
+/*
+<section id="iii">
+	<div class="swiper-container slider7 swiper-initialized swiper-horizontal swiper-backface-hidden"><!-- hook  -->
+		<div class="swiper-wrapper" id="swiper-wrapper-a396e5bf66cfbe2f" aria-live="polite">								
+			<div class="swiper-slide swiper-slide-active" style="width: 653px; margin-right: 6px;" role="group" aria-label="1 / 8" data-swiper-slide-index="0">
+				<!-- video width="100%" controls poster="./vidos/p10.webp" preload="none" -->
+				<video width="280" controls="" poster="./vidos/p10.webp" preload="none">				
+					<source src="./vidos/vid10.mp4" type="video/mp4">
+					Тег video не поддерживается вашим браузером.<!--     -->
+				</video>			
+			</div>
+			<div class="swiper-slide swiper-slide-next" style="width: 653px; margin-right: 6px;" role="group" aria-label="2 / 8" data-swiper-slide-index="1">
+				<!-- video width="100%" controls poster="./vidos/p11.webp" preload="none" -->
+				<video width="280" controls="" poster="./vidos/p11.webp" preload="none">				
+					 <source src="./vidos/vid11.mp4" type="video/mp4">
+					 Тег video не поддерживается вашим браузером.<!--     -->
+				</video>			
+			</div>				
+		</div>
+	<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+</section>
+
+*/
 </script>
 </body>
 </html>

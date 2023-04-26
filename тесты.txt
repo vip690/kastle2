@@ -1,0 +1,59 @@
+<section id="iii">
+	<div class="swiper-container slider7 swiper-initialized swiper-horizontal swiper-backface-hidden"><!-- hook  -->
+		<div class="swiper-wrapper" id="swiper-wrapper-a396e5bf66cfbe2f" aria-live="polite">								
+			<div class="swiper-slide swiper-slide-active" style="width: 653px; margin-right: 6px;" role="group" aria-label="1 / 8" data-swiper-slide-index="0">
+				<!-- video width="100%" controls poster="./vidos/p10.webp" preload="none" -->
+				<video width="280" controls="" poster="./vidos/p10.webp" preload="none">				
+					<source src="./vidos/vid10.mp4" type="video/mp4">
+					Тег video не поддерживается вашим браузером.<!--     -->
+				</video>			
+			</div>
+			<div class="swiper-slide swiper-slide-next" style="width: 653px; margin-right: 6px;" role="group" aria-label="2 / 8" data-swiper-slide-index="1">
+				<!-- video width="100%" controls poster="./vidos/p11.webp" preload="none" -->
+				<video width="280" controls="" poster="./vidos/p11.webp" preload="none">				
+					 <source src="./vidos/vid11.mp4" type="video/mp4">
+					 Тег video не поддерживается вашим браузером.<!--     -->
+				</video>			
+			</div>				
+		</div>
+	<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+</section>
+
+
+
+				<video width="280" controls="" poster="./vidos/p10.webp" preload="none">				
+					<source src="./vidos/vid10.mp4" type="video/mp4">
+					Тег video не поддерживается вашим браузером.
+				</video>	
+				
+				
+				
+				
+				<div width="280" controls="" poster="./vidos/p10.webp" preload="none">				
+					<source src="./vidos/vid10.mp4" type="video/mp4">
+					Тег video не поддерживается вашим браузером.
+				</div>		
+
+
+
+				<div width="280" controls="" poster="./vidos/p10.webp" preload="none">				
+					<img src="./vidos/vid10.mp4" type="video/mp4"><!-- -->
+					Тег video не поддерживается вашим браузером.
+				</div>	
+				
+				
+
+				<div width="280" controls="" poster="./vidos/p10.webp" preload="none">				
+					<img src="./vidos/vid10.mp4" type="video/mp4">
+					Тег video не поддерживается вашим браузером.
+				</div>	
+
+<video><source></video>
+
+<div><source></div>	
+
+<video><img></video>
+
+<div><img></div>
+
+			
