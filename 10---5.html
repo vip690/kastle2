@@ -254,7 +254,7 @@ document.querySelectorAll('.color').
 		x.addEventListener('click',(e)=>{mainColor=cc[i];if(rok0.checked){main();}})
 		}); 
 /************************************/
-let stek4=[]; // рюмашки
+let stek4=[]; // рюмка водки на столе
 let city=1.0;// opacity прозрачность фигур
 
 let off; // смещение композиции к центру
@@ -337,9 +337,11 @@ stek4=[];
 /*высушить*/
 s=ta1.value;
 s=s.replace(/\n/g,'_');//в одинарных тегах теперь эти палки делают их неузнаваемыми
-///s=s.replace(/<!--.*-->?/g,'_');
-s=s.replace(/<!--.*-->?/g,'');
+//s=s.replace(/<!--.*-->?/g,'_');
+s=s.replace(/<!--.*?-->/g,'_');// жадность была неверно записана 26,04,2023
+
 //s=s.replace('_','');
+console.log(s);
 let d='';
 let b=false;
 for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
@@ -377,7 +379,7 @@ s=d;
   s=s.replace(/(<sc?ript>.*?<\/sc?ript>)/gi,'');//анти скрипт
   s=s.replace(/(<style>.*?<\/style>)/gi,'');//анти style 
   s=s.replace(/(<svg>.*?<\/svg>)/gi,'<svg>');//анти svg   
-   s=s.replace(/(<source>)/gi,'<img>');//анти source 
+ //  s=s.replace(/(<source>)/gi,'<img>');//анти source 
    
   s=s.replace(/(<table>.*?<\/table>)/gi,'<table></table>');//анти table  
   s=s.replace(/(<pre>.*?<\/pre>)/gi,'');//анти svg   
@@ -394,16 +396,16 @@ s=d;
 //console.log(s);return 0;  
 /*заменить*/ 
 
-alert(s);
+//alert(s);
   let sp=['li'],sp2=['b'];
-  while ((/<([^>]+)><\/\1>|<img>|<input>|<svg>/i).test(s)){// крыши
-	let g=s.match(/<([^>]+)><\/\1>|<(img)>|<(input)>|<(svg)>/i);
-	g=g[1]||g[2]||g[3]||g[4];
+  while ((/<([^>]+)><\/\1>|<img>|<input>|<svg>|<source>/i).test(s)){// крыши
+	let g=s.match(/<([^>]+)><\/\1>|<(img)>|<(input)>|<(svg)>|<(source)>/i);
+	g=g[1]||g[2]||g[3]||g[4]||g[5];
 	if(!(sp.indexOf(g)+1)){sp.push(g); sp2.push(alf[sp.length])};
 	let w=' _'+sp2[sp.indexOf(g)]+'_ ';
 	switch (g){
 		case 'img':{s=s.replace(/<img>/i,w); break}
-		case 'source':{s=s.replace(/<img>/i,w); break}		
+		case 'source':{s=s.replace(/<source>/i,w); break}		
 		case 'svg':{s=s.replace(/<svg>/i,w); break}
 		case 'input':{s=s.replace(/<input>/i,w); break}
 		case 'h2':{s=s.replace(/<h2><\/h2>/i,w); break}
@@ -412,7 +414,7 @@ alert(s);
 		default :{s=s.replace(/<([^>]+)><\/\1>/i,w); break}
 	}//switch
   }//while	
-alert(s);
+//alert(s);
   
 s=s.replace(/<ul>|<ol>/gi,'1'); 
 s=s.replace(/<li>/gi,'2');   
