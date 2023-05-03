@@ -331,6 +331,31 @@ for (let i=0; i<a.length; i++){//i
 return x;
 }//func ff	
 
+const oba=(x)=>{
+    //alert(x);
+	let s,k;
+	let m=[];
+	let a=[...x];
+	a.forEach((i,j)=>{
+		switch (i)// a(c)dz
+			{
+			case 'a': m.push(j);break;
+			case 'z': k=m.pop();//alert(m,k,a.join(''));
+				if((a[k+1]!=='(')||(a[j-1]!==')'))
+				{
+				
+				a[k]='A';
+				a[j]='Z';
+				}
+			}//switch
+		});
+	s=a.join('');	
+	s=s.replace(/a\(/g,'(');// попробую так 4.4.23...лихо 3.5.23
+	s=s.replace(/\)z/g,')');
+	s=s.toLowerCase();
+	return s;
+	}
+
 function main(){// отрисовка
 let alf="abcdefghijklmnopqrstuvwxyz";
 stek4=[];
@@ -438,8 +463,8 @@ do{
 //******
 s=s.replace(/2\(/g,'a(');
 ta2.value+='\n'+s;
-s=s.replace(/a\(/g,'(');// попробую так 4.4.23
-s=s.replace(/\)z/g,')');
+s=oba(s);// устранение только парных скобок 4.5.23
+
 
 /* брекетня
 let dom=[];// ставлю брекеты
@@ -465,8 +490,7 @@ s=bz.join('');
 if (md===1){// брать с эдита
 s=vvod.value;
 s=s.replace(/2\(/g,'a(');
-s=s.replace(/a\(/g,'(');// попробую так 4.4.23
-s=s.replace(/\)z/g,')');
+s=oba(s); // устранение только парных скобок 4.5.23
 }
 //*******************************************  
 
