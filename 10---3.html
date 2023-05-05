@@ -261,7 +261,7 @@ let off; // смещение композиции к центру
 let dx=25;//25 
 let dy=-25; // 25
 let x11x=0,y11y=hey-15//180;//+50dx  
-let s700=700;//1300;//
+let s700=1700;//1300;//
 
 
   
@@ -516,14 +516,16 @@ const recta=(axe,x1,y1,x2,y2,m,n)=>{
 		}//switch
 	}
 const trg0=(axe,x1,y1,t)=>{
-	svg.innerHTML+=sq5(axe,off+x1,y1);// треуг
-	let name0=sp[sp2.indexOf(t)]??'emp';
+	let nom=sp[sp2.indexOf(t)]??'emp';
+	svg.innerHTML+=sq5(axe,off+x1,y1,nom);// треуг
 	
-	let y0=(name0.length===1)?55:35;
+	
+	//let y0=(name0.length===1)?55:35;
 	//svg.innerHTML+=sq4(off+x1,y0,name0);// надпись
 	}
-const trg3=(axe,x1,y1)=>{
-	svg.innerHTML+=qq3(axe,off+x1,y1);// полигон
+const trg3=(axe,x1,y1,t)=>{
+	let nom=sp[sp2.indexOf(t)]??'emp';//t;//
+	svg.innerHTML+=qq3(axe,off+x1,y1,nom);// полигон
 	}
 const rng=(axe,x1,y1,x2)=>{
 	svg.innerHTML+=sq2(axe,off+x1,y1,x2);// эллипс
@@ -613,7 +615,8 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 				stek3.push({
 					x1:x1x,
 					y1:y1y,////
-					m:(bab(i))?'3':n,// заключено в скобки
+					//m:(bab(i))?'3':n,// заключено в скобки
+					m:n,
 					sort:y1y,
 					t:ss[i],//
 					axe: 1.5,
@@ -690,7 +693,7 @@ stek3.forEach((x,j)=>{
 		case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,);break}//1,
 		//элементы
 		case '0':{trg0(x.axe,x.x1,x.y1,x.t);break}// alert(x.t)
-		case '3':{trg3(x.axe,x.x1,x.y1,); break}//150+j*5
+		case '3':{trg3(x.axe,x.x1,x.y1,x.m); break}//150+j*5
 	}//switch
 });//forEach 
   
@@ -802,7 +805,7 @@ const sq2=(axe,x,y,w)=>{// кольцо (+драпировка)
 	}
 
 
-const qq3=(axe,x,y)=>// треуг особый
+const qq3=(axe,x,y,nom)=>// треуг особый
 	{
 	ee++;
 	let yy=y+axe*dy;// вершина знакоместа
@@ -815,7 +818,8 @@ const qq3=(axe,x,y)=>// треуг особый
 	'	<defs><path id="tp'+ee+'" d="M'+(xx)+','+(yy-3).toFixed(1)+' '+ (xx+250)+','+(yy-253).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-	'	svg'+
+	//'	svg'+
+	nom+
 	'	</textPath></text>\r\n';
 	}
 
@@ -826,7 +830,7 @@ const sq4=(x,y,name)=>// уже не используется
 	}
 
 
-const sq5=(axe,x,y)=>// треуг простой
+const sq5=(axe,x,y,nom)=>// треуг простой
 	{
 	ee++;
 	let xx=x+dx/2|0;
@@ -839,7 +843,8 @@ const sq5=(axe,x,y)=>// треуг простой
 	'	<defs><path id="tp'+ee+'" d="M'+(xx+5)+','+(yy-5).toFixed(1)+' '+ (xx+255)+','+(yy-255).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-	'	img'+
+	//'	img'+
+	nom+
 	'	</textPath></text>\r\n';
 	}
 
