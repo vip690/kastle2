@@ -177,23 +177,14 @@ ta1.value='';
 <textarea id="ta1" rows="20" cols="90" style="color: white; background: #1e154f;"
 onclick="this.setAttribute('rows',+this.getAttribute('rows') ^ 20 ^ 2)"
 >
-&lt;p&gt;
-&lt;a&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;/a&gt;
+&lt;polylist count="30"&gt;
+  &lt;input semantic="VERTEX" source="#Cone-mesh-vertices" offset="0"/&gt;
+  &lt;input semantic="NORMAL" source="#Cone-mesh-normals" offset="1"/&gt;
+  &lt;input semantic="TEXCOORD" source="#Cone-mesh-map-0" offset="2" set="0"/&gt;
+  &lt;vcount&gt;3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 &lt;/vcount&gt;
+  &lt;p&gt;&lt;/p&gt;
+&lt;/polylist&gt;
 
-&lt;a&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;/a&gt;
-
-&lt;a&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;div&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;img&gt;&lt;/div&gt;
-&lt;/a&gt;
-
-&lt;/p&gt;
 </textarea>
 <textarea id="ta2" rows="3" cols="90" style="d0isplay:none;color: white; background: #1a0e5a;">
 
@@ -229,8 +220,9 @@ onclick="this.setAttribute('rows',+this.getAttribute('rows') ^ 20 ^ 2)"
 <h2 id="la" style="font-family: sans-serif"></h2>
 
 <script>
+let never='!';//символ никогда не встречаемый в тегах
 let ee=0;// счетчик элементов
-let md=1; // откуда брать данные 0-из та, 1-из эдита, 2-
+let md=0; // откуда брать данные 0-из та, 1-из эдита, 2-
   yrr=// модель надписи
 	  [{dotx0:419,doty0:246, // начало
 	  dotx1:449,doty1:187, // изгиб начала
@@ -332,16 +324,21 @@ return x;
 }//func ff	
 
 const oba=(x)=>{
-    //alert(x);
+   //alert(x); //
 	let s,k;
 	let m=[];
 	let a=[...x];
 	a.forEach((i,j)=>{
-		switch (i)// a(c)dz
+		switch (i)// a(c)dz    a(c)(3)z
 			{
 			case 'a': m.push(j);break;
 			case 'z': k=m.pop();//alert(m,k,a.join(''));
-				if((a[k+1]!=='(')||(a[j-1]!==')'))
+				let y=x.substring(k+2,j-1);
+				// опознание по наличию скобок в содержимом
+				// скобок нет - постамент не нужен
+				if ((y.indexOf('(')>-1)||(y.indexOf(')')>-1)||
+				((a[k+1]!=='(')||(a[j-1]!==')')))
+				//if((a[k+1]!=='(')||(a[j-1]!==')'))
 				{
 				
 				a[k]='A';
@@ -361,9 +358,9 @@ let alf="abcdefghijklmnopqrstuvwxyz";
 stek4=[];
 /*высушить*/
 s=ta1.value;
-s=s.replace(/\n/g,'_');//в одинарных тегах теперь эти палки делают их неузнаваемыми
-s=s.replace(/<!--.*?-->/g,'_');//жадность была нежадной 26,04,2023
-//s=s.replace('_','');
+s=s.replace(/\n/g,never);//в одинарных тегах теперь эти палки делают их неузнаваемыми
+s=s.replace(/<!--.*?-->/g,never);//жадность была нежадной 26,04,2023
+//s=s.replace(never,'');
 let d='';
 let b=false;
 for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
@@ -371,7 +368,7 @@ for (let i=0; i<s.length; i++){// теги переношу атрибуты н�
 		case '<':{d=d+'<'; b=!b; break}
 		case '>':{d=d+'>'; b=false; break}
 		case ' ':{if (b) b=false; break}
-		case '_': break;
+		case never: break;
 		default: {if (b) d=d+s[i]}
 	}//switch
 }
@@ -389,7 +386,8 @@ s=d;
 '<strong>','</strong>',
 '<sub>','</sub>','<sup>','</sup>',
 '<tt>','</tt>',
-'<source>',//одинарные неизвестные теги глушат движок
+//'<source>',//одинарные неизвестные теги глушат движок
+// в колабе сурс парный тег, в отличие от хтмл
 '<center>','</center>',
 ].forEach(x=>{
 	let y=new RegExp(x,'g');
@@ -415,26 +413,53 @@ s=d;
 //console.log(s);return 0;  
 /*заменить*/ 
   let sp=['li'],sp2=['b'];
-  while ((/<([^>]+)><\/\1>|<img>|<input>|<svg>/i).test(s)){// крыши
-	let g=s.match(/<([^>]+)><\/\1>|<(img)>|<(input)>|<(svg)>/i);
-	g=g[1]||g[2]||g[3]||g[4];
+  let a=['img','input','svg','param','unit','library_controllers','library_images','instance_geometry','instance_visual_scene'];
+
+let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'>').join('|'),'i');
+let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+')>').join('|'),'i');
+     
+s=s.replace(/\/>/g,'>');   
+      
+  while ((re1).test(s)){// крыши
+	let g=s.match(re2);
+	/*console.table(g);
+alert([g[1],g[2],g[3],g[4],g[5],g[6],g[7],g[8],g[9],g[10]].join('-'));
+	g=g[1]||g[2]||g[3]||g[4]||g[5]||g[6]||g[7]||g[8]||g[9]||g[10];
+*/
+//let gi='';for (let i=1;i<g.length;i++){let gi=g[i];if (gi)break}
+//g=gi;
+let aw=g.filter((x,i)=>i&&x);
+g=aw[0];
+
 	if(!(sp.indexOf(g)+1)){sp.push(g); sp2.push(alf[sp.length])};
-	let w=' _'+sp2[sp.indexOf(g)]+'_ ';
+	let w=' '+never+sp2[sp.indexOf(g)]+never+' ';
+	//console.log(g);
 	switch (g){
 		case 'img':{s=s.replace(/<img>/i,w); break}
 		case 'svg':{s=s.replace(/<svg>/i,w); break}
 		case 'input':{s=s.replace(/<input>/i,w); break}
+		case 'param':{s=s.replace(/<param>/i,w); break}
+		case 'unit':{s=s.replace(/<unit>/i,w); break}
+		case 'library_controllers':{s=s.replace(/<library_controllers>/i,w); break}		
+		case 'library_images':{s=s.replace(/<library_images>/i,w); break}
+		case 'instance_geometry':{s=s.replace(/<instance_geometry>/i,w); break}
+		case 'instance_visual_scene':{s=s.replace(/<instance_visual_scene>/i,w); break}		
+    		
 		case 'h2':{s=s.replace(/<h2><\/h2>/i,w); break}
 		case 'li':{s=s.replace(/<li><\/li>/i,w); break}  // лишки крышки
 		case 'a':{s=s.replace(/<a><\/a>/i,w); break} 
 		default :{s=s.replace(/<([^>]+)><\/\1>/i,w); break}
 	}//switch
-  }//while	
+  }//while
+//console.log(s);
+
 s=s.replace(/<ul>|<ol>/gi,'1'); 
 s=s.replace(/<li>/gi,'2');   
 s=s.replace(/(<[^\/]+?>)/gi,' a ');
 s=s.replace(/(<\/.+?>)/gi,' z ');  
-s=s.replace(/[<> _]/gi,'');  
+s=s.replace(/[<> ]/gi,''); //_
+let rg=new RegExp(never,'g');s=s.replace(rg,'');
+// alert(s);
 s=s.replace(/za/gi,'z-a');//отступы меж башнями
 s=s.replace(/z2/gi,'z-2');// 
 s=s.replace(/z1/gi,'z-1');//
@@ -465,7 +490,7 @@ s=s.replace(/2\(/g,'a(');
 ta2.value+='\n'+s;
 s=oba(s);// устранение только парных скобок 4.5.23
 
-
+console.log(s);
 /* брекетня
 let dom=[];// ставлю брекеты
 let brk=s.split('').map(x=>0);// б
@@ -487,7 +512,7 @@ s=bz.join('');
   //console.log('sp> ',sp);
   //console.log('sp2> ',sp2);  
 //***************************************** отладка 
-if (md===1){//1- брать с эдита
+if (md===1){// брать с эдита
 s=vvod.value;
 s=s.replace(/2\(/g,'a(');
 s=oba(s); // устранение только парных скобок 4.5.23
@@ -1043,7 +1068,7 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	main();  
 });
 //**************************
-selen.onchange(); // выбранная формула юзается для постройки пиалы
+//selen.onchange(); // выбранная формула юзается для постройки пиалы
 </script>
 </body>
 </html>
