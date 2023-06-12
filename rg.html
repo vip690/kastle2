@@ -218,14 +218,19 @@ const oba=(x)=>{
 			{
 			case 'a': m.push(j);break;
 			case 'z': k=m.pop();//alert(m,k,a.join(''));
-				let y=x.substring(k+2,j-1);
+				//let y=x.substring(k+2,j-1);
+				let kk;
+				for(let t=k+1; t<a.length; t++){kk=t;if(!/[а-я]/.test(a[t]))break}
+				let y=x.substring(kk,j);
+				alert(y);
 				// опознание по наличию скобок в содержимом
 				// скобок нет - постамент не нужен
-				if ((y.indexOf('(')>-1)||(y.indexOf(')')>-1)||
-				((a[k+1]!=='(')||(a[j-1]!==')')))
+				if ((y.indexOf('(')>0)||(y.indexOf(')')<(y.length - 1))||
+				((y[0]!=='(')||(y[y.length - 1]!==')')))
+				//((a[kk]!=='(')||(a[j-1]!==')')))
 				//if((a[k+1]!=='(')||(a[j-1]!==')'))
 				{
-				
+				alert(y[0]+' '+y[y.length - 1]);
 				a[k]='A';
 				a[j]='Z';
 				}
