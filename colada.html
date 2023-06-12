@@ -323,7 +323,7 @@ for (let i=0; i<a.length; i++){//i
 return x;
 }//func ff	
 
-const oba=(x)=>{
+const oba=(x)=>{//адаптирован под ярлыки
    //alert(x); //
 	let s,k;
 	let m=[];
@@ -333,28 +333,40 @@ const oba=(x)=>{
 			{
 			case 'a': m.push(j);break;
 			case 'z': k=m.pop();//alert(m,k,a.join(''));
-				let y=x.substring(k+2,j-1);
+				//let y=x.substring(k+2,j-1);
+				let kk;
+				for(let t=k+1; t<a.length; t++){kk=t;if(!/[а-я]/.test(a[t]))break}
+				let y=x.substring(kk,j);
+				//alert(y);
 				// опознание по наличию скобок в содержимом
 				// скобок нет - постамент не нужен
-				if ((y.indexOf('(')>-1)||(y.indexOf(')')>-1)||
-				((a[k+1]!=='(')||(a[j-1]!==')')))
+				if ((y.indexOf('(')>0)||(y.indexOf(')')<(y.length - 1))||
+				((y[0]!=='(')||(y[y.length - 1]!==')')))
+				//((a[kk]!=='(')||(a[j-1]!==')')))
 				//if((a[k+1]!=='(')||(a[j-1]!==')'))
 				{
-				
+				//alert(y[0]+' '+y[y.length - 1]);
 				a[k]='A';
 				a[j]='Z';
 				}
 			}//switch
 		});
+		
 	s=a.join('');	
-	s=s.replace(/a\(/g,'(');// попробую так 4.4.23...лихо 3.5.23
-	s=s.replace(/\)z/g,')');
+	//console.log(s);
+	s=s.replace(/a([а-я]+)\(/g,'(');// попробую так 4.4.23...лихо 3.5.23
+	s=s.replace(/\)z([а-я]+)/g,')');
+	//s=s.replace(/a\(/g,'(');// попробую так 4.4.23...лихо 3.5.23
+	//s=s.replace(/\)z/g,')');	
 	s=s.toLowerCase();
 	return s;
 	}
 
 function main(){// отрисовка
 let alf="abcdefghijklmnopqrstuvwxyz";
+let o={'a':'ф','b':'б','c':'в','d':'г','e':'д','f':'е','g':'ж','h':'з','i':'и','j':'к','k':'л','l':'м','m':'н','n':'п','o':'р','p':'с','q':'т','r':'у','s':'х','t':'ц','u':'ч','v':'ш','w':'щ','x':'э','y':'ю','z':'я','_':''}
+let o2={'ф':'a','б':'b','в':'c','г':'d','д':'e','е':'f','ж':'g','з':'h','и':'i','к':'j','л':'k','м':'l','н':'m','п':'n','р':'o','с':'p','т':'q','у':'r','х':'s','ц':'t','ч':'u','ш':'v','щ':'w','э':'x','ю':'y','я':'z'}
+const r0=(x)=>[...x].map((i,j)=>o[i]).join('');
 stek4=[];
 /*высушить*/
 s=ta1.value;
@@ -413,70 +425,64 @@ s=d;
 //console.log(s);return 0;  
 /*заменить*/ 
   let sp=['li'],sp2=['b'];
-  let a=['img','input','svg','param','unit','library_controllers','library_images','instance_geometry','instance_visual_scene'];
+  let a=['img','input','svg','param','unit','library_controllers','library_images','instance_geometry','instance_visual_scene','library_effects'];
 
-let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'>').join('|'),'i');
-let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+')>').join('|'),'i');
-     
+//let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'>').join('|'),'i');
+//let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+')>').join('|'),'i');
+let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'[а-я]+>').join('|'),'i');
+let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+'[а-я]+)>').join('|'),'i');     
 s=s.replace(/\/>/g,'>');   
-      
-  while ((re1).test(s)){// крыши
+const f0=(mat,x1,x2)=>{
+	if(!(sp.indexOf(x1)+1)){sp.push(x1); sp2.push(alf[sp.length])};
+
+	return ' !'+sp2[sp.indexOf(x1)]+x2+'! ';
+};      
+let ad=s.split(/([<>\/])/);
+//console.log(ad);
+ad=ad.map(x=>{if(/[_a-z]/.test(x)){return x+r0(x)}else{return x}}).join('');
+//console.log(ad);
+s=ad;// ярлыками снабдил
+s=s.replace(/<([^>а-я]+)([а-я]+)><\/\1\2>/ig,f0);
+
+
+// одинарные
+while((re1).test(s)){
 	let g=s.match(re2);
-	/*console.table(g);
-alert([g[1],g[2],g[3],g[4],g[5],g[6],g[7],g[8],g[9],g[10]].join('-'));
-	g=g[1]||g[2]||g[3]||g[4]||g[5]||g[6]||g[7]||g[8]||g[9]||g[10];
-*/
-//let gi='';for (let i=1;i<g.length;i++){let gi=g[i];if (gi)break}
-//g=gi;
-let aw=g.filter((x,i)=>i&&x);
-g=aw[0];
+	let aw=g.filter((x,i)=>i&&x);
+	g=aw[0];
 
-	if(!(sp.indexOf(g)+1)){sp.push(g); sp2.push(alf[sp.length])};
-	let w=' '+never+sp2[sp.indexOf(g)]+never+' ';
-	//console.log(g);
-	switch (g){
-		case 'img':{s=s.replace(/<img>/i,w); break}
-		case 'svg':{s=s.replace(/<svg>/i,w); break}
-		case 'input':{s=s.replace(/<input>/i,w); break}
-		case 'param':{s=s.replace(/<param>/i,w); break}
-		case 'unit':{s=s.replace(/<unit>/i,w); break}
-		case 'library_controllers':{s=s.replace(/<library_controllers>/i,w); break}		
-		case 'library_images':{s=s.replace(/<library_images>/i,w); break}
-		case 'instance_geometry':{s=s.replace(/<instance_geometry>/i,w); break}
-		case 'instance_visual_scene':{s=s.replace(/<instance_visual_scene>/i,w); break}		
-    		
-		case 'h2':{s=s.replace(/<h2><\/h2>/i,w); break}
-		case 'li':{s=s.replace(/<li><\/li>/i,w); break}  // лишки крышки
-		case 'a':{s=s.replace(/<a><\/a>/i,w); break} 
-		default :{s=s.replace(/<([^>]+)><\/\1>/i,w); break}
-	}//switch
+	let u=g.replace(/[а-я]/gi,'');
+	//alert(g+'='+u);
+	let re3=new RegExp('<('+u+')([а-я]+)>','ig');
+	s=s.replace(re3,f0);
   }//while
-//console.log(s);
 
-//s=s.replace(/<ul>|<ol>/gi,'1'); // где мля закрывающие? в одинарные их превраатил?где и вочто </ul> превращается?в z как и все закрывающие
+
+// списки
 s=s.replace(/<ul([а-я]+)>/gi,'1$1');
 s=s.replace(/<ol([а-я]+)>/gi,'1$1'); 
-s=s.replace(/<li([а-я]+)>/gi,'2$1');   
-//s=s.replace(/(<[^\/]+?>)/gi,' a ');
+s=s.replace(/<li([а-я]+)>/gi,'2$1');
+// парные
 s=s.replace(/(<[^\/а-я]+?)([а-я]+)(>)/gi,' a$2 ');
-
-//s=s.replace(/(<\/.+?>)/gi,' z ');  
 s=s.replace(/(<\/[^а-я]+?)([а-я]+)(>)/gi,' z$2 ');
-
-s=s.replace(/[<> ]/gi,''); //_
+// антипробел
+s=s.replace(/[<> ]/gi,'');
+// убрал невер
 let rg=new RegExp(never,'g');s=s.replace(rg,'');
-// alert(s);
-//s=s.replace(/za/gi,'z-a');//отступы меж башнями
+
+//
 s=s.replace(/z([а-я]+)a([а-я]+)/gi,'z$1-a$2');//отступы меж башнями
-s=s.replace(/z2/gi,'z-2');// 
-s=s.replace(/z1/gi,'z-1');//
-s=s.replace(/az/gi,'3');//
-s=s.replace(/b+/gi,'b');//c лишками крышками//
-s=s.replace(/([cdefghijklmnopqrstuvwxy])(\1)+/gi,'$1-$1');//32 audio сжать в один
+s=s.replace(/z([а-я]+)2([а-я]+)/gi,'z$1-2$2');// 
+s=s.replace(/z([а-я]+)1([а-я]+)/gi,'z$1-1$2');//
+s=s.replace(/a([а-я]+)z([а-я]+)/gi,'3$1');//
+s=s.replace(/(b[а-я]+)+/gi,'$1');//c лишками крышками//
+
+//
+s=s.replace(/([cdefghijklmnopqrstuvwxy])([а-я]+)(\1\2)+/gi,'$1$2-$1$2');//32 audio сжать в один
+//
 mc=s.match(/(2[^-\r\n]+)/gi);// разбираюсь с лишками
-//console.log('s>>',s);//aaac-czc-cz-aac-cz-ac-cz-ac-czc-czcz
-//console.log(s);return 0; //aac-czdaezdaezdaezdaezz
 if (!!mc) mc.forEach(x=>{let y=new RegExp(x+'-'+x,'g');s=s.replace(y,x)});
+
 ta2.value=s;
 console.log(s);
 
@@ -493,9 +499,15 @@ do{
 
 
 //******
-s=s.replace(/2\(/g,'a(');
+s=s.replace(/2([а-я]+)\(/g,'a$1(');
 ta2.value+='\n'+s;
 s=oba(s);// устранение только парных скобок 4.5.23
+console.log(s);
+let tv=s.split(/([a-z_][а-я]+)/);
+let tv1=tv.map(i=>i.replace(/[а-я]/gi,'')).filter(i=>i);
+let tv2=tv.map(i=>i.replace(/[a-z]/gi,'')).filter(i=>i);
+tv2=tv2.map(i=>[...i].map(j=>o2[j]).join(''));
+s=s.replace(/([а-я]+)/gi,'');
 
 console.log(s);
 /* брекетня
@@ -521,7 +533,7 @@ s=bz.join('');
 //***************************************** отладка 
 if (md===1){// брать с эдита
 s=vvod.value;
-s=s.replace(/2\(/g,'a(');
+s=s.replace(/2([а-я]+)\(/g,'a$1(');//s=s.replace(/2\(/g,'a(');
 s=oba(s); // устранение только парных скобок 4.5.23
 }
 //*******************************************  
@@ -529,6 +541,7 @@ s=oba(s); // устранение только парных скобок 4.5.23
   la.innerHTML=s;
   ta2.value+='\n'+s;
   
+  console.table(tv1);console.table(tv2);
 //////////////////////////////////////draw формирует свг
 
 const svg=document.querySelector('#svg');
@@ -540,9 +553,9 @@ svg.innerHTML=sq6();// стиль
 const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в кольце
 
 //******** преотрисовка ... графические примитивы
-const recta=(axe,x1,y1,x2,y2,m,n)=>{
+const recta=(axe,x1,y1,x2,y2,m,n,nom)=>{
 	switch (m){
-		case 'a': {svg.innerHTML+=qq7(axe,off+x1,y1,x2,y2);break}//rect	//,m,n
+		case 'a': {svg.innerHTML+=qq7(axe,off+x1,y1,x2,y2,nom);break}//rect	//,m,n
 		case '1': {svg.innerHTML+=qq8(axe,off+x1,y1,x2,y2);break}//ul	,m,n
 		case '2': {svg.innerHTML+=qq9(axe,off+x1,y1,x2,y2);break}//li	//,m,n
 		}//switch
@@ -604,7 +617,9 @@ let x1x=x11x,y1y=y11y;// точка отсчета
 let j=0;
 let r=1;
 let stk=[]; // 
+let count=-1;
 for (let i=0; i<ss.length; i++){// ханойская сортировка
+	count++;
 	let n=ss[i];
 	n=n.replace(/[bcdefghijklmnopqrstuvwxy]/gi,'0');
 
@@ -677,11 +692,12 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 				m:t.m,
 				sort:Math.max(t.y+dy,t.y),
 				axe:t.axe,
+				nom:tv2[count],
 				});
 			j++;}
 			break} 
 	}//switch
-	if(u.hasOwnProperty(n)){
+	if(u.hasOwnProperty(n)){//
 		x1x+=u[n].x;
 		y1y+=u[n].y*axe;//
 		}
@@ -722,7 +738,7 @@ stek3.forEach((x,j)=>{
 		//case '[': {rng(x.axe,x.x1,x.y1+dy,x.x2,); break}				
 		case '1':
 		case '2':
-		case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,);break}//1,
+		case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,0,x.nom);break}//1,
 		//элементы
 		case '0':{trg0(x.axe,x.x1,x.y1,x.t);break}// alert(x.t)
 		case '3':{trg3(x.axe,x.x1,x.y1,x.m); break}//150+j*5
@@ -889,7 +905,7 @@ const sq6=()=>'\r\n<style type="text/css">\r\n'+
 	'<rect class="x" x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
 
 
-const qq7=(axe,x,y,w,h)=>// квадрат который не спит на спине
+const qq7=(axe,x,y,w,h,nom)=>// квадрат который не спит на спине
 	{
 	ee++;
 	let yy=y+axe*dy;
@@ -904,7 +920,8 @@ const qq7=(axe,x,y,w,h)=>// квадрат который не спит на с�
 	'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-10).toFixed(1)+' '+ (x+w+260)+','+(yy-260).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-	'	div'+
+	//'	div'+
+	nom+
 	'	</textPath></text>\r\n';
 	}
 
