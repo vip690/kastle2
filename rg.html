@@ -231,9 +231,13 @@ const oba=(x)=>{
 				}
 			}//switch
 		});
+		
 	s=a.join('');	
-	s=s.replace(/a\(/g,'(');// попробую так 4.4.23...лихо 3.5.23
-	s=s.replace(/\)z/g,')');
+	console.log(s);
+	s=s.replace(/a([а-я]+)\(/g,'(');// попробую так 4.4.23...лихо 3.5.23
+	s=s.replace(/\)z([а-я]+)/g,')');
+	//s=s.replace(/a\(/g,'(');// попробую так 4.4.23...лихо 3.5.23
+	//s=s.replace(/\)z/g,')');	
 	s=s.toLowerCase();
 	return s;
 	}
