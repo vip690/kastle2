@@ -453,14 +453,21 @@ g=aw[0];
   }//while
 //console.log(s);
 
-s=s.replace(/<ul>|<ol>/gi,'1'); 
-s=s.replace(/<li>/gi,'2');   
-s=s.replace(/(<[^\/]+?>)/gi,' a ');
-s=s.replace(/(<\/.+?>)/gi,' z ');  
+//s=s.replace(/<ul>|<ol>/gi,'1'); // где мля закрывающие? в одинарные их превраатил?где и вочто </ul> превращается?в z как и все закрывающие
+s=s.replace(/<ul([а-я]+)>/gi,'1$1');
+s=s.replace(/<ol([а-я]+)>/gi,'1$1'); 
+s=s.replace(/<li([а-я]+)>/gi,'2$1');   
+//s=s.replace(/(<[^\/]+?>)/gi,' a ');
+s=s.replace(/(<[^\/а-я]+?)([а-я]+)(>)/gi,' a$2 ');
+
+//s=s.replace(/(<\/.+?>)/gi,' z ');  
+s=s.replace(/(<\/[^а-я]+?)([а-я]+)(>)/gi,' z$2 ');
+
 s=s.replace(/[<> ]/gi,''); //_
 let rg=new RegExp(never,'g');s=s.replace(rg,'');
 // alert(s);
-s=s.replace(/za/gi,'z-a');//отступы меж башнями
+//s=s.replace(/za/gi,'z-a');//отступы меж башнями
+s=s.replace(/z([а-я]+)a([а-я]+)/gi,'z$1-a$2');//отступы меж башнями
 s=s.replace(/z2/gi,'z-2');// 
 s=s.replace(/z1/gi,'z-1');//
 s=s.replace(/az/gi,'3');//
