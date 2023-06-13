@@ -292,7 +292,7 @@ let s700=900;//1300;//
   
 const clr=()=>{ta1.value=""}
 
-function optima(x){// сокращения -------------------------------------------------
+function ff(x){// сокращения -------------------------------------------------
 /*
 в эту трясину может засосать до переполнения стека.
 выдача может быть периодическая бесконечная
@@ -344,17 +344,20 @@ for (let i=0; i<a.length; i++){//i
 		s3=x.substring(0,n); //  от индекса a до индекса b 
 		s4=x.substring(n); // от n до конца
 		let r=new RegExp("("+e+")(-\\1)+",'g');
+		//let s="aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzz-aadz-aaezfzzz-a(agz)zhzz";
+		//s=s.replace(/(aadz-aaezfzz)(-\1)+/gi,'($1)');
 		s4=s4.replace(r,'($1)');
 		
 		if(s4.length<lenx)
-			{return s3 + optima(s4)}else{return s3+s4}
+			{return s3 + ff(s4)}else{return s3+s4}
 		}
 	}//j
 }//i
 return x;
-}//func optima	
+}//func ff	
 
-const obana=(x)=>{//адаптирован под бирки
+const oba=(x)=>{//адаптирован под ярлыки
+   //alert(x); //
 	let s,k;
 	let m=[];
 	let a=[...x];
@@ -362,15 +365,20 @@ const obana=(x)=>{//адаптирован под бирки
 		switch (i)// a(c)dz    a(c)(3)z
 			{
 			case 'a': m.push(j);break;
-			case 'z': k=m.pop();
+			case 'z': k=m.pop();//alert(m,k,a.join(''));
+				//let y=x.substring(k+2,j-1);
 				let kk;
 				for(let t=k+1; t<a.length; t++){kk=t;if(!/[а-я]/.test(a[t]))break}
 				let y=x.substring(kk,j);
+				//alert(y);
 				// опознание по наличию скобок в содержимом
 				// скобок нет - постамент не нужен
 				if ((y.indexOf('(')>0)||(y.indexOf(')')<(y.length - 1))||
 				((y[0]!=='(')||(y[y.length - 1]!==')')))
+				//((a[kk]!=='(')||(a[j-1]!==')')))
+				//if((a[k+1]!=='(')||(a[j-1]!==')'))
 				{
+				//alert(y[0]+' '+y[y.length - 1]);
 				a[k]='A';
 				a[j]='Z';
 				}
@@ -378,6 +386,11 @@ const obana=(x)=>{//адаптирован под бирки
 		});
 		
 	s=a.join('');	
+	//console.log(s);
+	//alert(s);
+	//s=s.replace(/A([а-я]+)\(/g,'[');// попробую брекеты
+	//s=s.replace(/\)Z([а-я]+)/g,']');	
+	
 	s=s.replace(/a([а-я]+)\(/g,'<$1');// времено в угловые с постаментом
 	s=s.replace(/\)z([а-я]+)/g,'>$1');
 	
@@ -385,7 +398,10 @@ const obana=(x)=>{//адаптирован под бирки
 	s=s.replace(/\)/g,']');		
 	
 	s=s.replace(/</g,'(');// угловые в круглые
-	s=s.replace(/>/g,')');		
+	s=s.replace(/>/g,')');	
+	
+	//s=s.replace(/a\(/g,'(');// попробую так 4.4.23...лихо 3.5.23
+	//s=s.replace(/\)z/g,')');	
 	s=s.toLowerCase();
 	return s;
 	}
@@ -394,15 +410,27 @@ function main(){// отрисовка
 let alf="abcdefghijklmnopqrstuvwxyz";
 let o={'a':'ф','b':'б','c':'в','d':'г','e':'д','f':'е','g':'ж','h':'з','i':'и','j':'к','k':'л','l':'м','m':'н','n':'п','o':'р','p':'с','q':'т','r':'у','s':'х','t':'ц','u':'ч','v':'ш','w':'щ','x':'э','y':'ю','z':'я','_':'ъ'}
 let o2={'ф':'a','б':'b','в':'c','г':'d','д':'e','е':'f','ж':'g','з':'h','и':'i','к':'j','л':'k','м':'l','н':'m','п':'n','р':'o','с':'p','т':'q','у':'r','х':'s','ц':'t','ч':'u','ш':'v','щ':'w','э':'x','ю':'y','я':'z','ъ':'_'}
-const birk=(x)=>[...x].map((i,j)=>o[i]).join('');
+const r0=(x)=>[...x].map((i,j)=>o[i]).join('');
 stek4=[];
 /*высушить*/
 s=ta1.value;
 s=s.replace(/\n/g,never);//в одинарных тегах теперь эти палки делают их неузнаваемыми
 s=s.replace(/<!--.*?-->/g,never);//жадность была нежадной 26,04,2023
+//s=s.replace(never,'');
 
 let d='';
-
+/*
+let b=false;
+for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
+	switch (s[i]) {
+		case '<':{d=d+'<'; b=!b; break}
+		case '>':{d=d+'>'; b=false; break}
+		case ' ':{if (b) b=false; break}
+		case never: break;
+		default: {if (b) d=d+s[i]}
+	}//switch
+}
+*/
 let b=false, pk=false;
 for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
 	switch (s[i]) {
@@ -414,13 +442,22 @@ for (let i=0; i<s.length; i++){// теги переношу атрибуты н�
 		default: if (b) d=d+s[i]; pk=false;
 	}//switch
 }
-s=d;
 
-[ ///теги уничтожаемые как мусор
+//d=s.match(/<[^ \/>]+|\/>|>/g).join('');
+//d=s.match(/<[^ \/>]+[^\/>]*[\/>]/g).join('');
+//d=s.replace(/(<[^ \/>])(\s[^>\/]+)([>\/]+)/g,'$1$3');
+
+//
+s=d;
+//alert(s);
+//console.log(s);
+[
 	'<br>','<hr>','<meta>','<!doctype>',
+	//'<sc'+'ript>','</sc'+'ript>',
 	'<style>','</style>',
 	'<title>','</title>',
-	'<head>','</head>', 
+	'<head>','</head>',
+	//'<header>','</header>',нет это теги уничтожаемые как мусор
 	'<html>','</html>',
 	'<i>','</i>','<b>','</b>',
 	'<link>',
@@ -443,6 +480,8 @@ s=d;
   s=s.replace(/(<pre>.*?<\/pre>)/gi,'');//анти pre   
   
   s=s.toLowerCase();
+  //alert(s);
+  
   
   const closeli=x=>{// закрывает незакрытые лишки
 	  x=x.replace(/<\/li>/gi,'');
@@ -452,28 +491,38 @@ s=d;
 	  return x;
   }  
   s=closeli(s);// закрывает незакрытые лишки
-  let sp=['li'], sp2=['b'];
+  //console.log(s);	
+//console.log(s);return 0;  
+/*заменить*/ 
+  let sp=['li'],sp2=['b'];
+  //let a=['img','input','svg','param','unit','library_controllers','library_images','instance_visual_scene','instance_effect','instance_material','library_effects'];//'instance_geometry'
   
-  let a;// непарные теги массивом
-  let a7=s.match(/<[^\/>]+\/>/g);// непарные теги добываю на месте
-  a7=(a7)?a7.map(i=>i.replace(/[<>\/]/g,'')):['img','input','svg'];//
+  let a;
+  a7=s.match(/<[^\/>]+\/>/g);// непарные теги
+  a7=(a7)?a7.map(i=>i.replace(/[<>\/]/g,'')):['img'];//
   a7=new Set(a7);
   a=Array.from(a7);
-// организую регулярку поиска непарных тегов
+  //a=s.match(/(\/>)/g);// непарные теги  
+  //alert(a7);
+  //
+  //
+  //console.log(a7);
+/**/
+//let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'>').join('|'),'i');
+//let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+')>').join('|'),'i');
 let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'[а-я]+>').join('|'),'i');
 let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+'[а-я]+)>').join('|'),'i');     
-// убираю слеш из непарных тегов 
-s=s.replace(/\/>/g,'>');
-// окружаю знаками замену   
+s=s.replace(/\/>/g,'>');   
 const f0=(mat,x1,x2)=>{
 	if(!(sp.indexOf(x1)+1)){sp.push(x1); sp2.push(alf[sp.length])};
 
 	return ' !'+sp2[sp.indexOf(x1)]+x2+'! ';
 };      
 let ad=s.split(/([<>\/])/);
-ad=ad.map(x=>{if(/[_a-z]/.test(x)){return x+birk(x)}else{return x}}).join('');
-s=ad;// рус бирками снабдил
-// тег заменил англ буквой с биркой
+//console.log(ad);
+ad=ad.map(x=>{if(/[_a-z]/.test(x)){return x+r0(x)}else{return x}}).join('');
+//console.log(ad);
+s=ad;// ярлыками снабдил
 s=s.replace(/<([^>а-я]+)([а-я]+)><\/\1\2>/ig,f0);
 
 
@@ -482,7 +531,9 @@ while((re1).test(s)){
 	let g=s.match(re2);
 	let aw=g.filter((x,i)=>i&&x);
 	g=aw[0];
+
 	let u=g.replace(/[а-я]/gi,'');
+	//alert(g+'='+u);
 	let re3=new RegExp('<('+u+')([а-я]+)>','ig');
 	s=s.replace(re3,f0);
   }//while
@@ -498,7 +549,7 @@ s=s.replace(/(<\/[^а-я]+?)([а-я]+)(>)/gi,' z$2 ');
 // антипробел
 s=s.replace(/[<> ]/gi,'');
 // убрал невер
-let rg=new RegExp(never,'g'); s=s.replace(rg,'');
+let rg=new RegExp(never,'g');s=s.replace(rg,'');
 
 //
 s=s.replace(/z([а-я]+)a([а-я]+)/gi,'z$1-a$2');//отступы меж башнями
@@ -511,10 +562,10 @@ s=s.replace(/(b[а-я]+)+/gi,'$1');//c лишками крышками//
 s=s.replace(/([cdefghijklmnopqrstuvwxy])([а-я]+)(\1\2)+/gi,'$1$2-$1$2');//32 audio сжать в один
 //
 mc=s.match(/(2[^-\r\n]+)/gi);// разбираюсь с лишками
-if (!!mc) mc.forEach(x=>{let y=new RegExp(x+'-'+x,'g'); s=s.replace(y,x)});
+if (!!mc) mc.forEach(x=>{let y=new RegExp(x+'-'+x,'g');s=s.replace(y,x)});
 
 ta2.value=s;
-//
+console.log(s);
 
 
 let sed;
@@ -522,7 +573,7 @@ do{
 	sed=[...s].map(i=>i).join('');
 	s=[...s].map(x=>(x===')')?'>':x).join('');
 	s=[...s].map(x=>(x==='(')?'<':x).join('');
-	s=optima(s);// сокращения ------------------------------------------------------------------
+	s=ff(s);// сокращения ------------------------------------------------------------------
 	s=[...s].map(x=>(x==='>')?')':x).join('');
 	s=[...s].map(x=>(x==='<')?'(':x).join('');
 	}while(sed!==s);//выход если обработка не изменила строку
@@ -531,26 +582,50 @@ do{
 //******
 s=s.replace(/2([а-я]+)\(/g,'a$1(');
 ta2.value+='\n'+s;
-s=obana(s);// скобки превратил в брекеты
-//
+s=oba(s);// устранение только парных скобок 4.5.23
+console.log(s);
+//let tv=s.split(/([a-z_][а-я]+)|([\[\]\(\)-])/);//?
 let tv=s.split(/([a-z_\(\)][а-я]+|[\[\]\(\)-])/);//измельчение до отдельных знаков препинания
 let tv1=tv.map(i=>i.replace(/[а-я]/gi,'')).filter(i=>i);
 let tv2=tv.map(i=>i.replace(/[a-z]/gi,'')).filter(i=>i);
-tv2=tv2.map(i=>[...i].map(j=>o2[j]).join(''));//расшифровка бирок
+tv2=tv2.map(i=>[...i].map(j=>o2[j]).join(''));
 s=s.replace(/([а-я]+)/gi,'');
 
-let tv3=tv1.map((x,i)=>[x,tv2[i]]);  
+let tv3=tv1.map((x,i)=>[x,tv2[i]]);
+
+console.log(s);
+/* брекетня
+let dom=[];// ставлю брекеты
+let brk=s.split('').map(x=>0);// б
+let war=s.split('').forEach((x,i)=>{
+	if (x==='(')dom.push(i);
+	if(x===')'){brk[i]=dom.pop();brk[brk[i]]=i}});
+//console.log(brk);
+//console.log(s.indexOf('-('));
+let bz=s.split('');
+for (let i=0; i<bz.length; i++){if(bz[i]==='-'&&bz[i+1]==='(')
+	{bz[i+1]='['; bz[brk[i+1]]=']'}}
+for (let i=1; i<bz.length; i++){if(bz[i]==='-'&&bz[i-1]===')')
+	{bz[i-1]=']'; bz[brk[i-1]]='['}}	
+s=bz.join('');
+*/
+
+  //console.log(s);
+
+  //console.log('sp> ',sp);
+  //console.log('sp2> ',sp2);  
 //***************************************** отладка 
 if (md===1){// брать с эдита
 s=vvod.value;
-s=s.replace(/2([а-я]+)\(/g,'a$1(');//
-s=obana(s); // отделил скобки от брекетов
+s=s.replace(/2([а-я]+)\(/g,'a$1(');//s=s.replace(/2\(/g,'a(');
+s=oba(s); // устранение только парных скобок 4.5.23
 }
 //*******************************************  
 
   la.innerHTML=s;
   ta2.value+='\n'+s;
   
+  //console.table(tv1);console.table(tv2);console.table(tv3);
 //////////////////////////////////////draw формирует свг
 
 const svg=document.querySelector('#svg');
@@ -564,14 +639,18 @@ const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в к�
 //******** преотрисовка ... графические примитивы
 const recta=(axe,x1,y1,x2,y2,m,n,nom)=>{
 	switch (m){
-		case 'a': {svg.innerHTML+=qq7(axe,off+x1,y1,x2,y2,nom);break}//rect	
-		case '1': {svg.innerHTML+=qq8(axe,off+x1,y1,x2,y2);break}//ul	
-		case '2': {svg.innerHTML+=qq9(axe,off+x1,y1,x2,y2);break}//li	
+		case 'a': {svg.innerHTML+=qq7(axe,off+x1,y1,x2,y2,nom);break}//rect	//,m,n
+		case '1': {svg.innerHTML+=qq8(axe,off+x1,y1,x2,y2);break}//ul	,m,n
+		case '2': {svg.innerHTML+=qq9(axe,off+x1,y1,x2,y2);break}//li	//,m,n
 		}//switch
 	}
 const trg0=(axe,x1,y1,t)=>{
 	let nom=sp[sp2.indexOf(t)]??'emp';
 	svg.innerHTML+=sq5(axe,off+x1,y1,nom);// треуг
+	
+	
+	//let y0=(name0.length===1)?55:35;
+	//svg.innerHTML+=sq4(off+x1,y0,name0);// надпись
 	}
 const trg3=(axe,x1,y1,t)=>{
 	let nom=sp[sp2.indexOf(t)]??'emp';//t;//
@@ -580,8 +659,11 @@ const trg3=(axe,x1,y1,t)=>{
 const rng=(axe,x1,y1,x2,nom)=>{
 	svg.innerHTML+=sq2(axe,off+x1,y1,x2,nom);// эллипс
 	}
-//*******************
-
+/*******************
+первый и второй стеки пусты на выходе из ханойской сортировки, из них не берется для отрисовки.
+нахуя их два? это намек что они могут пересекаться?
+несмог представить случай a(z), всетаки стек будет один
+*/
 
  
 let axe=1.0;
@@ -624,9 +706,11 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 	count++;
 	let n=ss[i];
 	n=n.replace(/[bcdefghijklmnopqrstuvwxy]/gi,'0');
+
 	let ak='black';
+
 	switch (n){
-		case '(':{axe=2.4;stk.push({x:x1x,y:y1y,axe: axe,});break}//
+		case '(':{axe=2.4;stk.push({x:x1x,y:y1y,axe: axe,});break}//(r===1)?r:
 		case ')':{let v=stk.pop();//*
 			r++;
 			axe=v.axe;
@@ -662,7 +746,8 @@ for (let i=0; i<ss.length; i++){// ханойская сортировка
 				
 				stek3.push({
 					x1:x1x,
-					y1:y1y,
+					y1:y1y,////
+					//m:(bab(i))?'3':n,// заключено в скобки
 					m:n,
 					sort:y1y,
 					t:ss[i],//
@@ -716,16 +801,26 @@ off=(s700-x1x)/2;// смещение композиции
 {// стекер-3 ☯
 
 stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
+//console.clear();// контроль содержимого
+//stek3.forEach(x=>console.table(x));
 stek3.forEach((x,j)=>{
 	switch (x.m){
 		//блоки
 		case '(': {rng(x.axe,x.x1,x.y1,x.x2,x.nom); break}
-		case '[': {rng(x.axe,x.x1,x.y1,x.x2,); break}	//	
+		case '[': {rng(x.axe,x.x1,x.y1,x.x2,); break}	//	+dy		
+		//case '1':
+		//case '2':
+		//case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,1,);break}
+		//элементы
+		//case '0':{trg0(x.axe,x.x1,x.y1,x.t);break}// alert(x.t)
+		//case '3':{trg3(x.axe,x.x1,x.y1,); break}//150+j*5
 	}//switch
 });//forEach 
 stek3.forEach((x,j)=>{
 	switch (x.m){
-		//блоки			
+		//блоки
+		//case '(': {rng(x.axe,x.x1,x.y1,x.x2,); break}
+		//case '[': {rng(x.axe,x.x1,x.y1+dy,x.x2,); break}				
 		case '1':
 		case '2':
 		case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,0,x.nom);break}//1,
@@ -733,7 +828,8 @@ stek3.forEach((x,j)=>{
 		case '0':{trg0(x.axe,x.x1,x.y1,x.t);break}// alert(x.t)
 		case '3':{trg3(x.axe,x.x1,x.y1,x.m); break}//150+j*5
 	}//switch
-});//forEach  
+});//forEach 
+  
 }
 
 //
@@ -789,6 +885,7 @@ i['txt']+
 const ck=document.querySelectorAll('#svg .x'); // смена цвета
 ck.forEach(x=>{
 	x.addEventListener('click',(e)=>{
+		//if(e.target.currentTarget==='text')alert('0');
 		e.target.setAttribute('fill',mainColor);	
 		})	
 	});
@@ -815,8 +912,19 @@ const cpy=x=>{ // копирование в буфер обмена
 //*********************************  отрисовка
 const sq2=(axe,x,y,w,nom)=>{// кольцо (+драпировка)
 	let yy=y+axe*dy; // вершина знакоместа
+
 	stek4.unshift([x,y,x+w,axe,nom]);// единственный источник заполнения stek4	
 	let f='';
+	/*
+	f+='<polygon\r\n '+  // типа знакоместо
+	'	class="rect1 x" \r\n'+
+	'	points="'+x+' '+y+' '+
+	(x)+' '+(yy)+' '+
+	(x+w)+' '+(yy)+' '+
+	(x+w)+' '+y+'" \r\n'+
+	'	opacity="0"\r\n'+
+	'	fill="red" />\r\n';
+	*/
 	f+='<ellipse class="x" \r\n'+
 	'     cx="'+(x+(w/2)).toFixed(1)+'" \r\n'+
 	'     cy="'+(yy-10).toFixed(1)+'" \r\n'+//-33
@@ -843,6 +951,7 @@ const qq3=(axe,x,y,nom)=>// треуг особый
 	'	<defs><path id="tp'+ee+'" d="M'+(xx)+','+(yy-3).toFixed(1)+' '+ (xx+250)+','+(yy-253).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
+	//'	svg'+
 	nom+
 	'	</textPath></text>\r\n';
 	}
@@ -966,7 +1075,7 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	C${(x2-2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)} ${(x2-i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)}
 	${x2} ${(y1-10+y25*58*axe/2.3).toFixed(1)}"	
 	stroke-width="2"
-	stroke="blue" />\r\n`; 
+	stroke="blue" />\r\n`; //springgreen	none
 	else
 	return `<path 
 	class="rect1 x" 
@@ -980,7 +1089,7 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	C${(x2+i).toFixed(1)} ${(y1+y25*25*axe/2.3).toFixed(1)} ${x2-x40*40} ${(y1+y25*25*axe/2.3).toFixed(1)}
 	${(x2-2*i).toFixed(2)} ${y1}z"  
 	opacity="${city}"
-	fill="yellow" />\r\n`+ 
+	fill="yellow" />\r\n`+ //springgreen	none	
 `	<defs><path id="tp${ee}" d="M${x2+10},${(y1-11+y25*58*axe/2.3).toFixed(1)} ${x2+260},${(y1-260+y25*58*axe/2.3).toFixed(1)}"></path></defs>
 	<use xlink:href="#tp${ee}"></use>	
 	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp${ee}">
@@ -1062,7 +1171,9 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
 	  x1.innerText=[yrr[w]['dotx1'],yrr[w]['doty1']].join(' ');
 	  x2.innerText=[yrr[w]['dotx2'],yrr[w]['doty2']].join(' ');	  
 	  x3.innerText=[yrr[w]['dotx3'],yrr[w]['doty3']].join(' ');	  
-
+	  //x4.innerText=[yrr[w]['dotx4'],yrr[w]['doty4']].join(' ');
+	  //x5.innerText=[yrr[w]['dotx5'],yrr[w]['doty5']].join(' ');	  
+	  //alert(w);
 	main();  
 });
 //**************************
