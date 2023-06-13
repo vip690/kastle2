@@ -408,7 +408,11 @@ s=d;
   s=s.replace(/(<style>.*?<\/style>)/gi,'');//анти style 
   s=s.replace(/(<svg>.*?<\/svg>)/gi,'<svg>');//анти svg  
   s=s.replace(/(<table>.*?<\/table>)/gi,'<table></table>');//анти table  
-  s=s.replace(/(<pre>.*?<\/pre>)/gi,'');//анти svg   
+  s=s.replace(/(<pre>.*?<\/pre>)/gi,'');//анти pre   
+  
+  s=s.toLowerCase();
+  alert(s);
+  
   
   const closeli=x=>{// закрывает незакрытые лишки
 	  x=x.replace(/<\/li>/gi,'');
@@ -422,7 +426,7 @@ s=d;
 //console.log(s);return 0;  
 /*заменить*/ 
   let sp=['li'],sp2=['b'];
-  let a=['img','input','svg','param','unit','library_controllers','library_images','instance_geometry','instance_visual_scene','library_effects'];
+  let a=['img','input','svg','param','unit','library_controllers','library_images','instance_visual_scene','instance_effect','instance_material'];//'instance_geometry'
 
 //let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'>').join('|'),'i');
 //let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+')>').join('|'),'i');
