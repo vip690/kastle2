@@ -65,67 +65,7 @@ padding:3px;border-radius:6px;
 		<rect x="0" y="0" width="700" height="250" fill="silver" />
 	</svg>
 	<div class="copybara" onclick="cpy(this.parentElement);" title="Copy"></div>
-	<article>
-		<input type="radio" id="rok0" name="rokki">
-		<button id="x0" style="border-width:3px;"
-		onclick="rok0.checked=true;kx='dotx0';ky='doty0'">x</button><br>
-		
-		<input type="radio" id="rok1" name="rokki">	
-		<button id="x1" onclick="rok1.checked=true;kx='dotx1';ky='doty1'">x</button><br>
-		
-		<input type="radio" id="rok2" name="rokki">		
-		<button id="x2" onclick="rok2.checked=true;kx='dotx2';ky='doty2'">x</button><br>
-		
-		<input type="radio" id="rok3" name="rokki">	
-		<button id="x3"   style="border-width:3px;" 
-		onclick="rok3.checked=true;kx='dotx3';ky='doty3'">x</button><br>		
-		
-		<input type="radio" id="rok4" name="rokki" checked>	
-		<button id="x4"
-		onclick="rok4.checked=true;kx='dotx4';ky='doty4';main();">move text</button><br>
-		
-		<input type="radio" id="rok5" name="rokki">	
-		<button id="x5"
-		onclick="yrr[w]['txt']=prompt()||yrr[w]['txt']; main();"
-		>text</button>
-		<button id="x51"
-		onclick="yrr[w]['color']=prompt()||yrr[w]['color']; main();"
-		>color</button>		
-		
-		<br>		
-		
-		
-		<button id="x6"
-		onclick=" // создание новой надписи
-		let x=-100+Math.min(yrr[w]['dotx0'],yrr[w]['dotx1'],yrr[w]['dotx2'],yrr[w]['dotx3']);
-
-		let y=Math.min(yrr[w]['doty0'],yrr[w]['doty1'],yrr[w]['doty2'],yrr[w]['doty3']);		
-		yrr.push(
-	{dotx0:yrr[w]['dotx0']-x,doty0:yrr[w]['doty0']-y, // ножка
-	  dotx1:yrr[w]['dotx1']-x,doty1:yrr[w]['doty1']-y, // изгиб ножки
-	  dotx2:yrr[w]['dotx2']-x,doty2:yrr[w]['doty2']-y, // внешний изгиб края
-	  dotx3:yrr[w]['dotx3']-x,doty3:yrr[w]['doty3']-y, // край	  
-	  dotx4:-2,doty4:-37, // внутренний изгиб края
-	  dotx5:38,doty5:-31, // изгиб дно
-		txt:'Д',
-		color:'white',}		
-		
-		);
-		w++;
-		main();"
-		>new</button><br>			
-		
-		<button id="x70"
-		onclick="w++; if(w>=yrr.length)w=0; main();"
-		>next <br>caption</button>
-		<button id="x71"
-		onclick="w--; if(w<0)w=yrr.length-1; main();"
-		>prev <br>caption</button>		
-		
-		<br>		
-				
-		
-	</article>
+	
 </div>
 <br>
 
@@ -740,6 +680,7 @@ stek3.forEach((x,j)=>{
 stek4.sort((a,b)=>-1)
 	.forEach(x=>{svg.innerHTML+=sq0(x[3],x[0],x[1],x[2],x[4])});// драпировка в обратном порядке
 
+/*
 if(!rok4.checked)
 {	
 svg.innerHTML+=// начало п
@@ -767,7 +708,7 @@ svg.innerHTML+=// начало п
 	cy="${yrr[w]['doty3']}" 
 	fill="springgreen"/>`;//gold	
 }	
-
+*/
 
 yrr.forEach((i,j)=>{ // айдишники пересекаются при неодном svg. как решить хз
 svg.innerHTML+=	
@@ -904,7 +845,7 @@ const qq7=(axe,x,y,w,h,nom)=>// квадрат который не спит на
 
 
 
-const qq8=(axe,x,y,w,h)=>// список ul  //,m,n
+const qq8=(axe,x,y,w,h)=>// список ul  
 	{
 	ee++;
 	let yy=y+axe*dy;
@@ -922,7 +863,7 @@ const qq8=(axe,x,y,w,h)=>// список ul  //,m,n
 	}
 
 
-const qq9=(axe,x,y,w,h)=>// список li  //,m,n
+const qq9=(axe,x,y,w,h)=>// список li  
 	{
 	ee++;
 	let yy=y+axe*dy;
@@ -1001,71 +942,7 @@ ${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)}
  main();//
  
  
- //********************* выбранная точка перемещается курсорными клавишами
- document.addEventListener('keydown', (e) => {// ←↑↓→
- //if(kx===undefined||kx===null)return;
- if (!rok4.checked)
-	{switch(e.keyCode) {
-		case 40: {//↓
-		  yrr[w][ky]=yrr[w][ky]+1;
-		  break;
-		}
-		case 38: {//↑
-		  yrr[w][ky]=yrr[w][ky]-1;
-		  break;
-		}	  
-		case 39: {//→
-		  yrr[w][kx]=yrr[w][kx]+1;
-		  break;
-		}
-		case 37: {//←
-		  yrr[w][kx]=yrr[w][kx]-1;
-		  break;
-		}				
-		default: break;
-	  }
-	  }
-	  else{
-		switch(e.keyCode) {//dotx1
-			case 40: {//↓
-			  yrr[w]['doty0']=yrr[w]['doty0']+1;			
-			  yrr[w]['doty1']=yrr[w]['doty1']+1;
-			  yrr[w]['doty2']=yrr[w]['doty2']+1;
-			  yrr[w]['doty3']=yrr[w]['doty3']+1;			  
-			  break;
-			}
-			case 38: {//↑		
-			  yrr[w]['doty0']=yrr[w]['doty0']-1;			
-			  yrr[w]['doty1']=yrr[w]['doty1']-1;
-			  yrr[w]['doty2']=yrr[w]['doty2']-1;
-			  yrr[w]['doty3']=yrr[w]['doty3']-1;		  			  
-			  break;
-			}	  
-			case 39: {//→
-			  yrr[w]['dotx0']=yrr[w]['dotx0']+1;
-			  yrr[w]['dotx1']=yrr[w]['dotx1']+1;		  
-			  yrr[w]['dotx2']=yrr[w]['dotx2']+1;				  
-			  yrr[w]['dotx3']=yrr[w]['dotx3']+1;				  		  
-			  break;
-			}
-			case 37: {//←
-			  yrr[w]['dotx0']=yrr[w]['dotx0']-1;
-			  yrr[w]['dotx1']=yrr[w]['dotx1']-1;			  
-			  yrr[w]['dotx2']=yrr[w]['dotx2']-1;			  
-			  yrr[w]['dotx3']=yrr[w]['dotx3']-1;			  
-			  break;
-			}				
-			default: break;
-		  }	  	  
-	  }
-	  x0.innerText=[yrr[w]['dotx0'],yrr[w]['doty0']].join(' ');	  
-	  x1.innerText=[yrr[w]['dotx1'],yrr[w]['doty1']].join(' ');
-	  x2.innerText=[yrr[w]['dotx2'],yrr[w]['doty2']].join(' ');	  
-	  x3.innerText=[yrr[w]['dotx3'],yrr[w]['doty3']].join(' ');	  
-
-	main();  
-});
-//**************************
+ 
 //selen.onchange(); // выбранная формула юзается для постройки пиалы
 </script>
 </body>
