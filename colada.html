@@ -286,7 +286,7 @@ let off; // смещение композиции к центру
 let dx=25;//25 
 let dy=-25; // 25
 let x11x=0,y11y=hey-15//180;//+50dx  
-let s700=1700;//1300;//
+let s700=900;//1300;//
 
 
   
@@ -551,7 +551,8 @@ s=s.replace(/2([а-я]+)\(/g,'a$1(');
 ta2.value+='\n'+s;
 s=oba(s);// устранение только парных скобок 4.5.23
 console.log(s);
-let tv=s.split(/([a-z_][а-я]+)/);
+//let tv=s.split(/([a-z_][а-я]+)|([\[\]\(\)-])/);//?
+let tv=s.split(/([a-z_\(\)][а-я]+|[\[\]\(\)-])/);//измельчение до отдельных знаков препинания
 let tv1=tv.map(i=>i.replace(/[а-я]/gi,'')).filter(i=>i);
 let tv2=tv.map(i=>i.replace(/[a-z]/gi,'')).filter(i=>i);
 tv2=tv2.map(i=>[...i].map(j=>o2[j]).join(''));
