@@ -417,7 +417,9 @@ s=ta1.value;
 s=s.replace(/\n/g,never);//в одинарных тегах теперь эти палки делают их неузнаваемыми
 s=s.replace(/<!--.*?-->/g,never);//жадность была нежадной 26,04,2023
 //s=s.replace(never,'');
+
 let d='';
+/*
 let b=false;
 for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
 	switch (s[i]) {
@@ -428,23 +430,43 @@ for (let i=0; i<s.length; i++){// теги переношу атрибуты н�
 		default: {if (b) d=d+s[i]}
 	}//switch
 }
+*/
+let b=false, pk=false;
+for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
+	switch (s[i]) {
+		case '/':if (b){d=d+'/'}else{pk=true;} break;
+		case '<':d=d+'<'; b=true; pk=false;break;
+		case '>':d+=(pk)?'/>':'>'; b=false; pk=false;break;
+		case ' ':if (b) b=false; pk=false; break;
+		case never: pk=false;break;
+		default: if (b) d=d+s[i]; pk=false;
+	}//switch
+}
+
+//d=s.match(/<[^ \/>]+|\/>|>/g).join('');
+//d=s.match(/<[^ \/>]+[^\/>]*[\/>]/g).join('');
+//d=s.replace(/(<[^ \/>])(\s[^>\/]+)([>\/]+)/g,'$1$3');
+
+//
 s=d;
+//alert(s);
 //console.log(s);
-['<br>','<hr>','<meta>','<!doctype>',
-//'<sc'+'ript>','</sc'+'ript>',
-'<style>','</style>',
-'<title>','</title>',
-'<head>','</head>',
-//'<header>','</header>',нет это теги уничтожаемые как мусор
-'<html>','</html>',
-'<i>','</i>','<b>','</b>',
-'<link>',
-'<strong>','</strong>',
-'<sub>','</sub>','<sup>','</sup>',
-'<tt>','</tt>',
-//'<source>',//одинарные неизвестные теги глушат движок
-// в колабе сурс парный тег, в отличие от хтмл
-'<center>','</center>',
+[
+	'<br>','<hr>','<meta>','<!doctype>',
+	//'<sc'+'ript>','</sc'+'ript>',
+	'<style>','</style>',
+	'<title>','</title>',
+	'<head>','</head>',
+	//'<header>','</header>',нет это теги уничтожаемые как мусор
+	'<html>','</html>',
+	'<i>','</i>','<b>','</b>',
+	'<link>',
+	'<strong>','</strong>',
+	'<sub>','</sub>','<sup>','</sup>',
+	'<tt>','</tt>',
+	//'<source>',//одинарные неизвестные теги глушат движок
+	// в колабе сурс парный тег, в отличие от хтмл
+	'<center>','</center>',
 ].forEach(x=>{
 	let y=new RegExp(x,'g');
 	s=s.replace(y,'');
@@ -473,8 +495,19 @@ s=d;
 //console.log(s);return 0;  
 /*заменить*/ 
   let sp=['li'],sp2=['b'];
-  let a=['img','input','svg','param','unit','library_controllers','library_images','instance_visual_scene','instance_effect','instance_material'];//'instance_geometry'
-
+  //let a=['img','input','svg','param','unit','library_controllers','library_images','instance_visual_scene','instance_effect','instance_material','library_effects'];//'instance_geometry'
+  
+  let a;
+  a7=s.match(/<[^\/>]+\/>/g);// непарные теги
+  a7=(a7)?a7.map(i=>i.replace(/[<>\/]/g,'')):['img'];//
+  a7=new Set(a7);
+  a=Array.from(a7);
+  //a=s.match(/(\/>)/g);// непарные теги  
+  //alert(a7);
+  //
+  //
+  //console.log(a7);
+/**/
 //let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'>').join('|'),'i');
 //let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+')>').join('|'),'i');
 let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'[а-я]+>').join('|'),'i');
@@ -592,7 +625,7 @@ s=oba(s); // устранение только парных скобок 4.5.23
   la.innerHTML=s;
   ta2.value+='\n'+s;
   
-  console.table(tv1);console.table(tv2);console.table(tv3);
+  //console.table(tv1);console.table(tv2);console.table(tv3);
 //////////////////////////////////////draw формирует свг
 
 const svg=document.querySelector('#svg');
