@@ -216,7 +216,7 @@ const cc=['white','red','black','green','yellow','lime',
 'teal','olive','maroon','silver','springgreen','#6c757d','fuchsia'];
 document.querySelectorAll('.color').
 	forEach((x,i)=>{x.style.background=cc[i]; 
-		x.addEventListener('click',(e)=>{mainColor=cc[i];if(rok0.checked){main();}})
+		x.addEventListener('click',(e)=>{mainColor=cc[i];if(false){main();}})
 		}); 
 /************************************/
 let stek4=[]; // рюмашки
@@ -401,7 +401,8 @@ s=d;
   a=Array.from(a7);
 // организую регулярку поиска непарных тегов
 let re1=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<'+i+'[а-я]+>').join('|'),'i');
-let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+'[а-я]+)>').join('|'),'i');     
+let re2=new RegExp('<([^>]+)><\/\1>|'+a.map(i=>'<('+i+'[а-я]+)>').join('|'),'i');  
+let re4=new RegExp(a.map(i=>i).join('|'),'i');   
 // убираю слеш из непарных тегов 
 s=s.replace(/\/>/g,'>');
 // окружаю знаками замену   
@@ -502,22 +503,15 @@ svg.innerHTML=sq6();// стиль
 const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в кольце
 
 //******** преотрисовка ... графические примитивы
-const recta=(axe,x1,y1,x2,y2,m,n,nom)=>{
-	switch (m){
-		case 'a': {svg.innerHTML+=qq7(axe,off+x1,y1,x2,y2,nom);break}//rect	
-		case '1': {svg.innerHTML+=qq8(axe,off+x1,y1,x2,y2);break}//ul	
-		case '2': {svg.innerHTML+=qq9(axe,off+x1,y1,x2,y2);break}//li	
-		}//switch
+const recta0=(axe,x1,y1,x2,y2,nom)=>{
+		svg.innerHTML+=qq7(axe,off+x1,y1,x2,y2,nom);//break;//rect	
 	}
-const trg0=(axe,x1,y1,t)=>{
-	let nom=sp[sp2.indexOf(t)]??'emp';
-	svg.innerHTML+=sq5(axe,off+x1,y1,nom);// треуг
+
+const trg3=(axe,x1,y1,nom='error',ink='red')=>{
+	svg.innerHTML+=qq3(axe,off+x1,y1,nom,ink);// полигон
 	}
-const trg3=(axe,x1,y1,t)=>{
-	let nom=sp[sp2.indexOf(t)]??'emp';//t;//
-	svg.innerHTML+=qq3(axe,off+x1,y1,nom);// полигон
-	}
-const rng=(axe,x1,y1,x2,nom)=>{
+
+const rng=(axe,x1,y1,x2,nom='')=>{
 	svg.innerHTML+=sq2(axe,off+x1,y1,x2,nom);// эллипс
 	}
 //*******************
@@ -526,12 +520,7 @@ const rng=(axe,x1,y1,x2,nom)=>{
  
 let axe=1.0;
 let stek3=[]; // квадраты и труги, кольца...порядок рисования
-//******************************************
-///////**********ханойская сортировка begin
-/*обьекты внутри кольца проигрывают в высоте, надо 
-для них акселератор чтоли какойто добавить. а-ля гормон 
-роста. лучше всем добавить но одним множитель единица, другим два.
-*/
+//******************************
 let ss=s;
 const u={
 	'0':{x:dx,y:0,},
@@ -539,6 +528,7 @@ const u={
 	'1':{x:dx/2|0,y:dy,},
 	'2':{x:0,y:dy,},
 	'3':{x:dx,y:0,},
+	'4':{x:dx,y:0,},	
 	'-':{x:dx/2|0,y:0,},
 	'(':{x:dx/2|0,y:dy,},//
 	')':{x:dx/2|0,y:-dy,},//
@@ -547,115 +537,102 @@ const u={
 	'z':{x:0,y:-dy,},	
 	};
 let x1x=x11x,y1y=y11y;// точка отсчета
-/*
-	svg.innerHTML+=// начало пути черепашки
-`<circle 
-	r="3" 
-	cx="${x1x}" 
-	cy="${y1y}" 
-	fill="violet"/>`;//gold
-	*/
-//svg.innerHTML+=sq1;// стартовая точка контура
+
+
 let j=0;
 let r=1;
 let stk=[]; // 
 let count=-1;
-for (let i=0; i<ss.length; i++){// ханойская сортировка
-	count++;
-	let n=ss[i];
-	n=n.replace(/[bcdefghijklmnopqrstuvwxy]/gi,'0');
-	let ak='black';
-	switch (n){
-		case '(':{axe=2.4;stk.push({x:x1x,y:y1y,axe: axe,});break}//
-		case ')':{let v=stk.pop();//*
-			r++;
-			axe=v.axe;
-			stek3.push({
-				x1:v.x,
-				y1:v.y,
-				x2:x1x-v.x+u[n].x,//,
+//***********
+
+tv3=tv3.map(x=>[((re4).test(x[1]))?'4':x[0].replace(/[b-y]/gi,'0'),x[1]]);
+console.table(tv3);
+
+
+//*******
+
+let v2;
+tv3.forEach((n,i)=>{
+	switch (n[0]){
+		case '(': axe=2.4;stk.push({x:x1x,y:y1y}); break;	
+		case ')': axe=2.4;v2=stk.pop(); stek3.push({
+				x1:v2.x,
+				y1:v2.y,
+				x2:x1x-v2.x+u[n[0]].x,
 				m:'(',
-				sort:y1y+1,
-				axe: v.axe,//(axe===1)?axe:2.4,
-				nom: tv2[count],
+				axe: axe,
+				nom: n[1],
 				});
-			break}
-	/*	*/	
-		case '[':{axe=0.5;stk.push({x:x1x,y:y1y,axe});break}//*
-		case ']':{let v=stk.pop();//*
-			axe=v.axe;
+			break;
+		case '[': axe=0.5;stk.push({x:x1x,y:y1y});break
+		case ']': axe=0.5;v2=stk.pop();
 			stek3.push({
-				x1:v.x,
-				y1:v.y,
-				x2:x1x-v.x+u[n].x,
+				x1:v2.x,
+				y1:v2.y,
+				x2:x1x-v2.x+u[n[0]].x,
 				m:'[',
-				sort:y1y+1,
-				axe: v.axe,
+				axe: axe,
+				nom: n[1],
 				});
-			break}
-		
-		case 'a':{axe=1.5;//
-				  stk.push({x:x1x,y:y1y-dy,m:n,axe: axe,});ak='green';break}
-		case '1':{axe=2.0;stk.push({x:x1x,y:y1y-dy,m:n,axe: axe,});ak='green';break}
-		case '2':{axe=0.5;stk.push({x:x1x,y:y1y-dy,m:n,axe: axe,});ak='green';break}
-		case '0':{
-				
-				stek3.push({
-					x1:x1x,
-					y1:y1y,
-					m:n,
-					sort:y1y,
-					t:ss[i],//
-					axe: 1.5,
-					}); 
-				break}
-		case '3':{//
-				stek3.push({
-					x1:x1x,
-					y1:y1y,
-					m:n,
-					sort:y1y,
-					axe: 3.0,
-					});
-				break}
-		case '-':{break}
-		case 'z':{let t;//
-			t=stk.pop(); ak='red'; 
-			if (!t) break;// стек исчерпался
-			// а черепаха-то знает чем ты тут занимаешься?
-			axe=t.axe;
+			break;			
+		case 'a': axe=1.5;stk.push({x:x1x,y:y1y-dy,m:'a'});break;			
+		case 'z':axe=1.5; v2=stk.pop(); 
+			if (!v2) break;// стек исчерпался
 			{stek3.push({
-				x1:t.x,
-				y1:(t.y+dy),///
-				x2:(x1x-u[n].x)-t.x,
+				x1:v2.x,
+				y1:(v2.y+dy),
+				x2:(x1x-u[n[0]].x)-v2.x,
 				y2:-dy,
-				m:t.m,
-				sort:Math.max(t.y+dy,t.y),
-				axe:t.axe,
-				nom:tv2[count],
+				m:v2.m,
+				axe:axe,
+				nom:n[1],
 				});
-			j++;}
-			break} 
+			}
+			break;
+		case '0':axe=1.5;stek3.push({
+					x1:x1x,
+					y1:y1y,
+					m:'0',
+					axe: axe,
+					nom: n[1],
+					ink: 'lime',
+					}); 
+				break;
+		case '3':axe=3.0;stek3.push({
+					x1:x1x,
+					y1:y1y,
+					m:n[0],
+					axe: axe,
+					nom: n[1],
+					ink:'black',
+					});
+				break;
+		case '4':axe=2.0;stek3.push({
+					x1:x1x,
+					y1:y1y,
+					m:n[0],
+					axe: axe,
+					nom: n[1],
+					ink:'purple',
+					});
+				break;				
+				
 	}//switch
-	if(u.hasOwnProperty(n)){//
-		x1x+=u[n].x;
-		y1y+=u[n].y*axe;//
+	if(u.hasOwnProperty(n[0])){//
+		x1x+=u[n[0]].x;
+		y1y+=u[n[0]].y*axe;//
 		}
-	/*             это пригодится 
-	svg.innerHTML+=
-`<circle 
-	r="3" 
-	cx="${x1x}" 
-	cy="${y1y}" 
-	fill="${ak}"/>`;// точки контура
-	 */
-};//i
-///////**********ханойская сортировка end
-//****************************************
+});
+
+//console.table(stek3);
+//*******************
+
 off=(s700-x1x)/2;// смещение композиции
 {// стекер-3 ☯
 
-stek3=stek3.sort((a,b)=>b.s-a.s); //сортировка точечная нотация
+//console.table(stek3);
+
+stek3=stek3.sort((a,b)=>b.y1-a.y1); //сортировка точечная нотация
 stek3.forEach((x,j)=>{
 	switch (x.m){
 		//блоки
@@ -668,65 +645,21 @@ stek3.forEach((x,j)=>{
 		//блоки			
 		case '1':
 		case '2':
-		case 'a':{recta(x.axe,x.x1,x.y1,x.x2,x.y2,x.m,0,x.nom);break}//1,
+		case 'a': recta0(x.axe,x.x1,x.y1,x.x2,x.y2,x.nom);break;
 		//элементы
-		case '0':{trg0(x.axe,x.x1,x.y1,x.t);break}// alert(x.t)
-		case '3':{trg3(x.axe,x.x1,x.y1,x.m); break}//150+j*5
+		case '0':  
+		case '3': 
+		case '4': trg3(x.axe,x.x1,x.y1,x.nom,x.ink); break;
 	}//switch
 });//forEach  
 }
 
-//
-stek4.sort((a,b)=>-1)
-	.forEach(x=>{svg.innerHTML+=sq0(x[3],x[0],x[1],x[2],x[4])});// драпировка в обратном порядке
 
-/*
-if(!rok4.checked)
-{	
-svg.innerHTML+=// начало п
-`<circle 
-	r="3" 
-	cx="${yrr[w]['dotx0']}" 
-	cy="${yrr[w]['doty0']}" 
-	fill="violet"/>`;//gold	
-svg.innerHTML+=// начало п
-`<circle 
-	r="3" 
-	cx="${yrr[w]['dotx1']}" 
-	cy="${yrr[w]['doty1']}" 
-	fill="red"/>`;//gold		
-svg.innerHTML+=// начало п
-`<circle 
-	r="3" 
-	cx="${yrr[w]['dotx2']}" 
-	cy="${yrr[w]['doty2']}" 
-	fill="gold"/>`;//gold		
-svg.innerHTML+=// начало п
-`<circle 
-	r="3" 
-	cx="${yrr[w]['dotx3']}" 
-	cy="${yrr[w]['doty3']}" 
-	fill="springgreen"/>`;//gold	
-}	
-*/
-
-yrr.forEach((i,j)=>{ // айдишники пересекаются при неодном svg. как решить хз
-svg.innerHTML+=	
-'<defs><path id="tp'+j+'" d="M'+i['dotx0']+','+i['doty0']+' C'+i['dotx1']+', '+i['doty1']+' '+i['dotx2']+', '+i['doty2']+' '+i['dotx3']+','+i['doty3']+'"></path></defs>'+
-'<use xlink:href="#tp'+j+'"></use>'+	
-'<text x="0" y="0" fill="'+i['color']+'"><textPath xlink:href="#tp'+j+'">'+
-i['txt']+
-'</textPath></text>';	
-});
+stek4.sort((a,b)=>-1)// реверс
+	.forEach(x=>{svg.innerHTML+=sq0(x.axe,x.x1,x.y1,x.x2,x.nom)});// драпировка в обратном порядке
 
 
 
-
-/*
-поделить на две коллекции: одна при щелчке меняет цвет, 
-другая щелчком задается текст.
-без введения вспомогательного класса х не смог. подумаю.
-*/
 const ck=document.querySelectorAll('#svg .x'); // смена цвета
 ck.forEach(x=>{
 	x.addEventListener('click',(e)=>{
@@ -755,23 +688,23 @@ const cpy=x=>{ // копирование в буфер обмена
 
 //*********************************  отрисовка
 const sq2=(axe,x,y,w,nom)=>{// кольцо (+драпировка)
-	let yy=y+axe*dy; // вершина знакоместа
-	stek4.unshift([x,y,x+w,axe,nom]);// единственный источник заполнения stek4	
+	let yy=y+axe*dy; // вершина знакоместа	
+	stek4.unshift({x1:x,y1:y,x2:x+w,axe:axe,nom:nom});// единственный источник заполнения stek4	
 	let f='';
 	f+='<ellipse class="x" \r\n'+
 	'     cx="'+(x+(w/2)).toFixed(1)+'" \r\n'+
-	'     cy="'+(yy-10).toFixed(1)+'" \r\n'+//-33
+	'     cy="'+(yy-10).toFixed(1)+'" \r\n'+
 	'     rx="'+(w/2).toFixed(1)+'" \r\n'+
 	'     ry="10" \r\n'+
 	'     stroke="blue" \r\n'+
-	'     fill="cyan" \r\n'+//violet
-	'	  opacity="1"\r\n'+//'+city+'
+	'     fill="cyan" \r\n'+
+	'	  opacity="1"\r\n'+
 	'     stroke-width="1"/>\r\n';
 	return f;
 	}
 
 
-const qq3=(axe,x,y,nom)=>// треуг особый
+const qq3=(axe,x,y,nom,ink='red')=>// треуг особый
 	{
 	ee++;
 	let yy=y+axe*dy;// вершина знакоместа
@@ -780,7 +713,7 @@ const qq3=(axe,x,y,nom)=>// треуг особый
 	'	class="rect1 x" \r\n'+
 	'	points="'+x+' '+y+' '+(xx)+' '+(yy).toFixed(1)+' '+(x+dx)+' '+y+'" \r\n'+
 	'	opacity="'+city+'"\r\n'+
-	'	fill="red" />\r\n'+//#198754
+	'	fill="'+ink+'" />\r\n'+//#198754
 	'	<defs><path id="tp'+ee+'" d="M'+(xx)+','+(yy-3).toFixed(1)+' '+ (xx+250)+','+(yy-253).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
@@ -789,29 +722,7 @@ const qq3=(axe,x,y,nom)=>// треуг особый
 	}
 
 
-const sq4=(x,y,name)=>// уже не используется
-	{
-	return '<text class="txt1" x="'+x+'" y="'+y+'">'+name+'</text>\r\n';
-	}
 
-
-const sq5=(axe,x,y,nom)=>// треуг простой
-	{
-	ee++;
-	let xx=x+dx/2|0;
-	let yy=y+axe*dy;
-	return '<polygon \r\n'+
-	'	class="rect1 x" \r\n'+
-	'	points="'+(x)+' '+y+' '+(xx)+' '+(yy)+' '+(x+dx)+' '+y+'" \r\n'+
-	'	opacity="'+city+'"\r\n'+
-	'	fill="fuchsia" />\r\n'+//blue
-	'	<defs><path id="tp'+ee+'" d="M'+(xx+5)+','+(yy-5).toFixed(1)+' '+ (xx+255)+','+(yy-255).toFixed(1)+'"></path></defs>'+
-	'	<use xlink:href="#tp'+ee+'"></use>'+	
-	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-	//'	img'+
-	nom+
-	'	</textPath></text>\r\n';
-	}
 
 
 const sq6=()=>'\r\n<style type="text/css">\r\n'+
@@ -833,11 +744,10 @@ const qq7=(axe,x,y,w,h,nom)=>// квадрат который не спит на
 	'	width="'+w+'" \r\n'+
 	'	height="'+(axe*h).toFixed(1)+'" \r\n'+
 	'	opacity="'+city+'"\r\n'+
-	'	fill="gold" />\r\n'+//#ffc107
+	'	fill="gold" />\r\n'+
 	'	<defs><path id="tp'+ee+'" d="M'+(x+w+10)+','+(yy-10).toFixed(1)+' '+ (x+w+260)+','+(yy-260).toFixed(1)+'"></path></defs>'+
 	'	<use xlink:href="#tp'+ee+'"></use>'+	
 	'	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+ee+'">'+
-	//'	div'+
 	nom+
 	'	</textPath></text>\r\n';
 	}
@@ -882,64 +792,47 @@ const qq9=(axe,x,y,w,h)=>// список li
 function sq0(axe,x1,y1,x2,nom)// рюмашка (рисуем с 4-ого стека) единичный означает парение
 	{
     ee++;
-	let x40=dx/40;
-	let y25=dy/25;
-	const i=(x2-x1)/6;
+	const i=(x2-x1)/6;	
+	let k=0.5;
 	if(axe<=1)// парящий от летящего отличается масштабом
-	return `<path 
-	class="x" 
-	d="M${(x1+3*i).toFixed(1)} ${(y1+12+y25*58*axe/2.3).toFixed(1)} 
-	C${x1+x40*40} ${(y1+10+y25*58*axe/2.3).toFixed(1)} ${(x1-i).toFixed(1)} ${(y1+5+y25*58*axe/2.3).toFixed(1)}
-	${x1} ${(y1-10+y25*58*axe/2.3).toFixed(1)} 
-	C${(x1+i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)} ${(x1+2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)}
-${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)} 
-	C${(x2-2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)} ${(x2-i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)}
-	${x2} ${(y1-10+y25*58*axe/2.3).toFixed(1)} 
-	C${(x2+i).toFixed(1)} ${(y1+5+y25*58*axe/2.3).toFixed(1)} ${x2-x40*40} ${(y1+10+y25*58*axe/2.3).toFixed(1)}
-	${(x2-3*i).toFixed(2)} ${(y1+12+y25*58*axe/2.3).toFixed(1)}z"  
-	opacity="${city}"
-	stroke="none"
-	fill="white" />\r\n
-	<path d="
-	M${x1} ${(y1-10+y25*58*axe/2.3).toFixed(1)} 
-	C${(x1+i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)} ${(x1+2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)}
-${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)} 
-	C${(x2-2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)} ${(x2-i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)}
-	${x2} ${(y1-10+y25*58*axe/2.3).toFixed(1)}"	
-	stroke-width="2"
-	stroke="blue" />\r\n`; 
+	return '<path '+
+	'class="rect1 x" '+ 
+	'd="M'+(x1+3*i).toFixed(1)+' '+(y1+dy*k*k*k).toFixed(1)+' '+
+	'C'+(x1+i)+' '+(y1+dy*k*k*k).toFixed(1)+' '+(x1-i*k).toFixed(1)+' '+(y1+dy*k).toFixed(1)+' '+
+	(x1).toFixed(1)+' '+(y1+dy*axe-10).toFixed(1)+' '+
+	'C'+(x1+i).toFixed(1)+' '+(y1+0+dy*axe).toFixed(1)+' '+(x1+2*i).toFixed(1)+' '+(y1+dy*axe).toFixed(1)+' '+	
+((x2+x1)/2).toFixed(1)+' '+(y1+dy*axe).toFixed(1)+' '+	
+	'C'+(x2-2*i).toFixed(1)+' '+(y1+dy*axe).toFixed(1)+' '+(x2-i).toFixed(1)+' '+(y1+0+dy*axe).toFixed(1)+' '+
+	(x2).toFixed(1)+' '+(y1+dy*axe-10).toFixed(1)+' '+
+	'C'+(x2+i*k)+' '+(y1+dy*k).toFixed(1)+' '+(x2-i).toFixed(1)+' '+(y1+dy*k*k*k).toFixed(1)+' '+
+	(x2-3*i).toFixed(1)+' '+(y1+dy*k*k*k).toFixed(1)+' z" '+ 
+	'opacity="'+city+'" '+
+	'stroke="none" '+
+	'fill="white" />\r\n'
 	else
-	return `<path 
-	class="rect1 x" 
-	d="M${(x1+2*i).toFixed(1)} ${y1} 
-	C${x1+x40*40} ${(y1+y25*25*axe/2.3).toFixed(1)} ${(x1-i).toFixed(1)} ${(y1+y25*25*axe/2.3).toFixed(1)}
-	${x1} ${(y1-10+y25*58*axe/2.3).toFixed(1)} 
-	C${(x1+i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)} ${(x1+2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)}
-${x1+((x2-x1)/2)} ${(y1+1+y25*58*axe/2.3).toFixed(1)} 
-	C${(x2-2*i).toFixed(1)} ${(y1+y25*58*axe/2.3).toFixed(1)} ${(x2-i).toFixed(1)} ${(y1+2+y25*58*axe/2.3).toFixed(1)}
-	${x2} ${(y1-10+y25*58*axe/2.3).toFixed(1)} 
-	C${(x2+i).toFixed(1)} ${(y1+y25*25*axe/2.3).toFixed(1)} ${x2-x40*40} ${(y1+y25*25*axe/2.3).toFixed(1)}
-	${(x2-2*i).toFixed(2)} ${y1}z"  
-	opacity="${city}"
-	fill="yellow" />\r\n`+ 
-`	<defs><path id="tp${ee}" d="M${x2+10},${(y1-11+y25*58*axe/2.3).toFixed(1)} ${x2+260},${(y1-260+y25*58*axe/2.3).toFixed(1)}"></path></defs>
-	<use xlink:href="#tp${ee}"></use>	
-	<text x="0" y="0" fill="navy"><textPath xlink:href="#tp${ee}">
-	${nom}
-	</textPath></text>`;	
-	
-	
-	
-/*	
-`<circle 
-	r="3" 
-	cx="${x1+x40*40}" 
-	cy="${y1+y25*25}" 
-	fill="lime"/>`;// точки контура	
-	*/
+	return '<path '+
+	'class="rect1 x" '+
+	'd="M'+(x1+2*i).toFixed(1)+' '+(y1)+' '+
+	'C'+(x1+dx)+' '+(y1+dy).toFixed(1)+' '+(x1-i).toFixed(1)+' '+(y1+dy).toFixed(1)+' '+
+	(x1)+' '+(y1+dy*axe-10).toFixed(1)+' '+
+	'C'+(x1+i).toFixed(1)+' '+(y1+0+dy*axe).toFixed(1)+' '+(x1+2*i).toFixed(1)+' '+(y1+dy*axe-0).toFixed(1)+' '+
+((x2+x1)/2).toFixed(1)+' '+(y1+dy*axe).toFixed(1)+' '+
+	'C'+(x2-2*i).toFixed(1)+' '+(y1+dy*axe-0).toFixed(1)+' '+(x2-i).toFixed(1)+' '+(y1+0+dy*axe).toFixed(1)+' '+
+	(x2).toFixed(1)+' '+(y1+dy*axe-10).toFixed(1)+' '+
+	'C'+(x2+i)+' '+(y1+dy).toFixed(1)+' '+(x2-dx).toFixed(1)+' '+(y1+dy).toFixed(1)+' '+	
+	(x2-2*i).toFixed(1)+' '+(y1).toFixed(1)+'z" '+  
+	'opacity="'+city+'" '+
+	'fill="yellow" />\r\n'
+	+ 
+'<defs><path id="tp'+(ee)+'" d="M'+(x2+10)+','+(y1-11+dy*axe-10).toFixed(1)+
+' '+(x2+260)+','+(y1-260+dy*axe-10).toFixed(1)+'"></path></defs>'+
+'<use xlink:href="#tp'+(ee)+'"></use>'+	
+'<text x="0" y="0" fill="navy"><textPath xlink:href="#tp'+(ee)+'">'+
+(nom)+
+'</textPath></text>';	
  } 
 
- main();//
+ main();//.toFixed(1)
  
  
  
