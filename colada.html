@@ -533,6 +533,13 @@ const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в к�
 const recta0=(axe,x1,y1,x2,y2,nom)=>{
 		svg.innerHTML+=qq7(axe,off+x1,y1,x2,y2,nom);//break;//rect	
 	}
+const recta1=(axe,x1,y1,x2,y2,nom)=>{
+		svg.innerHTML+=qq8(axe,off+x1,y1,x2,y2);//ul	
+	}
+const recta2=(axe,x1,y1,x2,y2,nom)=>{
+		svg.innerHTML+=qq9(axe,off+x1,y1,x2,y2);//li	
+	}	
+	
 
 const trg3=(axe,x1,y1,nom='error',ink='red')=>{
 	svg.innerHTML+=qq3(axe,off+x1,y1,nom,ink);// полигон
@@ -598,9 +605,11 @@ tv3.forEach((n,i)=>{
 				axe: axe,
 				nom: n[1],
 				});
-			break;			
-		case 'a': axe=1.5;stk.push({x:x1x,y:y1y-dy,m:'a'});break;			
-		case 'z':axe=1.5; v2=stk.pop(); 
+			break;	////
+		case '1': axe=1.0;stk.push({x:x1x,y:y1y-dy,m:n[0],axe:axe,});break;			
+		case '2': axe=0.5;stk.push({x:x1x,y:y1y-dy,m:n[0],axe:axe,});break;			
+		case 'a': axe=1.5;stk.push({x:x1x,y:y1y-dy,m:n[0],axe:axe,});break;			
+		case 'z':  v2=stk.pop();axe=v2.axe;
 			if (!v2) break;// стек исчерпался
 			{stek3.push({
 				x1:v2.x,
@@ -666,9 +675,9 @@ stek3.forEach((x,j)=>{
 });//forEach 
 stek3.forEach((x,j)=>{
 	switch (x.m){
-		//блоки			
-		case '1':
-		case '2':
+		//блоки		/////	
+		case '1': recta1(x.axe,x.x1,x.y1,x.x2,x.y2,x.nom);break;
+		case '2': recta2(x.axe,x.x1,x.y1,x.x2,x.y2,x.nom);break;
 		case 'a': recta0(x.axe,x.x1,x.y1,x.x2,x.y2,x.nom);break;
 		//элементы
 		case '0':  
@@ -748,14 +757,14 @@ const qq3=(axe,x,y,nom,ink='red')=>// треуг особый
 
 
 
-
+/*
 const sq6=()=>'\r\n<style type="text/css">\r\n'+
 	'.rect1, .polygon1 {stroke: blue;}\r\n'+
 	'.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
 	'textPath {font-family: sans-serif; font-size: 16px;}\r\n'+
 	'</style>\r\n'+
 	'<rect class="x" x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
-
+*/
 
 const qq7=(axe,x,y,w,h,nom)=>// квадрат который не спит на спине
 	{
