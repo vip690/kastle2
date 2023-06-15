@@ -71,20 +71,18 @@ padding:3px;border-radius:6px;
 
 <div class="box">
 <select id="selen" style="width:440px" onchange="vvod.value=this.value; md=1; main()">
-  <option value="a(aa(c)zz)z">a(aa(c)zz)z</option>a(aa(c)zz)z
+  <option value="a(aa(c)zz)z">a(aa(c)zz)z</option><!-- a(aa(c)zz)z -->
   <option value="a12(c)zzz">a12(c)zzz</option>
   <option value="a12czzz">a12czzz</option>  
   <option value="acz">acz</option>  
   <option value="a(c)z">a(c)z</option> 
   <option value="aacca(cc)zzca(c)zcccccca(c)zcz">aacc(cc)zc(c)cccccc(c)cz</option>  
-  <option value="aaa(c)zzz">aaa(c)zzz</option> a(a(a(c)z)z)z
+  <option value="aaa(c)zzz">aaa(c)zzz</option> <!-- a(a(a(c)z)z)z -->
   <option value="a(a(a(c)z)z)z">a(a(a(c)z)z)z</option>  
   <option value="a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z">a(a(a(c)z)z-c-a(a(a(c)z)z)z-c-a(a(c)z)z)z</option>  
   <option value="a(c-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-a(a(a(a(c)z)z)z)z)z">a(c-a(c)z-a(a(c)z)z-a(a(a(c)z)z)z-a(a(a(a(c)z)z)z)z)z</option>  
-  <option value="aacadz-aaa3fzzz-a(f)zz(g)zz">aacadz-aaa3fzzz-a(f)zz(g)zz</option>   
-  <option value="aaa(c)zza(d)zz">aa(c)z(d)z</option>  
-  <option value="acaa(adz)z(e)zzz">aca(adz)(e)zz</option>    
-  <option value="acaa(a3z)z[e]zzz" selected>aca(a3z)[e]zz</option>   
+  <option value="aacadz-aaa3fzzz-a(f)zz(g)zz">aacadz-aaa3fzzz-a(f)zz(g)zz</option>    
+  <option value="aca[e4d]zz" selected>aca[e4d]zz</option>  
   
 </select><br>  
 
@@ -96,12 +94,11 @@ padding:3px;border-radius:6px;
 ss=vvod.value; 
 md=1;
 main();
-//window.navigator.clipboard.writeText(`nova.product.help@gmail.com`);
 ">do</button>
 </div>
 
 
-<button class="btn0" id="btn0" style="display: none;"
+<button class="btn0" id="btn0" style="d0isplay: none;"
 type="button" onclick="
 md=0;
 main();
@@ -354,7 +351,7 @@ s=s.replace(/<!--.*?-->/g,never);//жадность была нежадной 26
 
 let d='';
 
-let b=false, pk=false;
+let b=false, pk=false;// купон
 for (let i=0; i<s.length; i++){// теги переношу атрибуты нет
 	switch (s[i]) {
 		case '/':if (b){d=d+'/'}else{pk=true;} break;
@@ -492,13 +489,25 @@ tv2=tv2.map(i=>[...i].map(j=>o2[j]).join(''));//расшифровка биро�
 s=s.replace(/([а-я]+)/gi,'');
 
 let tv3=tv1.map((x,i)=>[x,tv2[i]]);  
+//***********
+
+tv3=tv3.map(x=>[((re4).test(x[1]))?'4':x[0].replace(/[b-y]/gi,'0'),x[1]]);
+
+
 //***************************************** отладка 
 if (md===1){// брать с эдита
 s=vvod.value;
 s=s.replace(/2([а-я]+)\(/g,'a$1(');//
-s=obana(s); // отделил скобки от брекетов
+//s=obana(s); // отделил скобки от брекетов
+tv=s.split('');//измельчение до отдельных знаков препинания
+//tv2=tv.map(i=>i.replace(/[a-z]/gi,'')).filter(i=>i);
+tv3=tv.map(x=>[x,'']);
+tv3=tv3.map(x=>[x[0].replace(/[b-y]/gi,'0'),x[1]]);
 }
-//*******************************************  
+//******************************************* 
+ 
+console.table(tv3);
+
 
   la.innerHTML=s;
   ta2.value+='\n'+s;
@@ -509,8 +518,15 @@ const svg=document.querySelector('#svg');
 svg.setAttribute("width", s700);
 svg.setAttribute("viewBox", "0 0 "+s700+" "+hey);
 
-svg.innerHTML=sq6();// стиль
-
+svg.innerHTML=//sq6();// стиль
+/*const sq6=()=>*/
+'\r\n<style type="text/css">\r\n'+
+	'.rect1, .polygon1 {stroke: blue;}\r\n'+
+	'.txt1 {font-family: Arial; font-size: 12px; line-height: 0; fill:white;}\r\n'+
+	'textPath {font-family: sans-serif; font-size: 16px;}\r\n'+
+	'</style>\r\n'+
+	'<rect class="x" x="0" y="0" width="'+s700+'" height="'+hey+'" fill="#ded" />\r\n';
+	
 const bab=x=>((' '+ss+' ')[x]==='('&&(' '+ss+' ')[x+2]===')');// один в кольце
 
 //******** преотрисовка ... графические примитивы
@@ -554,10 +570,7 @@ let j=0;
 let r=1;
 let stk=[]; // 
 let count=-1;
-//***********
 
-tv3=tv3.map(x=>[((re4).test(x[1]))?'4':x[0].replace(/[b-y]/gi,'0'),x[1]]);
-console.table(tv3);
 
 
 //*******
@@ -846,8 +859,8 @@ function sq0(axe,x1,y1,x2,nom)// рюмашка (рисуем с 4-ого сте
  main();//.toFixed(1)
  
  
- 
-//selen.onchange(); // выбранная формула юзается для постройки пиалы
+// 
+selen.onchange(); // выбранная формула юзается для постройки пиалы
 </script>
 </body>
 </html>
