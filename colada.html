@@ -101,14 +101,25 @@ main();
 </div>
 
 
-<button class="btn0" type="button" onclick="
+<button class="btn0" id="btn0" style="display: none;"
+type="button" onclick="
 md=0;
 main();
 ">do</button>
 
 <button class="btn2" type="button" onclick="
-ta1.value='';
-">clear</button>
+//ta1.value='';
+
+navigator.clipboard.readText()
+	.then(text => {
+		ta1.value=text;
+		btn0.onclick();
+	})
+	.catch(err => {
+	console.log('Oblomingo flyed pass', err);
+	});
+">paste</button>
+
 
 <br><!--  xor 20 xor 1 -->
 <textarea id="ta1" rows="20" cols="90" style="color: white; background: #1e154f;"
